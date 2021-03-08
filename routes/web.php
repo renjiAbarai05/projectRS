@@ -11,32 +11,25 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/booknow', function () {
-    return view('booknow');
-});
+Auth::routes();
 
-Route::get('/login', function () {
-    return view('loginAdmin');
-});
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/adminPage', 'HomeController@adminPage')->name('homePage');
 
-Route::get('/adminPage', function () {
-    return view('adminPage');
-});
-
-Route::get('/roomCategory', function () {
-    return view('roomCategory');
-});
-
-
-Route::get('/bookings', function () {
-    return view('bookings');
+    Route::get('/booknow', function () {
+        return view('booknow');
+    });
+    Route::get('/adminPage', function () {
+        return view('adminPage');
+    })->middleware('auth');
+    Route::get('/roomCategory', function () {
+        return view('roomCategory');
+    });
+    Route::get('/bookings', function () {
+        return view('bookings');
+    });
 });
