@@ -1,0 +1,9 @@
+March 9, 2021
+    - Notes
+        - setup ENV first
+        - composer install
+        - composer dump-autoload
+        - php artisan migrate
+        - php artisan db:seed --class=FactorySeeder
+    default email / pass: Admin@hotelLaiRico.com / secret
+    
