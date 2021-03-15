@@ -16,6 +16,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+{{-- Main css --}}
+<link href="{{ asset('css/main.css') }}" rel="stylesheet" />
 
 
 <!-- JQuery -->
@@ -282,7 +284,7 @@
             <a class="nav-link" href="/bookings">BOOKINGS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link pointer" href="#" onclick="changePassModal()">CHANGE PASSWORD</a>
+            <a class="nav-link pointer" href="{{route('users.index')}}">USER MANAGEMENT</a>
         </li>
         <li class="nav-item">
             <a class="nav-link book-btn" id="modalBtn" href="{{ route('logout') }}"onclick="event.preventDefault();
