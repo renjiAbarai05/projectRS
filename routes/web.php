@@ -18,6 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+    //User Routes
+    Route::resource('users', 'UserController');
+    
     Route::get('/adminPage', 'HomeController@adminPage')->name('homePage');
 
     Route::get('/booknow', function () {
