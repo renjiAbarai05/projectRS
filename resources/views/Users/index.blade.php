@@ -63,4 +63,17 @@
     </div>
 </div>
 
+<script>
+var msg = "{{Session::get('success')}}";
+var exist = "{{Session::has('success')}}";
+if(exist){
+    Swal.fire({
+        icon: 'success',
+        title: msg,
+        showConfirmButton: false,
+        timer: 2000,
+    });
+}
+</script>
+
 @endsection

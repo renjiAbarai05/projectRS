@@ -12,9 +12,12 @@ class FactorySeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->create();
+        factory(User::class, 1)->create();
         $user = User::first();
-        $user->username = 'Admin';
+        $user->id = '0';
+        $user->firstName = '';
+        $user->lastName = '';
+        $user->username = 'admin';
         $user->email = 'Admin@hotelLaiRico.com'; 
         $user->save();
     }

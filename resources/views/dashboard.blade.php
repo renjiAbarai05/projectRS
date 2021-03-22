@@ -19,6 +19,14 @@
 {{-- Main css --}}
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
 
+<!-- Sweetalert2 JS and CSS-->
+<script src="{{ asset('js/sweetalert2@10.min.js') }}"
+integrity="sha512-Wv8c8chIOY6Gt4Fesj+VYlEt+Qd+GIIKcoZGtPPh7l6Edc0QZlJoYQGVoQIBDDAFSzRNbJfnS9ml47BGRNdNiQ=="
+crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ asset('css/sweetalert2@10.min.css') }}"
+integrity="sha512-NU255TKQ55xzDS6UHQgO9HQ4jVWoAEGG/lh2Vme0E2ymREox7e8qwIfn6BFem8lbahhU9E2IQrHZlFAxtKWH2Q=="
+crossorigin="anonymous" />
+
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -278,10 +286,10 @@
             <a class="nav-link" href="/adminPage">CALENDAR</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/roomCategory">ROOM CATEGORY</a>
+            <a class="nav-link" href="{{route('roomList.index')}}">ROOM LIST</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/bookings">BOOKINGS</a>
+            <a class="nav-link" href="{{route('booking.index')}}">BOOKINGS</a>
         </li>
         <li class="nav-item">
             <a class="nav-link pointer" href="{{route('users.index')}}">USER MANAGEMENT</a>

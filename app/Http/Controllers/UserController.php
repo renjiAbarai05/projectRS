@@ -55,7 +55,7 @@ class UserController extends Controller
                 'number' => $request->number,
                 'email' => $request->email,
             ]);
-            return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('success', 'User Created Successfully');
         }
     }
 
@@ -101,7 +101,7 @@ class UserController extends Controller
             'number' => $request->number,
             'email' => $request->email,
         ]);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User Updated Successfully');;
     }
 
     /**
