@@ -5,5 +5,20 @@ March 9, 2021
         - composer dump-autoload
         - php artisan migrate
         - php artisan db:seed --class=FactorySeeder
-    default email / pass: Admin@hotelLaiRico.com / secret
+    default username / pass: Admin / secret
     
+
+
+-Room List CRUD working
+
+    note: 
+    - php artisan migrate fresh
+    - php artisan db:seed --classFactorySeeder
+
+    username: admin
+    password: secret
+
+
+-- added image class
+    note:
+    - composer update

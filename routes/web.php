@@ -18,6 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+    //User Routes
+    Route::resource('users', 'UserController');
+
+    Route::resource('roomList', 'RoomListController');
+
+    //Booking
+    Route::resource('booking', 'BookingController');
+    Route::post('booking/createBook', 'BookingController@bookCreate')->name('booking.bookCreate');
+
+    
     Route::get('/adminPage', 'HomeController@adminPage')->name('homePage');
 
     Route::get('/booknow', function () {

@@ -10,11 +10,11 @@
             <h2>Log In</h2>
             <hr>
             <div class="form-group">
-                <label for="emailusername">Email:</label>
-                <input type="text" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="Email" required autofocus>
-                @if ($errors->has('email'))
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" placeholder="Username" required autofocus>
+                @if ($errors->has('username'))
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong>{{ $errors->first('username') }}</strong>
                     </span>
                 @endif
             </div>
