@@ -98,12 +98,38 @@ class BookingController extends Controller
 
     public function bookCreate(Request $request){
 
-        $roomId = $request->RoomType;
+        // $roomId = $request->RoomType;
+        // $thisRoom = RoomList::find($roomId)->first();
 
-        $thisRoom = RoomList::find($roomId)->first();
-
-        $availableDates = BookingReserve::where('roomId',$roomId)->get();
+        // $availableDates = BookingReserve::where('roomId',$roomId)->get();
        
-        return view('Bookings.bookingCreate',compact('availableDates','thisRoom'));
+        $array = array();
+        $array2 = array();
+        $dateID = $request->checkInDate;
+        $dateOD = $request->checkOutDate;
+        $bookedList = BookingReserve::all();
+
+        while($dateID <= $dateOD){
+            // array_push($array, $dateID);
+            $dateID = date('Y-m-d', strtotime($dateID . ' +1 day'));
+            foreach($bookedList as $bookedItem){
+                $checkinDate = $bookedItem->checkinDate;
+                $checkoutDate = $bookedItem->checkoutDate;
+                while($checkinDate <= $checkoutDate){
+                    $checkinDate = date('Y-m-d', strtotime($checkinDate . ' +1 day'));
+                    if($dateID == $checkinDate and $dateID == $checkinDate){
+                        array_push($array2, "$bookedItem->roomId");
+                    }
+                }
+            }
+        }
+        // if (count($bookedList)) {
+        //     $availableRooms = $bookedList;
+
+        //     return view('Bookings.bookingSearchedResults',compact('availableRooms'));
+        // }
+        $availableRooms = RoomList::whereNotIn('id', $array2)->get();
+
+        return view('Bookings.bookingSearchedResults',compact('availableRooms'));
     }
 }

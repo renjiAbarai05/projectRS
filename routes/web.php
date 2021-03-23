@@ -33,9 +33,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/booknow', function () {
         return view('booknow');
     });
-    Route::get('/adminPage', function () {
-        return view('adminPage');
-    })->middleware('auth');
+    // Route::get('/adminPage', function () {
+    //     return view('adminPage');
+    // });
     Route::get('/roomCategory', function () {
         return view('roomCategory');
     });
