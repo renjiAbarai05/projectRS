@@ -12,11 +12,8 @@
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
     }
-    .div{
 
-    }
-</style>
-{{-- <div class="container mb-5">
+/* {{-- <div class="container mb-5">
     <div class="header-banner mt-5">
         <p class="p-0 m-0 header d-inline">USERS</p>
         <div class="float-right">
@@ -61,11 +58,10 @@
         @endforeach
         </div>
     </div>
-</div> --}}
+</div> --}} */
 
 
 
-<style>
 .partition{
     display: none;
 }
@@ -98,6 +94,7 @@
 }
 .DivLinks-header{
     display: inline-block;
+    
 }
 
 @media(max-width: 1200px){
@@ -124,38 +121,32 @@
 } */
 </style>
 
-<div class="container pt-2 mt-2 mb-3">
-    <div class="d-flex flex-column">
-        <div class="header-banner p-2 px-3">
-            <span class="HeaderBannerText">USER MANAGEMENT</span>
+@include('layouts.vtab')
+
+<div class="content content-margin pb-2" id="content">
+    <div class="container" style="margin-top: 20px">
+        <div class="header-banner">
+            <p class="p-0 m-0 header d-inline">USER MANAGEMENT</p>
+            <button onclick="window.location='{{ route('users.create') }}'" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
         </div>
-        <div class="flex DivLinks-bg">
-            <ul class="mb-0">
-                <li class="DivLinks-header p-2">
-                    <a class="header-link" href="{{ route('users.create') }}">Add User</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- User Div -->
+    <div class="divContainer mt-n2">
     @foreach ($users as $user)
-    <div class="divContainer mt-3">
-        <div class="row">
-            <div class="col-xl-3">
-                <table class="mx-auto" style="height: 65%; width:100%;">
-                    <tr>
+        <div class="row mt-4">
+            <div class="col-xl-4">
+                <table class="mx-auto mt-1" style="height: 65%; width:100%;">
+                    <tr class="text-center">
                         <td class="align-middle">
                             @if ($user->picture != null)
-                            <img class="imgSize" src="{{ asset('images/UserPhoto/'.$user->picture) }}" alt="#">
+                            <img class="imgSize" src="{{ asset('images/UserPhoto/'.$user->picture) }}" alt="#" style="width: 110px; height: 110px;">
                             @else
-                            <img class="imgSize" src="{{ asset('images/defaultpic.jpg') }}" alt="#">
+                            <img class="imgSize" src="{{ asset('images/defaultpic.jpg') }}" alt="#" style="width: 110px; height: 110px">
                             @endif
                         </td>
                     </tr>
                 </table>
-                <button class="update-button facility-update-btn" onclick="window.location = '{{ route('users.edit', $user->id) }}'">UPDATE</button>
+                <button class="update-button w-100 mt-3" onclick="window.location = '{{ route('users.edit', $user->id) }}'">UPDATE</button>
             </div>
-            <div class="col-xl-9">
+            <div class="col-xl-8">
                 <div class="hr mb-2 partition"></div>
                 <p class="DivHeaderText center-align">USER DETAILS</p>
                 <div class="hr"></div>
@@ -189,10 +180,8 @@
                 </div>
             </div>
         </div>
-    </div>
     @endforeach
-
-   
+    </div>
 </div> <!-- container -->
 
 

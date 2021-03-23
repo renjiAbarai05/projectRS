@@ -52,8 +52,11 @@
 
 <form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
     @csrf
-<div class="container mb-5">
-    <div class="header-banner  mt-3">
+    @include('layouts.vtab')
+
+    <div class="content content-margin pb-2" id="content">
+        <div class="container" style="margin-top: 20px">
+            <div class="header-banner">
         <p class="p-0 m-0 header d-inline">USER PHOTO</p>
     </div>
     <div class="divContainer mt-n2">
@@ -112,12 +115,15 @@
                 <label>Contact Number</label>
                 <input type="text" class="form-control" name="number">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                 <label>Email</label>
                 <input type="text" class="form-control" name="email">
             </div>
         </div>
-        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="save-button">Save</button>
+        <button type="button" class="back-button float-right" onclick="window.location='{{route('users.index')}}'">Back</button>
     </div>
     </form>
 

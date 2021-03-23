@@ -3,21 +3,6 @@
 
 
 <style>
-    body
-		{
-			/* background-image: url('images/home_bg.jpg'); */
-			/* background-repeat: no-repeat;
-			background-attachment: fixed; */
-            /* margin: 0px !important; */
-          background-color:#ebebeb;
-		}
-        .header-banner{
-            background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
-            padding: 15px 15px;
-            width: 100%;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-        }
         .data{
             color: #676767;
             font-size: 15px;
@@ -35,11 +20,13 @@
 
 
 
-{{-- <div  style="height:100vh;"> --}}
-    <div class="container mb-5">
-        <div class="header-banner mt-5">
+@include('layouts.vtab')
+
+<div class="content content-margin pb-2" id="content">
+    <div class="container" style="margin-top: 20px">
+        <div class="header-banner">
             <p class="p-0 m-0 header d-inline">ROOM LIST</p>
-            <button id="addCategoryButton" style="border:none; background:none; float:right;"><i class="fas fa-plus-circle float-right add-button"></i></button>
+            <button id="addCategoryButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
         </div>
         <div class="divContainer mt-n2">
             {{-- <p class="data">No Data</p> --}}
@@ -60,10 +47,10 @@
                               <td>{{$data->details}}</td>
                               <td>₱{{$data->price}}</td>
                               <td class="text-center">
-                                <button class="btn updateColor  btn-sm" style="color:white; width:100%;"
+                                <button class="update-button" style="color:white; width:100%;"
                                 data-id="{{$data->id}}" data-name="{{$data->roomType}}" data-roomNum="{{$data->roomNumber}}"
                                 data-price="{{$data->price}}" data-details="{{$data->details}}" onclick="updateModal(this)"> Update</button>
-                                <button class="btn deleteColor  btn-sm" style="color:white; width:100%;" data-id="{{$data->id}}" onclick="deleteModal(this)"> Delete</button>
+                                <button class="delete-button" style="color:white; width:100%;" data-id="{{$data->id}}" onclick="deleteModal(this)"> Delete</button>
                               </td>
                            </tr>
                         @endforeach
@@ -80,11 +67,11 @@
 {{-- Create Modal --}}
 <form class="form-horizontal" method="POST" action="{{route('roomList.store')}}">
 @csrf
-    <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 70px">
+    <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 50px; z-index: 1000000">
         <div class="modal-dialog modal-lg" role="document" >
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 3px">ADD ROOM</h4>
+                    <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>ADD ROOM</u></h4>
                     </div>
                     <div class="modal-body mx-3 mb-3">
                         <div class="row mt-1">
@@ -112,10 +99,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row px-4 pb-3">
+                    <div class="row px-4 pb-4">
                         <div class="col-sm-12">
-                            <button class="btn btn-deep-orange float-left" type="submit">Save</button>
-                            <button class="btn btn-deep-orange float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                            <button class="save-button" type="submit">Save</button>
+                            <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -127,11 +114,11 @@
 <form class="form-horizontal" method="POST" id="update_form">
     @csrf
     @method('PUT')
-        <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 70px">
+        <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 50px; z-index: 1000000">
             <div class="modal-dialog modal-lg" role="document" >
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 3px">EDIT ROOM CATEGORY</h4>
+                    <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>EDIT ROOM CATEGORY</u></h4>
                     {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button> --}}
@@ -164,8 +151,8 @@
                     </div>
                     <div class="row px-4 pb-3">
                         <div class="col-sm-12">
-                            <button class="btn btn-deep-orange float-left">Save</button>
-                            <button class="btn btn-deep-orange float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
+                            <button class="save-button">Save</button>
+                            <button class="back-button float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
                         </div>
                     </div>
                 </div>

@@ -102,13 +102,15 @@ crossorigin="anonymous" />
             height: 110vh;;
         }
         .book-btn{
-            background:#ed9e21;
-            width: 110px;
-            padding: 5px 0px;
-            margin-top: 3px;
+            /* background:#ed9e21; */
+            width: 100px;
+            padding: 6px 0px;
             text-align: center;
             border-radius: 5px;
-            color: #474747;
+            color: #ed9e21;
+        }
+        .book-btn:hover{
+            color: white;
         }
         .carousel-control-next-icon{
             width: 50px !important;
@@ -282,7 +284,7 @@ crossorigin="anonymous" />
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="/adminPage">CALENDAR</a>
         </li>
         <li class="nav-item">
@@ -293,7 +295,7 @@ crossorigin="anonymous" />
         </li>
         <li class="nav-item">
             <a class="nav-link pointer" href="{{route('users.index')}}">USER MANAGEMENT</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link book-btn" id="modalBtn" href="{{ route('logout') }}"onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">{{ __('LOGOUT') }}</a>

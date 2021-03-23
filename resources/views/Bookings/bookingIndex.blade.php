@@ -29,13 +29,13 @@
         }
 </style>
 
+@include('layouts.vtab')
 
-
-{{-- <div  style="height:100vh;"> --}}
-    <div class="container mb-5">
-        <div class="header-banner mt-5">
+<div class="content content-margin pb-2" id="content">
+    <div class="container" style="margin-top: 20px">
+        <div class="header-banner">
             <p class="p-0 m-0 header d-inline">BOOKINGS</p>
-            <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus-circle float-right add-button"></i></button>
+            <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
         </div>
         <div class="divContainer mt-n2">
             {{-- <p class="data">No Data</p> --}}
@@ -54,8 +54,8 @@
                               <td>{{$booked->checkinDate}} to {{$booked->checkoutDate}}</td>
                               <td>{{$booked->room->roomType}}</td>
                               <td class="text-center">
-                                <button class="btn updateColor  btn-sm" style="color:white; width:100%;" onclick="updateModal()"> Update</button>
-                                <button class="btn deleteColor  btn-sm" style="color:white; width:100%;" > Delete</button>
+                                <button class="update-button" style="color:white; width:100%;" onclick="updateModal()"> Update</button>
+                                <button class="delete-button" style="color:white; width:100%;" > Delete</button>
                               </td>
                           </tr>
                     @endforeach
@@ -72,11 +72,11 @@
 {{-- BookNowModal --}}
 <form method="POST" action="{{route('booking.bookCreate')}}">
     @csrf
-    <div class="modal fade" id="bookNowCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px">
+    <div class="modal fade" id="bookNowCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000">
         <div class="modal-dialog modal-lg" role="document" >
             <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 3px">CHECK AVAILABLE ROOMS</h4>
+                <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>CHECK AVAILABLE ROOMS</u></h4>
             </div>
             <div class="modal-body mx-3 mb-3">
                 <div class="row">
@@ -101,10 +101,10 @@
                     </div>
                 </div> --}}
             </div>
-            <div class="row px-4 pb-3">
+            <div class="row px-4 pb-4">
                 <div class="col-sm-12">
-                    <button class="btn btn-deep-orange float-left" type="submit">Check</button>
-                    <button class="btn btn-deep-orange float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button class="save-button" type="submit">Check</button>
+                    <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>
             </div>
             </div>

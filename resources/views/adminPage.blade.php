@@ -40,9 +40,11 @@
 
 
 
-{{-- <div  style="height:100vh;"> --}}
-    <div class="container mb-5">
-        <div class="header-banner mt-5">
+@include('layouts.vtab')
+
+<div class="content content-margin pb-2" id="content">
+    <div class="container" style="margin-top: 20px">
+        <div class="header-banner">
             <p class="p-0 m-0 header d-inline">CALENDAR</p>
         </div>
         <div class="divContainer mt-n2">

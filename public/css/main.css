@@ -1,3 +1,157 @@
+body{
+    background-color:#ebebeb !important;
+}
 input:required{
     border-color: darkcyan;
 }
+.data{
+    color: #676767;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+}
+.add-button{
+    color: #f05e23 !important;
+    font-size: 23px !important;
+    margin-top: -5px;
+}
+.HeaderBannerText{
+    color: white;
+    font-weight: bold;
+}
+.header-banner{
+    background: #ffbf00 !important;
+    padding: 15px 15px;
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.update-button {
+    background-color: #00a86b;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 10px;
+    margin: 2px;
+}
+.update-button:hover{
+    background-color: #4cbb17;
+}
+  .delete-button{
+    background-color: #b80f0a;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    border-radius: 10px;
+    margin: 2px;
+}
+.delete-button:hover{
+    background-color: red;
+}
+.save-button {
+    background-color: #ff7417;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+}
+.back-button {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+}
+/* Sidebar Css */
+.sidebar-Togglebtn-hidden{
+    display: none;
+}
+#sidebar{
+    display: block;
+}
+.sidebar {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px;
+    /* width: 315px; */
+    width: 310px;
+    background-color: #ee9617;
+    background-image: linear-gradient(315deg, #ee9617 0%, #fe5858 74%);
+
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    z-index: 100000;
+}
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+    display: none;
+}
+
+/* sidebar class for mozilla */
+@-moz-document url-prefix() {
+    hide scrollbar
+    .sidebar{
+        -ms-overflow-style: none; 
+        scrollbar-width: none;  
+        padding-bottom: 300px!important;
+    }
+    .sidebar:after{
+        content:'';
+        display:block;
+        padding-bottom:100px;
+    }
+}
+
+.sidebar a.v-tabs{
+    letter-spacing: 1px;
+    display: block;
+    padding: 10px 16px;
+    border-bottom: 1px solid #fbebd8;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+}
+.sidebar a.v-tabs.active {
+    border-left: 10px solid #fbebd8;
+    border-right: none;
+    background: white;
+    color: #A90011;
+    padding-left: 8px;
+    text-decoration: none;
+    font-weight: 600 !important;
+}
+.sidebar a.v-tabs:hover:not(.active) {
+    text-decoration: none;
+    background: #fbebd8;
+    color: #1e1e1e;
+}
+.sidebar a.v-tabs.active:hover {
+    border-left: 10px solid #fbebd8;
+    border-right: none;
+    background: white;
+    color: #A90011;
+    padding-left: 8px;
+    text-decoration: none;
+    font-weight: 600 !important;
+}
+.content {
+  /* margin-left: 300px; */
+  padding: 1px;
+  padding-right: 6px;
+}
+  .content-margin{
+      margin-left: 310px;
+  }
