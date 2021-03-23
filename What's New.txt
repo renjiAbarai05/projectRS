@@ -17,3 +17,8 @@ March 9, 2021
 
     username: admin
     password: secret
+
+
+-- added image class
+    note:
+    - composer update

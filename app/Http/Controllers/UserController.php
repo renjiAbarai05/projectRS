@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use Hash;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
             Session::flash('message', 'Username already taken');
             return redirect()->back();
         }else{
-            User::create([
+          $user =  User::create([
                 'username' => $request->username,
                 'lastName' => $request->lastName,
                 'firstName' => $request->firstName,
@@ -55,6 +56,19 @@ class UserController extends Controller
                 'number' => $request->number,
                 'email' => $request->email,
             ]);
+
+            if ($request->input('picture') != NULL){
+                $screen = $request->input('picture');
+                $filterd_data = substr($screen, strpos($screen, ",")+1);
+                //Decode the string
+                $unencoded_data=base64_decode($filterd_data);
+                $name = time().'.png';
+                $user_photo = Image::make($unencoded_data);
+                $user_photo-> save(public_path().'/images/UserPhoto/' .  $name);
+                $user->picture = $name;
+                $user->save();
+            }
+
             return redirect()->route('users.index')->with('success', 'User Created Successfully');
         }
     }
@@ -91,7 +105,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::find($id)->update([
+        $user = User::find($id);
+       
+        $user->update([
             'username' => $request->username,
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
@@ -101,6 +117,18 @@ class UserController extends Controller
             'number' => $request->number,
             'email' => $request->email,
         ]);
+
+        if ($request->input('picture') != NULL){
+            $screen = $request->input('picture');
+            $filterd_data = substr($screen, strpos($screen, ",")+1);
+            //Decode the string
+            $unencoded_data=base64_decode($filterd_data);
+            $name = time().'.png';
+            $user_photo = Image::make($unencoded_data);
+            $user_photo-> save(public_path().'/images/UserPhoto/' .  $name);
+            $user->picture = $name;
+            $user->save();
+        }
         return redirect()->route('users.index')->with('success', 'User Updated Successfully');;
     }
 
