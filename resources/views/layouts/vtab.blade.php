@@ -16,6 +16,7 @@
     <a href="{{route('roomList.index')}}" class="v-tabs">Room List</a>
     <a href="{{route('booking.index')}}" class="v-tabs">Bookings</a>
     <a href="{{route('users.index')}}" class="v-tabs">User Management</a>
+    <a href="{{route('report.index')}}" class="v-tabs">Reports</a>
     
      
     </div>

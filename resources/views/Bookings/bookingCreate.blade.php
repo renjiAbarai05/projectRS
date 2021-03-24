@@ -29,7 +29,6 @@
         }
 </style>
 
-
 <form class="form-horizontal" method="POST" action="{{route('booking.store')}}">
     @csrf
     <div class="container mb-5">
@@ -47,11 +46,11 @@
             <div class="row mt-3">
                 <div class="col-sm-6">
                     <label>Check in</label>
-                    <input type="date" class="form-control" name="checkIn" required>
+                    <input type="date" class="form-control" name="checkIn" value="{{$checkIn}}" enabled>
                 </div>
                 <div class="col-sm-6">
                     <label>Check out</label>
-                    <input type="date" class="form-control" name="checkOut" required>
+                    <input type="date" class="form-control" name="checkOut" value="{{$checkOut}}" enabled>
                 </div>
             </div>
             <div class="row mt-3">

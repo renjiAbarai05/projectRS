@@ -71,7 +71,13 @@
                                     {{$availableRoom->details}}
                                 </td>
                                 <td class="text-center">
-                                    <button class="update-button" style="color:white; width:100%;" data-id="{{$availableRoom->id}}" onclick="checkinModal(this)">Checkin</button>
+                                    <form class="form-horizontal" method="POST" action="{{ route('booking.createBooking') }}">
+                                        @csrf
+                                            <input type="hidden" name="checkIN" value="{{$dateID}}">
+                                            <input type="hidden" name="checkOUT" value="{{$dateOD}}">
+                                            <input type="hidden" name="roomId" value="{{$availableRoom->id}}">
+                                            <button class="update-button" style="color:white; width:100%;" type="submit">Checkin</button>
+                                    </form>
                                 </td>
                           </tr>
                     @endforeach
@@ -84,55 +90,6 @@
     </div>
 {{-- </div> --}}
 
-{{-- Edit Modal --}}
-<form class="form-horizontal" method="POST" id="update_form">
-    @csrf
-    @method('PUT')
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 50px; z-index: 1000000">
-        <div class="modal-dialog modal-lg" role="document" >
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>CHECKIN</u></h4>
-                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> --}}
-                </div>
-                <div class="modal-body mx-3 mb-3">
-                <div class="row mt-1">
-                        <div class="col-sm-12">
-                            <label>Room Name:</label>
-                        <input type="text" class="form-control" id="update-roomName" name="roomType" required>
-                        </div>
-                </div>
-                <div class="row mt-1">
-                        <div class="col-sm-12">
-                            <label>Number Number:</label>
-                            <input type="number" class="form-control" id="update-roomNum" name="roomNumber" required>
-                        </div>
-                    </div>
-                <div class="row mt-1">
-                    <div class="col-sm-12">
-                        <label>Price per day:</label>
-                        <input type="number" class="form-control" id="update-price" name="price" required>
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-sm-12">
-                        <label>Details:</label>
-                        <textarea class="form-control" id="update-details" name="details"></textarea>
-                    </div>
-                </div>
-                </div>
-                <div class="row px-4 pb-3">
-                    <div class="col-sm-12">
-                        <button class="save-button">Save</button>
-                        <button class="back-button float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
 <script>
 $(document).ready(function(){
@@ -150,25 +107,8 @@ $(document).ready(function(){
 });
 
 
-// function checkinModal(){
-//     $('#bookNowUpdate').modal('show');
-// }
-
 function checkinModal(thisRow){
-    var id = $(thisRow).attr('data-id'),
-    //     roomName = $(thisRow).attr('data-name'),
-    //     roomNumber = $(thisRow).attr('data-roomNum'),
-    //     price = $(thisRow).attr('data-price'),
-    //     details = $(thisRow).attr('data-details');
-
-    // var url = "{{ route('roomList.update', ':id') }}";
-    //     url = url.replace(':id', id);
-    //     $('#update_form').attr('action', url);
-
-    //     $('#update-roomName').val(roomName);
-    //     $('#update-roomNum').val(roomNumber);
-    //     $('#update-price').val(price);
-    //     $('#update-details').val(details);
+    var id = $(thisRow).attr('data-id');
         $('#editCategoryModal').modal('show');
 }
 

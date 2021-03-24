@@ -96,40 +96,31 @@ class BookingController extends Controller
         //
     }
 
-    public function bookCreate(Request $request){
+    public function searchAvailableRooms(Request $request){
 
-        // $roomId = $request->RoomType;
-        // $thisRoom = RoomList::find($roomId)->first();
-
-        // $availableDates = BookingReserve::where('roomId',$roomId)->get();
-       
         $array = array();
-        $array2 = array();
         $dateID = $request->checkInDate;
         $dateOD = $request->checkOutDate;
-        $bookedList = BookingReserve::all();
 
-        while($dateID <= $dateOD){
-            // array_push($array, $dateID);
-            $dateID = date('Y-m-d', strtotime($dateID . ' +1 day'));
-            foreach($bookedList as $bookedItem){
-                $checkinDate = $bookedItem->checkinDate;
-                $checkoutDate = $bookedItem->checkoutDate;
-                while($checkinDate <= $checkoutDate){
-                    $checkinDate = date('Y-m-d', strtotime($checkinDate . ' +1 day'));
-                    if($dateID == $checkinDate and $dateID == $checkinDate){
-                        array_push($array2, "$bookedItem->roomId");
-                    }
-                }
-            }
+        $bookedLists = BookingReserve::where('isDismiss',0)->where('checkoutDate' ,'>=', $dateID)->get();
+
+        foreach($bookedLists as $bookedList){
+           $array[] = $bookedList->id;
         }
-        // if (count($bookedList)) {
-        //     $availableRooms = $bookedList;
 
-        //     return view('Bookings.bookingSearchedResults',compact('availableRooms'));
-        // }
-        $availableRooms = RoomList::whereNotIn('id', $array2)->get();
+        $availableRooms = RoomList::whereNotIn('id', $array)->where('deleted',0)->get();
 
-        return view('Bookings.bookingSearchedResults',compact('availableRooms'));
+        return view('Bookings.bookingSearchedResults',compact('availableRooms','dateID','dateOD'));
+    }
+
+
+    public function CreateBooking(Request $request){
+        $id = $request->roomId;
+        $checkIn = $request->checkIN;
+        $checkOut = $request->checkOUT;
+
+        $thisRoom = RoomList::find($id);
+
+        return view('Bookings.bookingCreate',compact('thisRoom','checkIn','checkOut'));
     }
 }
