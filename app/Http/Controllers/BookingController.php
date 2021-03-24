@@ -102,12 +102,27 @@ class BookingController extends Controller
         $dateID = $request->checkInDate;
         $dateOD = $request->checkOutDate;
 
-        $bookedLists = BookingReserve::where('isDismiss',0)->where('checkoutDate' ,'>=', $dateID)->get();
+        $bookedLists = BookingReserve::where('isDismiss',0)->whereDate('checkoutDate' ,'>=', $dateID)->whereDate('checkinDate' ,'<=', $dateOD)->get();
 
         foreach($bookedLists as $bookedList){
-           $array[] = $bookedList->id;
+           $array[] = $bookedList->roomId;
         }
 
+        // while($dateID <= $dateOD){
+        //     // array_push($array, $dateID);
+        //     $dateID = date('Y-m-d', strtotime($dateID . ' +1 day'));
+        //     foreach($bookedList as $bookedItem){
+        //         $checkinDate = $bookedItem->checkinDate;
+        //         $checkoutDate = $bookedItem->checkoutDate;
+        //         while($checkinDate <= $checkoutDate){
+        //             $checkinDate = date('Y-m-d', strtotime($checkinDate . ' +1 day'));
+        //             if($dateID == $checkinDate and $dateID == $checkinDate){
+        //                 array_push($array2, "$bookedItem->roomId");
+        //             }
+        //         }
+        //     }
+        // }
+//  return $array;
         $availableRooms = RoomList::whereNotIn('id', $array)->where('deleted',0)->get();
 
         return view('Bookings.bookingSearchedResults',compact('availableRooms','dateID','dateOD'));
