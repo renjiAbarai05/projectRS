@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\RoomList;
-use Auth;
+use Charts;
 
-class RoomListController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,14 @@ class RoomListController extends Controller
      */
     public function index()
     {
-        $roomListData = RoomList::where('isActive',1)->where('deleted',0)->get();
-        return view('RoomList.roomIndex',compact('roomListData'));
+        $chart = Charts::create('pie', 'highcharts')
+        ->title('My nice chart')
+        ->labels(['First', 'Second', 'Third'])
+        ->values([5,10,20])
+        ->dimensions(1000,500)
+        ->responsive(false);
 
+        return view('Reports.reportIndex',compact('chart'));
     }
 
     /**
@@ -27,7 +31,7 @@ class RoomListController extends Controller
      */
     public function create()
     {
-        return view('RoomList.roomCreate');
+        //
     }
 
     /**
@@ -38,15 +42,7 @@ class RoomListController extends Controller
      */
     public function store(Request $request)
     {
-        RoomList::create([
-            'roomType' => $request->roomType,
-            'roomNumber' => $request->roomNumber,
-            'price' => $request->price,
-            'details' => $request->details,
-            'userId' => Auth::id(),
-        ]);
-       
-        return redirect()->route('roomList.index')->with('success', 'Created Successfully');
+        //
     }
 
     /**
@@ -68,9 +64,7 @@ class RoomListController extends Controller
      */
     public function edit($id)
     {
-        $room = RoomList::find($id);
-
-        return view('RoomList.roomEdit',compact('room'));
+        //
     }
 
     /**
@@ -82,14 +76,7 @@ class RoomListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        RoomList::find($id)->update([
-            'roomType' => $request->roomType,
-            'roomNumber' => $request->roomNumber,
-            'price' => $request->price,
-            'details' => $request->details,
-        ]);
-
-        return redirect()->route('roomList.index')->with('success', 'Updated Successfully');
+        //
     }
 
     /**
@@ -100,10 +87,6 @@ class RoomListController extends Controller
      */
     public function destroy($id)
     {
-        RoomList::find($id)->update([
-            'deleted' => 1,
-        ]);
-
-        return redirect()->back()->with('success', 'Deleted Successfully');
+        //
     }
 }

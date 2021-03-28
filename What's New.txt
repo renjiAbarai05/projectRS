@@ -25,3 +25,10 @@ March 9, 2021
 -- added image class
     note:
     - composer update
+
+
+-- March 24, 2021
+
+    -- Added Chart package
+    note: composer update
+    
