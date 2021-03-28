@@ -16,7 +16,7 @@ class RoomListController extends Controller
     public function index()
     {
         $roomListData = RoomList::where('isActive',1)->where('deleted',0)->get();
-        return view('roomList',compact('roomListData'));
+        return view('RoomList.roomIndex',compact('roomListData'));
 
     }
 
@@ -27,7 +27,7 @@ class RoomListController extends Controller
      */
     public function create()
     {
-        //
+        return view('RoomList.roomCreate');
     }
 
     /**
@@ -46,7 +46,7 @@ class RoomListController extends Controller
             'userId' => Auth::id(),
         ]);
        
-        return redirect()->back()->with('success', 'Created Successfully');
+        return redirect()->route('roomList.index')->with('success', 'Created Successfully');
     }
 
     /**
@@ -68,7 +68,9 @@ class RoomListController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = RoomList::find($id);
+
+        return view('RoomList.roomEdit',compact('room'));
     }
 
     /**
@@ -87,7 +89,7 @@ class RoomListController extends Controller
             'details' => $request->details,
         ]);
 
-        return redirect()->back()->with('success', 'Updated Successfully');
+        return redirect()->route('roomList.index')->with('success', 'Updated Successfully');
     }
 
     /**

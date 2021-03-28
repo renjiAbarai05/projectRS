@@ -29,9 +29,12 @@
         }
 </style>
 
+@include('layouts.vtab')
+
 <form class="form-horizontal" method="POST" action="{{route('booking.store')}}">
     @csrf
-    <div class="container mb-5">
+    <div class="content content-margin pb-2" id="content">
+        <div class="container" style="margin-top: 20px">
         <div class="header-banner mt-5">
             <p class="p-0 m-0 header d-inline">BOOK ROOM</p>
         </div>
@@ -45,24 +48,42 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm-6">
-                    <label>Check in</label>
+                    <label>Arrival date</label>
                     <input type="date" class="form-control" name="checkIn" value="{{$checkIn}}" enabled>
                 </div>
                 <div class="col-sm-6">
-                    <label>Check out</label>
+                    <label>Departure date</label>
                     <input type="date" class="form-control" name="checkOut" value="{{$checkOut}}" enabled>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <label>Enter Your Full Name:</label>
+                    <label>Full Name:</label>
                 <input type="text" class="form-control" placeholder="Full Name" name="guestName" required>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <label>Enter Your Contact Number:</label>
+                    <label>Address:</label>
+                <input type="text" class="form-control" placeholder="Full Name" name="guestName" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <label>Contact Number:</label>
                 <input type="number" class="form-control" placeholder="Contact Number" name="guestContact" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <label>Email:</label>
+                <input type="text" class="form-control" placeholder="Contact Number" name="guestContact" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <label>Number of guests:</label>
+                <input type="text" class="form-control" placeholder="Full Name" name="guestName" required>
                 </div>
             </div>
             <div class="row mt-3">
@@ -73,6 +94,7 @@
             </div>
         </div>
     </div>
+</div>
 </form>
 {{-- </div> --}}
 
