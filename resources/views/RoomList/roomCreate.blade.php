@@ -53,7 +53,23 @@
             </div>
             <div class="row mt-1">
                 <div class="col-sm-12">
-                    <label>Price per day:</label>
+                    <label>Price:</label>
+                    <input type="number" class="form-control" name="price" required>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-sm-12">
+                    <label>Room Rate:</label>
+                    <select name="" id="" class="form-control">
+                        <option value="">Per Day</option>
+                        <option value="">Per Hour</option>
+                        <option value="">Per Night</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-sm-12">
+                    <label>Number of guest:</label>
                     <input type="number" class="form-control" name="price" required>
                 </div>
             </div>
