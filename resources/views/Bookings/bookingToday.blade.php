@@ -49,26 +49,19 @@
                       <tr>
                           <th class="th-sm" width="200px">Date</th>
                           <th class="th-sm">Room Name</th>
-                          <th class="th-sm">Payment</th>
-                          <th class="th-sm">Bill</th>
                           <th class="th-sm text-center" width="200px">Action</th>
                       </tr>
                   </thead>
                   <tbody>
-                    @foreach($booked as $booked)
+                  
                             <tr  class="data font-weight-bold">
-                              <td> {{date('F j, Y', strtotime($booked->checkinDate)) }} to {{ date('F j, Y', strtotime($booked->checkoutDate)) }}</td>
-                              <td>{{$booked->room->roomType}}</td>
-                              <th class="th-sm">show payment</th>
-                              <th class="th-sm">show Bill</th>
+                              <td>Today</td>
+                              <td>Room Room</td>
                               <td class="text-center">
-                                <button class="update-button" style="color:white; width:100%;" onclick="updateModal()"> Update</button>
-                                <button class="update-button" style="color:white; width:100%;"  id="paymentBtn">Add Payment</button>
-                                <button class="update-button" style="color:white; width:100%;" >Show Info</button>
-                                <button class="delete-button" style="color:white; width:100%;" >Cancel</button>
+                                <button class="update-button" style="color:white; width:100%;">Check-in </button>
+                                {{-- <button class="delete-button" style="color:white; width:100%;" > Delete</button> --}}
                               </td>
                           </tr>
-                    @endforeach
                   </tbody>
               </table>
              
@@ -111,36 +104,6 @@
     </div>
 </form>
 
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000">
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content">
-        <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>ADD PAYMENT</u></h4>
-        </div>
-        <div class="modal-body mx-3 mb-3">
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Amount</label>
-                    <input type="number" class="form-control"  required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Payment Type</label>
-                    <input type="text" class="form-control" required>
-                </div>
-            </div>
-        </div>
-        <div class="row px-4 pb-4">
-            <div class="col-sm-12">
-                <button class="save-button" type="submit">ADD</button>
-                <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
-
 
 <script>
     $(document).ready(function(){
@@ -154,10 +117,6 @@
             { "orderable": false, "targets": 2 }
             ],
             "order": [[ 0, "desc" ]],
-        });
-
-        $('#paymentBtn').click(function(){
-            $('#paymentModal').modal('show');
         });
 
         dateFunction();

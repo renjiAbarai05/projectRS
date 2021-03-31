@@ -372,7 +372,7 @@ crossorigin="anonymous" />
     <div class="col-md-4">
         <div class="row mt-4 d-flex justify-content-center">
             <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fab fa-facebook icon-color"></i>
+              <a href="https://www.facebook.com/Hotel-Lai-Rico-101290814760138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook icon-color"></i></a>
             </div>
             <div class="col-md-auto mt-md-0 mt-3 pb-3">
                 <i class="fab fa-twitter icon-color"></i>
