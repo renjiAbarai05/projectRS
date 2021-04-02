@@ -45,4 +45,15 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/bookings', function () {
         return view('bookings');
     });
+
+    Route::get('/bookingToday', function () {
+        return view('Bookings/bookingToday');
+    });
+
+    Route::get('/bookingViewCheckedIn', function () {
+        return view('Bookings/bookingViewCheckin');
+    });
+    Route::get('/viewHistory', function () {
+        return view('Bookings/bookingViewHistory');
+    });
 });

@@ -88,6 +88,12 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm-12">
+                    <label>Payment Amount:</label>
+                <input type="text" class="form-control" placeholder="Payment"  required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
                     <button class="btn btn-deep-orange float-left" type="submit">Book Now</button>
                     <button class="btn btn-deep-orange float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>

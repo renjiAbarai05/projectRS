@@ -1,3 +1,9 @@
+April 2, 2021
+    Room List, Booking and USer Management
+        - Change Layout
+    CSS
+        - transfer some styles to main.css 
+
 March 23, 2021
     - updated layout
     
