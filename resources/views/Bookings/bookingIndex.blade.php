@@ -33,39 +33,57 @@
 
 <div class="content content-margin pb-2" id="content">
     <div class="container" style="margin-top: 20px">
-        <div class="header-banner">
-            <p class="p-0 m-0 header d-inline">BOOKINGS</p>
-            <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
-            <button onclick="window.location='/bookingToday'">View Booking All</button>
-            <button onclick="window.location='/bookingToday'">View Booking Today</button>
-            <button onclick="window.location='/bookingViewCheckedIn'">View Checked-in</button>
-            <button onclick="window.location='/bookingViewCheckedIn'">View History</button>
-        </div>
-        <div class="divContainer mt-n2">
+        <div class="d-flex flex-column">
+            <div class="HeaderBanner p-2 px-3">
+                <span class="HeaderBannerText">BOOKINGS</span>
+                <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
+            </div>
+                <div class="flex DivLinks-bg">
+                    <ul class="mb-0">
+                        <li class="DivLinks-header p-2">
+                            <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/bookingToday'">View Booking Today</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/bookingViewCheckedIn'">View Checked-in</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/viewHistory'">View History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        <div class="DivTemplate">
             {{-- <p class="data">No Data</p> --}}
             <div class="table-responsive mt-1">
-                <table id="TblSorter" class="table table-striped table-bordered table-hover" style="width:100%">
+                <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                       <tr>
-                          <th class="th-sm" width="200px">Date</th>
-                          <th class="th-sm">Room Name</th>
-                          <th class="th-sm">Payment</th>
-                          <th class="th-sm">Bill</th>
-                          <th class="th-sm text-center" width="200px">Action</th>
+                          <th class="th-sm th-border" width="200px">Date</th>
+                          <th class="th-sm th-border">Room Name</th>
+                          <th class="th-sm th-border">Payment</th>
+                          <th class="th-sm th-border">Bill</th>
+                          <th class="th-sm th-border text-center" width="200px">Action</th>
                       </tr>
                   </thead>
                   <tbody>
                     @foreach($booked as $booked)
-                            <tr  class="data font-weight-bold">
-                              <td> {{date('F j, Y', strtotime($booked->checkinDate)) }} to {{ date('F j, Y', strtotime($booked->checkoutDate)) }}</td>
-                              <td>{{$booked->room->roomType}}</td>
-                              <th class="th-sm">show payment</th>
-                              <th class="th-sm">show Bill</th>
+                            <tr class="data font-weight-bold">
+                              <td class="td-border"> {{date('F j, Y', strtotime($booked->checkinDate)) }} to {{ date('F j, Y', strtotime($booked->checkoutDate)) }}</td>
+                              <td class="td-border">{{$booked->room->roomType}}</td>
+                              <td class="th-sm td-border">show payment</td>
+                              <td class="th-sm td-border">show Bill</td>
                               <td class="text-center">
-                                <button class="update-button" style="color:white; width:100%;" onclick="updateModal()"> Update</button>
-                                <button class="update-button" style="color:white; width:100%;"  id="paymentBtn">Add Payment</button>
-                                <button class="update-button" style="color:white; width:100%;" >Show Info</button>
-                                <button class="delete-button" style="color:white; width:100%;" >Cancel</button>
+                                <button onclick="updateModal()" class="bg-none" title="UPDATE"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
+                                <button class="bg-none" id="paymentBtn" title="ADD PAYMENT"><i class="payment-icon fab fa-bitcoin"></i></button>
+                                <button class="bg-none" title="SHOW INFO"><i class="show-icon fas fa-info-circle"></i></button>
+                                <button class="bg-none" title="CANCEL"><i class="cancel-icon fas fa-times-circle"></i></button>
                               </td>
                           </tr>
                     @endforeach
@@ -82,12 +100,12 @@
 {{-- BookNowModal --}}
 <form method="POST" action="{{route('booking.searchAvailableRooms')}}">
     @csrf
-    <div class="modal fade" id="bookNowCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000">
+    <div class="modal fade" id="bookNowCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000; margin-left: 150px">
         <div class="modal-dialog modal-lg" role="document" >
             <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>CHECK AVAILABLE ROOMS</u></h4>
-            </div>
+                <div class="modal-header text-center">
+                    <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">CHECK AVAILABLE ROOMS</h5>
+                </div>
             <div class="modal-body mx-3 mb-3">
                 <div class="row">
                     <div class="col-sm-6">
@@ -102,8 +120,8 @@
             </div>
             <div class="row px-4 pb-4">
                 <div class="col-sm-12">
-                    <button class="save-button" type="submit">Check</button>
-                    <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button class="save-button btn-deep-orange" type="submit">Check</button>
+                    <button class="back-button btn-dark float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
                 </div>
             </div>
             </div>
@@ -111,11 +129,11 @@
     </div>
 </form>
 
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000">
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000; margin-left: 150px">
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>ADD PAYMENT</u></h4>
+            <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">ADD PAYMENT</h5>
         </div>
         <div class="modal-body mx-3 mb-3">
             <div class="row">
@@ -133,8 +151,9 @@
         </div>
         <div class="row px-4 pb-4">
             <div class="col-sm-12">
-                <button class="save-button" type="submit">ADD</button>
-                <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+
+                <button class="save-button btn-deep-orange" type="submit">Add</button>
+                <button class="back-button btn-dark float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
         </div>
         </div>

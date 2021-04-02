@@ -1,54 +1,42 @@
 @extends('dashboard')
 @section('content2')
 
-
-<style>
-    .data{
-        color: #676767;
-        font-size: 15px;
-        font-weight: bold;
-        padding: 0;
-        margin: 0;
-        padding-left: 10px;
-    }
-    .add-button{
-        color: #c24914;
-        font-size: 28px;
-        margin-top: -5px;
-    }
-</style>
-
-
-
 @include('layouts.vtab')
 
 <div class="content content-margin pb-2" id="content">
     <div class="container" style="margin-top: 20px">
-        <div class="header-banner">
+        <div class="HeaderBanner">
             <p class="p-0 m-0 header d-inline">ROOM LIST</p>
-           <i class="fas fa-plus add-button float-right" style="cursor: pointer;" onclick="window.location='{{ route('roomList.create') }}'"></i>
         </div>
-        <div class="divContainer mt-n2">
+        <div class="flex DivLinks-bg">
+            <ul class="mb-0">
+                <li class="DivLinks-header p-2">
+                    <a class="header-link" onclick="window.location='{{ route('roomList.create') }}'">Add Room</a>
+                </li>
+                </li>
+            </ul>
+        </div>
+        <div class="DivTemplate">
             {{-- <p class="data">No Data</p> --}}
             <div class="table-responsive mt-1">
-                <table id="TblSorter" class="table table-striped table-bordered table-hover" style="width:100%">
+                <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                       <tr>
-                          <th class="th-sm ">Room Name</th>
-                          <th class="th-sm" >Details</th>
-                          <th class="th-sm" width="100px">Price</th>
-                          <th class="th-sm text-center" width="200px">Action</th>
+                          <th class="th-sm th-border">Room Name</th>
+                          <th class="th-sm th-border" >Details</th>
+                          <th class="th-sm th-border" width="100px">Price</th>
+                          <th class="th-sm th-border" width="200px">Action</th>
                       </tr>
                   </thead>
                   <tbody>
                         @foreach($roomListData as $data)
-                           <tr  class="data font-weight-bold">
-                              <td>{{$data->roomType}}</td>
-                              <td>{{$data->details}}</td>
-                              <td>₱{{$data->price}}</td>
-                              <td class="text-center">
-                                <button class="update-button" style="color:white; width:100%;" onclick="window.location='{{ route('roomList.edit',$data->id) }}'">Update</button>
-                                <button class="delete-button" style="color:white; width:100%;" data-id="{{$data->id}}" onclick="deleteModal(this)"> Delete</button>
+                           <tr class="data font-weight-bold">
+                              <td class="td-border">{{$data->roomType}}</td>
+                              <td class="td-border">{{$data->details}}</td>
+                              <td class="td-border">₱{{$data->price}}</td>
+                              <td class="td-border">
+                                <button class="bg-none" onclick="window.location='{{ route('roomList.edit',$data->id) }}'"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
+                                <button class="bg-none" data-id="{{$data->id}}" onclick="deleteModal(this)"><i class="delete-icon fas fa-trash"></i></button>
                               </td>
                            </tr>
                         @endforeach
