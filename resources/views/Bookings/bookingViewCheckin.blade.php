@@ -33,31 +33,48 @@
 
 <div class="content content-margin pb-2" id="content">
     <div class="container" style="margin-top: 20px">
-        <div class="header-banner">
-            <p class="p-0 m-0 header d-inline">BOOKINGS</p>
-            <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
-            <button onclick="window.location='/bookingToday'">View Booking All</button>
-            <button onclick="window.location='/bookingToday'">View Booking Today</button>
-            <button onclick="window.location='/bookingViewCheckedIn'">View Checked-in</button>
-            <button onclick="window.location='/bookingViewCheckedIn'">View History</button>
-        </div>
-        <div class="divContainer mt-n2">
+        <div class="d-flex flex-column">
+            <div class="HeaderBanner p-2 px-3">
+                <span class="HeaderBannerText">CHECKED-IN</span>
+                <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
+            </div>
+                <div class="flex DivLinks-bg">
+                    <ul class="mb-0">
+                        <li class="DivLinks-header p-2">
+                            <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/bookingToday'">View Booking Today</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/bookingViewCheckedIn'">View Checked-in</a>
+                        </li>
+                        <span class="DivLinks-divider">|</span>
+                        <li class="DivLinks-header p-2 pl-3">
+                            <a class="header-link" onclick="window.location='/viewHistory'">View History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <div class="DivTemplate">
             {{-- <p class="data">No Data</p> --}}
             <div class="table-responsive mt-1">
-                <table id="TblSorter" class="table table-striped table-bordered table-hover" style="width:100%">
+                <table id="TblSorter"  class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                       <tr>
-                          <th class="th-sm" width="200px">Date</th>
-                          <th class="th-sm">Room Name</th>
-                          <th class="th-sm text-center" width="200px">Action</th>
+                          <th class="th-sm th-border" width="200px">Date</th>
+                          <th class="th-sm th-border">Room Name</th>
+                          <th class="th-sm th-border text-center" width="200px">Action</th>
                       </tr>
                   </thead>
                   <tbody>
                   
                             <tr  class="data font-weight-bold">
-                              <td>Today</td>
-                              <td>Room Room</td>
-                              <td class="text-center">
+                              <td class="td-border">Today</td>
+                              <td class="td-border">Room Room</td>
+                              <td class="td-border">
                                 <button class="update-button" style="color:white; width:100%;">Check-out </button>
                                 {{-- <button class="delete-button" style="color:white; width:100%;" > Delete</button> --}}
                               </td>

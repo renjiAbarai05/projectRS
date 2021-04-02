@@ -35,13 +35,13 @@
     <div class="container" style="margin-top: 20px">
         <div class="d-flex flex-column">
             <div class="HeaderBanner p-2 px-3">
-                <span class="HeaderBannerText">TODAY'S BOOKING</span>
+                <span class="HeaderBannerText">VIEW HISTORY</span>
                 <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
             </div>
                 <div class="flex DivLinks-bg">
                     <ul class="mb-0">
                         <li class="DivLinks-header p-2">
-                            <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
+                            <a class="header-link" onclick="window.location='/bookingToday'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-2 pl-3">
@@ -61,7 +61,7 @@
         <div class="DivTemplate">
             {{-- <p class="data">No Data</p> --}}
             <div class="table-responsive mt-1">
-                <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
+                <table id="TblSorter"  class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                       <tr>
                           <th class="th-sm th-border" width="200px">Date</th>
@@ -75,7 +75,7 @@
                               <td class="td-border">Today</td>
                               <td class="td-border">Room Room</td>
                               <td class="td-border">
-                                <button class="update-button" style="color:white; width:100%;">Check-in </button>
+                                <button class="update-button" style="color:white; width:100%;">Check-out </button>
                                 {{-- <button class="delete-button" style="color:white; width:100%;" > Delete</button> --}}
                               </td>
                           </tr>

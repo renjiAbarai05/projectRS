@@ -22,7 +22,7 @@ input:required{
     font-weight: bold;
 }
 .header-banner{
-    background: #ffbf00 !important;
+    background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
     padding: 15px 15px;
     width: 100%;
     border-top-right-radius: 10px;
@@ -155,3 +155,109 @@ input:required{
   .content-margin{
       margin-left: 310px;
   }
+
+  .HeaderBanner {
+    background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
+    width: 100%;
+    margin-top: 10px;
+    color: white;
+    padding:10px;
+    border-radius: .75rem .75rem 0rem 0rem;
+    letter-spacing: 1px;
+}
+div.DivTemplate{
+    /* max-width: 1024px; */
+    width:100%;
+    display:inline-block;
+    margin-top: 10px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    /* min-width:600px; */
+    background-color: white;
+    padding : 10px 10px 10px 10px; /* Padding Top/Right/Bottom/Left */
+    -webkit-box-shadow: 2px 2px 0px 0px #fc8621;
+    -o-box-shadow: 2px 2px 0px 0px #fc8621 ;
+    -moz-box-shadow: 2px 2px 0px 0px #fc8621 ;
+    box-shadow: 2px 2px 0px 0px #fc8621;
+}
+.DivLinks-bg{
+    background-color: white;
+    border-radius: 0rem 0rem .75rem .75rem;
+}
+.header-link{
+    color: #fc8621!important;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 13px;
+}
+.DivLinks-header{
+    display: inline-block;
+}
+/* Tables */
+.thead-bg{
+    color: #fc8621;
+    background-color: #ffffff;
+    text-align: center;
+}
+table.dataDisplayer td {
+    font-weight:bold;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    color: rgb(30,30,30, 0.9);
+    text-align: center;
+}
+.th-border{
+    border: 1px solid #ebebeb !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+}
+.td-border{
+    border: 1px solid #ebebeb !important;
+}
+.update-icon{
+    color: #4cbb17;
+    font-size: 30px;
+}
+
+.show-icon{
+    color: #0996c1;
+    font-size: 30px;
+}
+.bg-none{
+    border:none; 
+    background:none;
+}
+.cancel-icon{
+    color: red;
+    font-size: 30px;
+}
+.payment-icon{
+    color: #e2a937;
+    font-size: 30px;
+}
+.delete-icon{
+    color: white;
+    font-size: 15px;
+    background: red;
+    border-radius: 50%;
+    padding: 8px;
+}
+.label{
+    font-size: 13px;
+    font-weight: normal !important;
+    letter-spacing: 0.5px;
+}
+.btn-dark{
+    color: white;
+    background: #616161 !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.btn-deep-orange{
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.fa-sign-out-alt{
+    font-size: 25px;
+}

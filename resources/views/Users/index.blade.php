@@ -97,6 +97,12 @@
     
 }
 
+.DivHeaderText{
+    font-weight: bold;
+    color:#fc8621;
+    letter-spacing: 1px;
+}
+
 @media(max-width: 1200px){
     .facility-update-btn{
         position: relative;
@@ -125,11 +131,19 @@
 
 <div class="content content-margin pb-2" id="content">
     <div class="container" style="margin-top: 20px">
-        <div class="header-banner">
-            <p class="p-0 m-0 header d-inline">USER MANAGEMENT</p>
-            <button onclick="window.location='{{ route('users.create') }}'" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
-        </div>
-    <div class="divContainer mt-n2">
+        <div class="d-flex flex-column">
+            <div class="HeaderBanner p-2 px-3">
+                <span class="HeaderBannerText">USER MANAGEMENT</span>
+            </div>
+                <div class="flex DivLinks-bg">
+                    <ul class="mb-0">
+                        <li class="DivLinks-header p-2">
+                            <a class="header-link" onclick="window.location='/users'">Add New User</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    <div class="DivTemplate">
     @foreach ($users as $user)
         <div class="row mt-4">
             <div class="col-xl-4">
@@ -157,7 +171,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="label">EMAIL</div>
-                        {{$user->email ?? 'N/A'}}
+                        <p class="data pl-4">{{$user->email ?? 'N/A'}}</p>
                     </div>
                 </div>
                 <div class="row">

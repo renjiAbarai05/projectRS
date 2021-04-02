@@ -53,4 +53,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/bookingViewCheckedIn', function () {
         return view('Bookings/bookingViewCheckin');
     });
+    Route::get('/viewHistory', function () {
+        return view('Bookings/bookingViewHistory');
+    });
 });

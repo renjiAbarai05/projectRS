@@ -7,26 +7,7 @@
 		{
           background-color:#ebebeb;
 		}
-        .header-banner{
-            background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
-            padding: 15px 15px;
-            width: 100%;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-        }
-        .data{
-            color: #676767;
-            font-size: 15px;
-            font-weight: bold;
-            padding: 0;
-            margin: 0;
-            padding-left: 10px;
-        }
-        .add-button{
-            color: #c24914;
-            font-size: 28px;
-            margin-top: -5px;
-        }
+      
 </style>
 
 @include('layouts.vtab')
@@ -82,7 +63,7 @@
             <div class="row mt-3">
                 <div class="col-sm-12">
                     <button class="btn btn-deep-orange float-left" type="submit">Save</button>
-                    <button class="btn btn-deep-orange float-right" type="button" onclick="window.location='{{ route('roomList.index') }}'">Cancel</button>
+                    <button class="btn btn-dark float-right" type="button" onclick="window.location='{{ route('roomList.index') }}'">Cancel</button>
                 </div>
             </div>
         </div>
