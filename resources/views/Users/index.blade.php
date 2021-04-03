@@ -134,17 +134,18 @@
         <div class="d-flex flex-column">
             <div class="HeaderBanner p-2 px-3">
                 <span class="HeaderBannerText">USER MANAGEMENT</span>
+                <button id="bookNowButton" style="border:none; background:none; float:right;" onclick="window.location='{{ route('users.create') }}'"><i class="fas fa-plus add-button"></i></button>
             </div>
                 <div class="flex DivLinks-bg">
                     <ul class="mb-0">
                         <li class="DivLinks-header p-2">
-                            <a class="header-link" onclick="window.location='/users'">Add New User</a>
+                            {{-- <a class="header-link" onclick="window.location='/users'">Add New User</a> --}}
                         </li>
                     </ul>
                 </div>
             </div>
-    <div class="DivTemplate">
     @foreach ($users as $user)
+    <div class="DivTemplate">
         <div class="row mt-4">
             <div class="col-xl-4">
                 <table class="mx-auto mt-1" style="height: 65%; width:100%;">
@@ -194,8 +195,8 @@
                 </div>
             </div>
         </div>
-    @endforeach
     </div>
+    @endforeach
 </div> <!-- container -->
 
 

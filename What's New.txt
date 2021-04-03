@@ -1,3 +1,9 @@
+April 3,2020
+    Layout
+        - remove border on Div template
+        - change Room list delete icon
+        - book now modal
+
 April 2, 2021
     Room List, Booking and USer Management
         - Change Layout
