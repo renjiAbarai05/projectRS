@@ -55,6 +55,16 @@ crossorigin="anonymous" />
             border: none;
     
         }
+        .btn-dark{
+            color: white !important;
+            background: #616161 !important;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .btn-deep-orange{
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
         .wellfix
         {
             background: rgba(0,0,0,0.7);
@@ -285,65 +295,58 @@ crossorigin="anonymous" />
     <div class="modal-dialog modal-lg" role="document" >
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 3px">BOOK NOW</h4>
-          {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> --}}
+            <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">BOOK NOW</h5>
         </div>
-        <div class="modal-body mx-3 mb-3">
-
-
-            <div class="row">
-                <div class="col-sm-6">
+        <div class="modal-body mx-5 mb-2">
+            <div class="form-row">
+                <div class="form-group col-sm-6">
                     <label>Check in</label>
                     <input type="date" class="form-control">
                  </div>
-                 <div class="col-sm-6">
+                 <div class="form-group col-sm-6">
                     <label>Check out</label>
                     <input type="date" class="form-control">
                  </div>
            </div>
-           <div class="row mt-3">
-                <div class="col-sm-12">
-                    <label>Enter Your Full Name:</label>
-                <input type="text" class="form-control" placeholder="Full Name">
+           <div class="form-row mt-1">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
            </div>
-           <div class="row mt-3">
-                <div class="col-sm-12">
-                    <label>Enter Your Contact Number:</label>
-                <input type="number" class="form-control" placeholder="Contact Number">
+           <div class="form-row">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Contact Number" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-12">
-                    <label>Select Room Type:</label>
+            <div class="form-row">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-bed"></i></span>
+                    </div>
                     <select class="form-control">
-                    <option value="" selected disabled>Select Room Type</option>
-                    <option value=""> Deluxe Room</option>
+                        <option value="" selected disabled>Select Room Type</option>
+                        <option value=""> Deluxe Room</option>
                         <option value=""> Classic Room</option>
                         <option value=""> Rooftop Pool</option>
                         <option value=""> Lobby</option>
                     </select>
                 </div>
             </div>
-        
-  
         </div>
-        <div class="row px-4 pb-3">
-            <div class="col-sm-12">
+        <div class="form-row mx-5 pb-3">
+            <div class="form-group col-sm-12">
                 <button class="btn btn-deep-orange float-left">Book Now</button>
-                <button class="btn btn-deep-orange float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn btn-dark float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
-        </div>
-        {{-- <div class="d-flex justify-content-end"> --}}
-            {{-- <div class="d-flex justify-content-end"> --}}
-                
-            {{-- </div> --}}
-        {{-- </div> --}}
-      </div>
+        </div>  
     </div>
-  </div>
+</div>
 
 
   

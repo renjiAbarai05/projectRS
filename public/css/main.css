@@ -176,10 +176,7 @@ div.DivTemplate{
     /* min-width:600px; */
     background-color: white;
     padding : 10px 10px 10px 10px; /* Padding Top/Right/Bottom/Left */
-    -webkit-box-shadow: 2px 2px 0px 0px #fc8621;
-    -o-box-shadow: 2px 2px 0px 0px #fc8621 ;
-    -moz-box-shadow: 2px 2px 0px 0px #fc8621 ;
-    box-shadow: 2px 2px 0px 0px #fc8621;
+    
 }
 .DivLinks-bg{
     background-color: white;
@@ -236,20 +233,13 @@ table.dataDisplayer td {
     color: #e2a937;
     font-size: 30px;
 }
-.delete-icon{
-    color: white;
-    font-size: 15px;
-    background: red;
-    border-radius: 50%;
-    padding: 8px;
-}
 .label{
     font-size: 13px;
     font-weight: normal !important;
     letter-spacing: 0.5px;
 }
 .btn-dark{
-    color: white;
+    color: white !important;
     background: #616161 !important;
     font-weight: 500;
     letter-spacing: 1px;
@@ -260,4 +250,13 @@ table.dataDisplayer td {
 }
 .fa-sign-out-alt{
     font-size: 25px;
+}
+.book-btn{
+    background:#ed9e21;
+    width: 110px;
+    padding: 5px 0px;
+    margin-top: 3px;
+    text-align: center;
+    border-radius: 5px;
+    color: #474747 !important;
 }
