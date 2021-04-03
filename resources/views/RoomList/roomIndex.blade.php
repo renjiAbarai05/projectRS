@@ -35,8 +35,8 @@
                               <td class="td-border">{{$data->details}}</td>
                               <td class="td-border">₱{{$data->price}}</td>
                               <td class="td-border">
-                                <button class="bg-none" onclick="window.location='{{ route('roomList.edit',$data->id) }}'"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
-                                <button class="bg-none" data-id="{{$data->id}}" onclick="deleteModal(this)"><i class="delete-icon fas fa-trash"></i></button>
+                                <button class="bg-none" onclick="window.location='{{ route('roomList.edit',$data->id) }}'" title="update"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
+                                <button class="bg-none" data-id="{{$data->id}}" onclick="deleteModal(this)" title="DELETE"><i class="cancel-icon fas fa-minus-circle"></i></button>
                               </td>
                            </tr>
                         @endforeach
