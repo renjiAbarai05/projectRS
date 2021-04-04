@@ -34,121 +34,126 @@
 
     <div class="content content-margin pb-2" id="content">
         <div class="container" style="margin-top: 20px">
+            <div class="row">
+                <div class="col-sm-6">
+                        <div class="DivTemplate">
+                            <p class="DivHeaderText center-align">ROOM DETAILS</p>
+                            <div class="hr"></div>
+                            <div class='row' >
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room #</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room Name</div>
+                                
+                                    <p class='viewText pl-3'><b>{{$bookingData->roomName}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room Rate</div>
+                                    <p class='viewText pl-3'><b>₱{{$bookingData->roomPrice}} By {{$bookingData->roomRate}} Hours </b></p>
+                                </div>
+                            </div>
+                
+                            <div class='row'>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Check-in Date:</div>
+                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}</b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Check-out Date:</div>
+                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="DivTemplate">
-            <p class="DivHeaderText center-align">ROOM DETAILS</p>
-            <div class="hr"></div>
-            <div class='row' >
-                <div class='col-md-6'>
-                    <div class='label text-left'>Room #</div>
-                    <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
-                </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Room Name</div>
-                   
-                    <p class='viewText pl-3'><b>{{$bookingData->roomName}} </b></p>
-                </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Room Rate</div>
-                    <p class='viewText pl-3'><b>₱{{$bookingData->roomPrice}} By {{$bookingData->roomRate}} Hours </b></p>
-                </div>
-            </div>
+                        <div class="DivTemplate">
+                            <p class="DivHeaderText center-align">GUEST DETAILS</p>
+                            <div class="hr"></div>
+                            <div class='row' >
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Guest Full Name</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestFullName}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Address</div>
+                                   
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Contact Number</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestContactNumber}}</b></p>
+                                </div>
+                            </div>
+                            <div class='row' >
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Email</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestEmail}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Number of Guest</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->numberOfGuest}} </b></p>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class='row'>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Check-in Date:</div>
-                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}</b></p>
+                        <div class="DivTemplate mt-3">
+                            <div class="DivHeaderText">SUMMARY</div>
+                            <div class="hr mt-1" style="height:2px;"></div>
+                            <table class="table table-bordered">
+                                <tr  class="thead-light DivHeaderText">
+                                    <th width="150px">Status</th>
+                                    <td>@if($bookingData->paymentStatus == 0)No Payment @elseif($bookingData->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
+                                </tr>
+                                <tr  class="thead-light DivHeaderText">
+                                    <th width="150px">Bill Total</th>
+                                    <td id="sub_total">₱{{$bookingData->billAmount}}</td>
+                                </tr>
+                                <tr class="thead-light DivHeaderText">
+                                    <th width="150px">Total Payment</th>
+                                    <td id="amount_received_total" style="color:#8cbd01;"></td>
+                                </tr>
+                                <tr id="balance-tr" class="thead-light DivHeaderText">
+                                    <th >Balance</th>
+                                    <td id="balance_total">0</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
                 </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Check-out Date:</div>
-                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="DivTemplate">
-            <p class="DivHeaderText center-align">GUEST DETAILS</p>
-            <div class="hr"></div>
-            <div class='row' >
-                <div class='col-md-6'>
-                    <div class='label text-left'>Guest Full Name</div>
-                    <p class='viewText pl-3'><b>{{$bookingData->guestFullName}} </b></p>
-                </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Address</div>
-                   
-                    <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
-                </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Contact Number</div>
-                    <p class='viewText pl-3'><b>{{$bookingData->guestContactNumber}}</b></p>
-                </div>
-            </div>
-            <div class='row' >
-                <div class='col-md-6'>
-                    <div class='label text-left'>Email</div>
-                    <p class='viewText pl-3'><b>{{$bookingData->guestEmail}} </b></p>
-                </div>
-                <div class='col-md-6'>
-                    <div class='label text-left'>Number of Guest</div>
-                    <p class='viewText pl-3'><b>{{$bookingData->numberOfGuest}} </b></p>
-                </div>
-            </div>
-        </div>
+                <div class="col-sm-6">
+                    <div class="DivTemplate mb-3" id="payment-details-div">
+                        <div class="DivHeaderText">PAYMENT DETAILS</div>
+                        <div class="hr mt-1" style="height:2px;"></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <tr class="thead-light">
+                                    <th>Date and time</th>
+                                    <th>Cash Received</th>
+                                    <th>Change</th>
+                                </tr>
+                                    @foreach($payments as $payment)
+                                        <tr>
+                                            <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
+                                            <td class="cash_received_value">{{$payment->paymentAmount}}</td>
+                                            <td class="cash_change_value">{{$payment->changeAmount}}</td>
+                                        </tr>
+                                    @endforeach
+                            </table>
+                        </div>
+                    </div>
 
-        <div class="DivTemplate mt-3" id="payment-details-div">
-            <div class="DivHeaderText">PAYMENT DETAILS</div>
-            <button type="button" onclick="openPaymentModal()" class="float-right" >Add Payment</button> 
-            <div class="hr mt-1" style="height:2px;"></div>
-            <div class="table-responsive">
-                <table class="table table-bordered text-center">
-                    <tr class="thead-light">
-                        <th>Date and time</th>
-                        <th>Cash Received</th>
-                        <th>Change</th>
-                    </tr>
-                        @foreach($payments as $payment)
-                            <tr>
-                                <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
-                                <td class="cash_received_value">{{$payment->paymentAmount}}</td>
-                                <td class="cash_change_value">{{$payment->changeAmount}}</td>
-                            </tr>
-                        @endforeach
-                </table>
-            </div>
-        </div>
-
-        <div class="DivTemplate mt-3">
-            <div class="DivHeaderText">SUMMARY</div>
-            <div class="hr mt-1" style="height:2px;"></div>
-            <table class="table table-bordered">
-                <tr  class="thead-light DivHeaderText">
-                    <th width="150px">Status</th>
-                    <td>@if($bookingData->paymentStatus == 0)No Payment @elseif($bookingData->paymentStatus == 1) Partially Paid @else Paid @endif</td>
-                </tr>
-                <tr  class="thead-light DivHeaderText">
-                    <th width="150px">Bill Total</th>
-                    <td id="sub_total">{{$bookingData->billAmount}}</td>
-                </tr>
-                <tr class="thead-light DivHeaderText">
-                    <th width="150px">Total Payment</th>
-                    <td id="amount_received_total" style="color:#8cbd01;"></td>
-                </tr>
-                <tr id="balance-tr" class="thead-light DivHeaderText">
-                    <th >Balance</th>
-                    <td id="balance_total">0</td>
-                </tr>
-            </table>
-        </div>
-
-            <div class="row mt-3">
-                <div class="col-sm-12">
-                    {{-- <button class="btn btn-deep-orange float-left" type="submit">Book Now</button> --}}
-                    <button class="btn btn-dark  float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
+                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;">Cancel Booking</button>
+                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                 </div>
             </div>
     </div>
 </div>
+
+
+
+
 
 <form class="form-horizontal" method="POST" action="{{route('booking.addPayment')}}">
     @csrf
@@ -212,6 +217,8 @@
         $('#amount_received_total').html("₱" + parseFloat(cashReceived() - cashChange()).toFixed(2));
 
         showBalance();
+
+
     });
 
 function cashReceived(){
@@ -238,6 +245,11 @@ function showBalance(){
     var balance = orderTotal - cashReceived;
 
     $('#balance_total').html("₱" + parseFloat(balance).toFixed(2));
+
+    if(balance <= 0){
+        $('#balance-tr').hide();
+        $('#addPaymentBtn').hide();
+    }
 }
 
 function openPaymentModal(){

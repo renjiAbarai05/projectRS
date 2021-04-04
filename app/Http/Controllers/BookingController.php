@@ -19,7 +19,6 @@ class BookingController extends Controller
      */
     public function index()
     {
-        // $available = RoomList::where('deleted_at')->get();
         $booked = BookingReserve::where('isDismiss',0)->get();
         return view('Bookings.bookingIndex',compact('booked'));
     }

@@ -65,6 +65,7 @@ input:required{
     cursor: pointer;
     width: 120px;
 }
+
 .back-button {
     background-color: grey;
     border: none;
@@ -86,7 +87,7 @@ input:required{
     padding: 0;
     padding-bottom: 100px;
     /* width: 315px; */
-    width: 310px;
+    width: 270px;
     background-color: #ee9617;
     background-image: linear-gradient(315deg, #ee9617 0%, #fe5858 74%);
 
@@ -153,7 +154,7 @@ input:required{
   padding-right: 6px;
 }
   .content-margin{
-      margin-left: 310px;
+      margin-left: 270px;
   }
 
   .HeaderBanner {
@@ -264,4 +265,18 @@ table.dataDisplayer td {
 
 label{
     font-size: 13px;
+}
+
+.topViewer{
+    color: #ed9e21;
+    font-weight:bolder;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
+    background-color: white;
+    text-transform: uppercase;
+    float: right;
+    margin-top: 2px;
+    /* margin-right: 14px; */
 }

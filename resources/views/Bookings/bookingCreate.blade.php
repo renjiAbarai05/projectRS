@@ -37,13 +37,12 @@
         <div class="container" style="margin-top: 20px">
             {{-- <div class="d-flex flex-column">
                 <div class="HeaderBanner p-2 px-1">
-                    <span class="HeaderBannerText">BOOK ROOM</span>
+                    <span class="HeaderBannerText">BOOK INFO</span>
                 </div>
                     <div class="flex DivLinks-bg" >
                         <div class="p-3"></div>
                     </div>
                 </div> --}}
-
         <div class="DivTemplate">
             <p class="DivHeaderText center-align">ROOM DETAILS</p>
             <div class="hr"></div>

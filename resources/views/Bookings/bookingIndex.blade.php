@@ -41,7 +41,7 @@
                 <div class="flex DivLinks-bg" >
                     <ul class="mb-1">
                         <li class="DivLinks-header p-1" style="margin-left:-3%;">
-                            <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
+                            <a class="header-link" onclick="window.location='{{ route('booking.index') }}'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-1 pl-2">
@@ -68,7 +68,7 @@
                           <th class="th-sm th-border">Guest Name</th>
                           <th class="th-sm th-border">Total Bill</th>
                           <th class="th-sm th-border">Status</th>
-                          <th class="th-sm th-border text-center" width="200px">Action</th>
+                          <th class="th-sm th-border text-center" width="100px">Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -77,11 +77,9 @@
                               <td class="td-border"> {{date('F j, Y', strtotime($booked->checkinDate)) }} to {{ date('F j, Y', strtotime($booked->checkoutDate)) }}</td>
                               <td class="td-border">{{$booked->guestFullName}}</td>
                               <td class="th-sm td-border">₱{{$booked->billAmount}}</td>
-                              <td class="th-sm td-border">@if($booked->paymentStatus == 0)No Payment @elseif($booked->paymentStatus == 1) Partially Paid @else Paid @endif</td>
+                              <td class="th-sm td-border">@if($booked->paymentStatus == 0)No Payment @elseif($booked->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
                               <td class="td-border text-center">
-                                <button onclick="updateModal()" class="bg-none" title="UPDATE"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
-                                <button onclick="window.location='{{ route('booking.show',$booked->id) }}'" class="bg-none" title="SHOW INFO"><i class="show-icon fas fa-info-circle"></i></button>
-                                <button class="bg-none" title="CANCEL"><i class="cancel-icon fas fa-times-circle"></i></button>
+                                <button class="update-button" style="color:white; width:100%;" onclick="window.location='{{ route('booking.show',$booked->id) }}'">Select</button>
                               </td>
                           </tr>
                     @endforeach
@@ -93,6 +91,7 @@
         
     </div>
 {{-- </div> --}}
+
 
 
 
@@ -127,9 +126,6 @@
 function addPaymentModal(){
     $('#paymentModal').modal('show');
 }
-
-
-
 
 var msg = "{{Session::get('success')}}";
 var exist = "{{Session::has('success')}}";
