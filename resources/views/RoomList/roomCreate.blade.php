@@ -58,8 +58,8 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    <button class="btn btn-deep-orange float-left" type="submit">Save</button>
-                    <button class="btn btn-dark float-right" type="button" onclick="window.location='{{ route('roomList.index') }}'">Cancel</button>
+                    <button class="save-button float-left" type="submit">Save</button>
+                    <button class="back-button float-right" type="button" onclick="window.location='{{ route('roomList.index') }}'">Cancel</button>
                 </div>
             </div>
         </div>

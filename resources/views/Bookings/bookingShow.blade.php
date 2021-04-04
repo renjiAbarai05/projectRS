@@ -37,11 +37,11 @@
             <div class="row">
                 <div class="col-sm-6">
                         <div class="DivTemplate">
-                            <p class="DivHeaderText center-align">ROOM DETAILS</p>
-                            <div class="hr"></div>
+                            <div class="DivHeaderText">ROOM DETAILS</div>
+                        <div class="hr my-1" style="height:2px;"></div>
                             <div class='row' >
                                 <div class='col-md-6'>
-                                    <div class='label text-left'>Room #</div>
+                                    <div class='label text-left'>Room Number</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
                                 </div>
                                 <div class='col-md-6'>
@@ -68,9 +68,9 @@
                         </div>
 
                         <div class="DivTemplate">
-                            <p class="DivHeaderText center-align">GUEST DETAILS</p>
-                            <div class="hr"></div>
-                            <div class='row' >
+                            <div class="DivHeaderText">GUEST DETAILS</div>
+                            <div class="hr my-1" style="height:2px;"></div>
+                            <div class='row'>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Guest Full Name</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->guestFullName}} </b></p>
@@ -99,22 +99,22 @@
 
                         <div class="DivTemplate mt-3">
                             <div class="DivHeaderText">SUMMARY</div>
-                            <div class="hr mt-1" style="height:2px;"></div>
+                            <div class="hr my-1" style="height:2px;"></div>
                             <table class="table table-bordered">
                                 <tr  class="thead-light DivHeaderText">
-                                    <th width="150px">Status</th>
+                                    <th class="th-text" width="150px">Status</th>
                                     <td>@if($bookingData->paymentStatus == 0)No Payment @elseif($bookingData->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
                                 </tr>
                                 <tr  class="thead-light DivHeaderText">
-                                    <th width="150px">Bill Total</th>
+                                    <th class="th-text" width="150px">Bill Total</th>
                                     <td id="sub_total">₱{{$bookingData->billAmount}}</td>
                                 </tr>
                                 <tr class="thead-light DivHeaderText">
-                                    <th width="150px">Total Payment</th>
+                                    <th class="th-text" width="150px">Total Payment</th>
                                     <td id="amount_received_total" style="color:#8cbd01;"></td>
                                 </tr>
                                 <tr id="balance-tr" class="thead-light DivHeaderText">
-                                    <th >Balance</th>
+                                    <th class="th-text" >Balance</th>
                                     <td id="balance_total">0</td>
                                 </tr>
                             </table>
@@ -124,13 +124,13 @@
                 <div class="col-sm-6">
                     <div class="DivTemplate mb-3" id="payment-details-div">
                         <div class="DivHeaderText">PAYMENT DETAILS</div>
-                        <div class="hr mt-1" style="height:2px;"></div>
+                        <div class="hr my-1" style="height:2px;"></div>
                         <div class="table-responsive">
                             <table class="table table-bordered text-center">
                                 <tr class="thead-light">
-                                    <th>Date and time</th>
-                                    <th>Cash Received</th>
-                                    <th>Change</th>
+                                    <th class="th-text">Date and time</th>
+                                    <th class="th-text">Cash Received</th>
+                                    <th class="th-text">Change</th>
                                 </tr>
                                     @foreach($payments as $payment)
                                         <tr>
@@ -145,7 +145,7 @@
 
                     <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
                     <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;">Cancel Booking</button>
-                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                    <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                 </div>
             </div>
     </div>
@@ -167,9 +167,9 @@
             <input type="hidden" class="form-control" name="bookingId" value="{{$bookingData->id}}">
             <div class="row mt-1">
                 <div class="col-sm-12" >
-                    <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                        <label style="font-size:40px!important; color:white; ml-1"><b>Balance:</b></label>
-                        <label style="font-size:40px!important; color:white;" id="balanceAmount"></label>
+                    <div style="border-radius: 5px;">
+                        <label style="font-size:18px !important; font-weight: 500; color: #676767; width: 90px">Balance:</label>
+                        <label style="font-size:25px !important; font-weight: 500; color: #fc8621; width: 100%; background: #fbebd8" id="balanceAmount"></label>
                         <input type="hidden" class="form-control" name="balanceAmount" id="balanceAmountInput">
                     </div>
                 </div>
@@ -183,8 +183,8 @@
         </div>
         <div class="row px-4 pb-4">
             <div class="col-sm-12">
-                <button class="save-button btn-deep-orange" type="submit">Add</button>
-                <button class="back-button btn-dark float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="save-button" type="submit">Add</button>
+                <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
         </div>
         </div>

@@ -118,8 +118,8 @@
         </div>
     </div>
     <div class="mt-3">
-        <button type="submit" class="save-button btn-deep-orange">Save</button>
-        <button type="button" class="back-button btn-dark float-right" onclick="window.location='{{route('users.index')}}'">Back</button>
+        <button type="submit" class="save-button save-btn">Save</button>
+        <button type="button" class="back-button float-right" onclick="window.location='{{route('users.index')}}'">Back</button>
     </div>
     </form>
 </div>

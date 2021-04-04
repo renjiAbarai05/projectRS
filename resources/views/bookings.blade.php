@@ -185,8 +185,6 @@ aria-hidden="true" style="margin-top: 100px">
                 </select>
             </div>
         </div>
-    
-
     </div>
     <div class="row px-4 pb-3">
         <div class="col-sm-12">

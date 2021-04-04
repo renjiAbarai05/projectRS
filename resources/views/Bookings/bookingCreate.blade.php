@@ -123,8 +123,8 @@
                 </div>
             </div>
 
-            <button class="btn btn-deep-orange" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
-            <button class="btn btn-dark " type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
+            <button class="save-button" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
+            <button class="back-button" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
         </div>
     </div>
 

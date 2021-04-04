@@ -1,18 +1,13 @@
+April 4, 2020
+    Layout
+        - change 'save, search, book' orange button to green button
+    Modal 
+        - change layout
 
 APRIL 4, 2021
     NOTE: 
       - php artisan migrate:fresh
       - php artisan db:seed --class=FactorySeeder
-
-
-
-
-
-
-
-
-
-
 
 April 3,2020
     Layout

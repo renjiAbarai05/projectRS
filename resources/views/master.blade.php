@@ -287,8 +287,19 @@ crossorigin="anonymous" />
 
     @yield('content')
 
-
-
+  <div class="modal fade" id="mapModal"  role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>LOCATION</u></h4>
+        </div>
+        <div class="modal-body mx-3 mb-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923.4108623441076!2d125.00378075106126!3d11.240884650899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330870d2f0620439%3A0x767237f51fc810e9!2sHOTEL%20Lai%20Rico!5e0!3m2!1sen!2sph!4v1617190923270!5m2!1sen!2sph" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        </div>
+    </div>
+</div>  
+ 
     {{-- BookNowModal --}}
     <div class="modal fade" id="bookNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true" style="margin-top: 100px">
@@ -347,18 +358,6 @@ crossorigin="anonymous" />
         </div>  
     </div>
 </div>
-
-  <div class="modal fade" id="mapModal"  role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content">
-        <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>LOCATION</u></h4>
-        </div>
-        <div class="modal-body mx-3 mb-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923.4108623441076!2d125.00378075106126!3d11.240884650899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330870d2f0620439%3A0x767237f51fc810e9!2sHOTEL%20Lai%20Rico!5e0!3m2!1sen!2sph!4v1617190923270!5m2!1sen!2sph" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        </div>
-    </div>
 </div>
   
   
