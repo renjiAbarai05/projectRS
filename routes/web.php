@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('booking', 'BookingController');
     Route::post('booking/searchAvailableRooms', 'BookingController@searchAvailableRooms')->name('booking.searchAvailableRooms');
     Route::post('booking/createBooking', 'BookingController@CreateBooking')->name('booking.createBooking');
+    Route::post('booking/addPayment', 'BookingController@AddPayment')->name('booking.addPayment');
 
     //Report
     Route::resource('report', 'ReportController');

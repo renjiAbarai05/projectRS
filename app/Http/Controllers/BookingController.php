@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\BookingReserve;
+use App\BookingPayment;
 use App\RoomList;
+
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -16,9 +19,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $available = RoomList::where('isActive',1)->where('deleted',0)->get();
+        // $available = RoomList::where('deleted_at')->get();
         $booked = BookingReserve::where('isDismiss',0)->get();
-        return view('Bookings.bookingIndex',compact('available','booked'));
+        return view('Bookings.bookingIndex',compact('booked'));
     }
 
     /**
@@ -28,7 +31,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return view('Bookings.bookingSearchRooms');
     }
 
     /**
@@ -39,14 +42,46 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        BookingReserve::create([
-            'checkinDate' => $request->checkIn,
-            'checkoutDate' => $request->checkOut,
+        $checkinDate = Carbon::parse($request->checkinDate)->format('Y-m-d H:i:s');
+        $checkoutDate = Carbon::parse($request->checkoutDate)->format('Y-m-d H:i:s');
+
+       $bookingId = BookingReserve::create([
             'roomId' => $request->roomId,
-            'guestName' => $request->guestName,
-            'guestContact' => $request->guestContact,
+            'roomName' => $request->roomName,
+            'roomNumber' => $request->roomNumber,
+            'roomRate' => $request->roomRate,
+            'roomPrice' => $request->roomPrice,
+            'checkinDate' => $checkinDate,
+            'checkoutDate' => $checkoutDate,
+            'guestFullName' => $request->guestFullName,
+            'guestContactNumber' => $request->guestContactNumber,
+            'guestAddress' => $request->guestAddress,
+            'numberOfGuest' => $request->numberOfGuest,
+            'guestEmail' => $request->guestEmail,
+            'billAmount' => $request->billAmount,
             'userId' => Auth::id(),
-        ]);
+        ])->id;
+
+        $payment = $request->paymentAmount;
+        $billAmount = $request->billAmount;
+        if($payment != null){
+            BookingPayment::create([
+                'bookingId' => $bookingId,
+                'paymentAmount' => $payment,
+                'changeAmount' => 0,
+                'userId' => Auth::id(),
+            ]);
+
+            if($billAmount > $payment){
+                BookingReserve::find($bookingId)->update([
+                    'paymentStatus' => 1,
+                ]);
+            }else{
+                BookingReserve::find($bookingId)->update([
+                    'paymentStatus' => 2,
+                ]);
+            }
+        }
 
         return redirect()->route('booking.index')->with('success', 'Created Successfully');
     }
@@ -59,7 +94,11 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookingData = BookingReserve::find($id);
+
+        $payments = BookingPayment::where('bookingId',$id)->get();
+
+        return view('Bookings.bookingShow',compact('bookingData','payments'));
     }
 
     /**
@@ -99,33 +138,21 @@ class BookingController extends Controller
     public function searchAvailableRooms(Request $request){
 
         $array = array();
-        $dateID = $request->checkInDate;
-        $dateOD = $request->checkOutDate;
+        $dateID = $request->checkinDate; 
+        $dateOD = $request->checkoutDate;
 
-        $bookedLists = BookingReserve::where('isDismiss',0)->whereDate('checkoutDate' ,'>=', $dateID)->whereDate('checkinDate' ,'<=', $dateOD)->get();
+        $dateCheckIn = \Carbon\Carbon::parse($request->checkinDate);
+        $dateCheckOut = \Carbon\Carbon::parse($request->checkoutDate);
+        
+        $bookedLists = BookingReserve::where('isDismiss',0)->where('checkoutDate' ,'>=', $dateCheckIn)->where('checkinDate' ,'<=', $dateCheckOut)->get();
 
         foreach($bookedLists as $bookedList){
            $array[] = $bookedList->roomId;
         }
 
-        // while($dateID <= $dateOD){
-        //     // array_push($array, $dateID);
-        //     $dateID = date('Y-m-d', strtotime($dateID . ' +1 day'));
-        //     foreach($bookedList as $bookedItem){
-        //         $checkinDate = $bookedItem->checkinDate;
-        //         $checkoutDate = $bookedItem->checkoutDate;
-        //         while($checkinDate <= $checkoutDate){
-        //             $checkinDate = date('Y-m-d', strtotime($checkinDate . ' +1 day'));
-        //             if($dateID == $checkinDate and $dateID == $checkinDate){
-        //                 array_push($array2, "$bookedItem->roomId");
-        //             }
-        //         }
-        //     }
-        // }
-//  return $array;
-        $availableRooms = RoomList::whereNotIn('id', $array)->where('deleted',0)->get();
+        $roomListData = RoomList::whereNotIn('id', $array)->where('capacity','>=',$request->numberOfGuest)->whereNull('deleted_at')->get();
 
-        return view('Bookings.bookingSearchedResults',compact('availableRooms','dateID','dateOD'));
+        return view('Bookings.bookingSearchedResults',compact('roomListData','dateID','dateOD'));
     }
 
 
@@ -136,6 +163,33 @@ class BookingController extends Controller
 
         $thisRoom = RoomList::find($id);
 
-        return view('Bookings.bookingCreate',compact('thisRoom','checkIn','checkOut'));
+        return view('Bookings.bookingCreate',compact('thisRoom','checkOut','checkIn'));
+    }
+
+    public function AddPayment(Request $request){
+        
+        $id = $request->bookingId;
+        $payment = $request->paymentAmount;
+        $balanceAmount = $request->balanceAmount;
+        if($payment != null){
+            BookingPayment::create([
+                'bookingId' => $id,
+                'paymentAmount' => $payment,
+                'changeAmount' => 0,
+                'userId' => Auth::id(),
+            ]);
+
+            if($balanceAmount > $payment){
+                BookingReserve::find($id)->update([
+                    'paymentStatus' => 1,
+                ]);
+            }else{
+                BookingReserve::find($id)->update([
+                    'paymentStatus' => 2,
+                ]);
+            }
+        }
+
+        return redirect()->route('booking.show',$id)->with('success', 'Created Successfully');
     }
 }

@@ -34,25 +34,25 @@
 <div class="content content-margin pb-2" id="content">
     <div class="container" style="margin-top: 20px">
         <div class="d-flex flex-column">
-            <div class="HeaderBanner p-2 px-3">
+            <div class="HeaderBanner p-2 px-1">
                 <span class="HeaderBannerText">BOOKINGS</span>
-                <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
+                <i class="fas fa-plus add-button mt-1 ml-1"  onclick="window.location='{{ route('booking.create') }}'"  style="cursor: pointer; float:right"></i>
             </div>
-                <div class="flex DivLinks-bg">
-                    <ul class="mb-0">
-                        <li class="DivLinks-header p-2">
+                <div class="flex DivLinks-bg" >
+                    <ul class="mb-1">
+                        <li class="DivLinks-header p-1" style="margin-left:-3%;">
                             <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/bookingToday'">View Booking Today</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/bookingViewCheckedIn'">View Checked-in</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/viewHistory'">View History</a>
                         </li>
                     </ul>
@@ -60,15 +60,14 @@
             </div>
         
         <div class="DivTemplate">
-            {{-- <p class="data">No Data</p> --}}
             <div class="table-responsive mt-1">
                 <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                       <tr>
                           <th class="th-sm th-border" width="200px">Date</th>
-                          <th class="th-sm th-border">Room Name</th>
-                          <th class="th-sm th-border">Payment</th>
-                          <th class="th-sm th-border">Bill</th>
+                          <th class="th-sm th-border">Guest Name</th>
+                          <th class="th-sm th-border">Total Bill</th>
+                          <th class="th-sm th-border">Status</th>
                           <th class="th-sm th-border text-center" width="200px">Action</th>
                       </tr>
                   </thead>
@@ -76,13 +75,12 @@
                     @foreach($booked as $booked)
                             <tr class="data font-weight-bold">
                               <td class="td-border"> {{date('F j, Y', strtotime($booked->checkinDate)) }} to {{ date('F j, Y', strtotime($booked->checkoutDate)) }}</td>
-                              <td class="td-border">{{$booked->room->roomType}}</td>
-                              <td class="th-sm td-border">show payment</td>
-                              <td class="th-sm td-border">show Bill</td>
-                              <td class="text-center">
+                              <td class="td-border">{{$booked->guestFullName}}</td>
+                              <td class="th-sm td-border">₱{{$booked->billAmount}}</td>
+                              <td class="th-sm td-border">@if($booked->paymentStatus == 0)No Payment @elseif($booked->paymentStatus == 1) Partially Paid @else Paid @endif</td>
+                              <td class="td-border text-center">
                                 <button onclick="updateModal()" class="bg-none" title="UPDATE"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
-                                <button class="bg-none" id="paymentBtn" title="ADD PAYMENT"><i class="payment-icon fab fa-bitcoin"></i></button>
-                                <button class="bg-none" title="SHOW INFO"><i class="show-icon fas fa-info-circle"></i></button>
+                                <button onclick="window.location='{{ route('booking.show',$booked->id) }}'" class="bg-none" title="SHOW INFO"><i class="show-icon fas fa-info-circle"></i></button>
                                 <button class="bg-none" title="CANCEL"><i class="cancel-icon fas fa-times-circle"></i></button>
                               </td>
                           </tr>
@@ -97,77 +95,10 @@
 {{-- </div> --}}
 
 
-{{-- BookNowModal --}}
-<form method="POST" action="{{route('booking.searchAvailableRooms')}}">
-    @csrf
-    <div class="modal fade" id="bookNowCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000; margin-left: 150px">
-        <div class="modal-dialog modal-lg" role="document" >
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">CHECK AVAILABLE ROOMS</h5>
-                </div>
-            <div class="modal-body mx-3 mb-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label>Check in</label>
-                        <input type="date" class="form-control" name="checkInDate" id="dateInput" required>
-                    </div>
-                    <div class="col-sm-6">
-                        <label>Check out</label>
-                        <input type="date" class="form-control" name="checkOutDate" id="dateInput2" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row px-4 pb-4">
-                <div class="col-sm-12">
-                    <button class="save-button btn-deep-orange" type="submit">Check</button>
-                    <button class="back-button btn-dark float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000; margin-left: 150px">
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content">
-        <div class="modal-header text-center">
-            <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">ADD PAYMENT</h5>
-        </div>
-        <div class="modal-body mx-3 mb-3">
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Amount</label>
-                    <input type="number" class="form-control"  required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Payment Type</label>
-                    <input type="text" class="form-control" required>
-                </div>
-            </div>
-        </div>
-        <div class="row px-4 pb-4">
-            <div class="col-sm-12">
-
-                <button class="save-button btn-deep-orange" type="submit">Add</button>
-                <button class="back-button btn-dark float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
-
 
 <script>
     $(document).ready(function(){
         
-        $('#bookNowButton').click(function(){
-                $('#bookNowCreate').modal('show');
-        });
-    
         $('#TblSorter').DataTable({
             "columnDefs": [
             { "orderable": false, "targets": 2 }
@@ -175,20 +106,30 @@
             "order": [[ 0, "desc" ]],
         });
 
-        $('#paymentBtn').click(function(){
-            $('#paymentModal').modal('show');
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        $('#datetimepicker3').datetimepicker({
+            minDate: today, //today is minimum date
         });
 
-        dateFunction();
-        dateFunction2();
+        $('#datetimepicker4').datetimepicker({
+            minDate: today, //today is minimum date
+        });
 
     });
 
 
+function addPaymentModal(){
+    $('#paymentModal').modal('show');
+}
 
-    function updateModal(){
-        $('#bookNowUpdate').modal('show');
-    }
+
+
 
 var msg = "{{Session::get('success')}}";
 var exist = "{{Session::has('success')}}";
@@ -200,97 +141,6 @@ if(exist){
         timer: 2000,
     });
 }
-
-
-   //Date Function
-   function dateFunction(){
-    $('#dateInput').change(function(){
-        var dateInputVal = $('#dateInput').val();
-        var dateHandler =  $('#dateInput').val();
-        dateOutput(dateInputVal,dateHandler);
-    });
-
-  var dateInputVal = $('#dateInput').val();
-  var dateHandler =  $('#dateInput').val();
-  dateOutput(dateInputVal,dateHandler);
-
-}
-
-function dateOutput(dateInputVal,dateHandler){
-        dateHandler.innerHTML = dateInputVal;
-        var months = new Array();
-        months[0] = "January";
-        months[1] = "February";
-        months[2] = "March";
-        months[3] = "April";
-        months[4] = "May";
-        months[5] = "June";
-        months[6] = "July";
-        months[7] = "August";
-        months[8] = "September";
-        months[9] = "October";
-        months[10] = "November";
-        months[11] = "December";
-        var date = new Date(dateInputVal);
-        var month = months[date.getMonth()];
-        //converting the date into array
-        var dateArr = dateInputVal.split("-");
-        //setting up the new date form
-        var forDate = month + " " + dateArr[2] + ", " + dateArr[0];
-
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-
-        today = yyyy + '-' + mm + '-' + dd;
-        $('#dateInput').attr('min',today);
-}
-
-
-function dateFunction2(){
-    $('#dateInpu2t').change(function(){
-        var dateInputVal = $('#dateInput2').val();
-        var dateHandler =  $('#dateInput2').val();
-        dateOutput2(dateInputVal,dateHandler);
-    });
-
-  var dateInputVal = $('#dateInput2').val();
-  var dateHandler =  $('#dateInput2').val();
-  dateOutput2(dateInputVal,dateHandler);
-
-}
-
-function dateOutput2(dateInputVal,dateHandler){
-        dateHandler.innerHTML = dateInputVal;
-        var months = new Array();
-        months[0] = "January";
-        months[1] = "February";
-        months[2] = "March";
-        months[3] = "April";
-        months[4] = "May";
-        months[5] = "June";
-        months[6] = "July";
-        months[7] = "August";
-        months[8] = "September";
-        months[9] = "October";
-        months[10] = "November";
-        months[11] = "December";
-        var date = new Date(dateInputVal);
-        var month = months[date.getMonth()];
-        //converting the date into array
-        var dateArr = dateInputVal.split("-");
-        //setting up the new date form
-        var forDate = month + " " + dateArr[2] + ", " + dateArr[0];
-
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-
-        today = yyyy + '-' + mm + '-' + dd;
-        $('#dateInput2').attr('min',today);
-}
-    </script>
+</script>
 
 @endsection

@@ -7,7 +7,6 @@
 		{
           background-color:#ebebeb;
 		}
-      
 </style>
 
 @include('layouts.vtab')
@@ -21,37 +20,34 @@
         </div>
         <div class="divContainer mt-n2">
             <div class="row mt-1">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label>Room Name:</label>
-                <input type="text" class="form-control" name="roomType" required>
+                    <input type="text" class="form-control" name="roomType" required>
                 </div>
-            </div>
-            <div class="row mt-1">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label>Room Number:</label>
                     <input type="number" class="form-control" name="roomNumber" required>
                 </div>
             </div>
             <div class="row mt-1">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label>Price:</label>
                     <input type="number" class="form-control" name="price" required>
                 </div>
-            </div>
-            <div class="row mt-1">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <label>Room Rate:</label>
-                    <select name="" id="" class="form-control">
-                        <option value="">Per Day</option>
-                        <option value="">Per Hour</option>
-                        <option value="">Per Night</option>
+                    <select class="form-control" name="roomRate" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="24">By 24 Hours</option>
+                        <option value="12">By 12 Hours</option>
+                        <option value="3">By 3 Hours</option>
                     </select>
                 </div>
             </div>
             <div class="row mt-1">
                 <div class="col-sm-12">
-                    <label>Number of guest:</label>
-                    <input type="number" class="form-control" name="price" required>
+                    <label>Capacity:</label>
+                    <input type="number" class="form-control" name="capacity" required>
                 </div>
             </div>
             <div class="row mt-1">

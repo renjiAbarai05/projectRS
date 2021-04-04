@@ -16,13 +16,15 @@ class CreateRoomListsTable extends Migration
         Schema::create('room_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('isActive')->default(1);
-            $table->integer('deleted')->default(0);;
+            $table->Integer('isActive')->default(1);
             $table->string('roomType');
-            $table->string('roomNumber');
+            $table->Integer('roomNumber');
             $table->float('price');
-            $table->text('details');
-            $table->text('userId');
+            $table->Integer('roomRate');
+            $table->Integer('capacity');
+            $table->text('details')->nullable();
+            $table->Integer('userId');
+            $table->softDeletes();
         });
     }
 
