@@ -192,4 +192,16 @@ class BookingController extends Controller
 
         return redirect()->route('booking.show',$id)->with('success', 'Created Successfully');
     }
+
+    public function viewToday(){
+        return view('Bookings/bookingToday');
+    }
+
+    public function viewCheckedIn(){
+        return view('Bookings/bookingViewCheckin');
+    }
+
+    public function viewHistory(){
+        return view('Bookings/bookingViewHistory');
+    }
 }
