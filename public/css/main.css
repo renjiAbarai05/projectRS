@@ -29,41 +29,49 @@ input:required{
     border-top-left-radius: 10px;
 }
 .update-button {
-    background-color: #00a86b;
+    background-color: #4cbb17;
     border: none;
     color: white;
-    padding: 5px;
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
     width: 120px;
-    border-radius: 10px;
+    border-radius: 3px;
     margin: 2px;
+    font-weight: 500;
 }
 .update-button:hover{
-    background-color: #4cbb17;
+    background-color: #00a86b;
 }
   .delete-button{
     background-color: #b80f0a;
     border: none;
     color: white;
-    padding: 5px;
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
     width: 120px;
     border-radius: 10px;
     margin: 2px;
+    font-weight: 500;
 }
 .delete-button:hover{
     background-color: red;
 }
 .save-button {
-    background-color: #ff7417;
+    background-color: #4cbb17;
     border: none;
     color: white;
     padding: 9px;
     font-size: 16px;
     cursor: pointer;
     width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+}
+.save-button:hover{
+    background-color: #00a86b;
 }
 
 .back-button {
@@ -74,6 +82,12 @@ input:required{
     font-size: 16px;
     cursor: pointer;
     width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+}
+.back-button:hover{
+    background-color: #616161 !important;
 }
 /* Sidebar Css */
 .sidebar-Togglebtn-hidden{
@@ -239,16 +253,7 @@ table.dataDisplayer td {
     font-weight: normal !important;
     letter-spacing: 0.5px;
 }
-.btn-dark{
-    color: white !important;
-    background: #616161 !important;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-.btn-deep-orange{
-    font-weight: 500;
-    letter-spacing: 1px;
-}
+
 .fa-sign-out-alt{
     font-size: 25px;
 }
@@ -279,4 +284,25 @@ label{
     float: right;
     margin-top: 2px;
     /* margin-right: 14px; */
+}
+
+.viewText{
+    font-weight: 500;
+    color: #676767;
+}
+
+.DivHeaderText{
+    font-weight: 500;
+    color: #676767;
+}
+
+th.th-text{
+    font-weight: 500;
+}
+
+label{
+    padding: 0;
+    font-size: 14px;
+    margin: 0;
+    letter-spacing: 1px;
 }

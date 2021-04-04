@@ -298,43 +298,7 @@ crossorigin="anonymous" />
         </div>
         </div>
     </div>
-</div>
-<div style="background: white; height: 50px"></div>
-<footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">
-<div class="container-fluid text-center text-md-left">
-<div class="row my-5 ml-5">
-    <div class="col-md-8">
-       <i class="fas fa-map-marker-alt icon-color" id="locationBtn" style="cursor: pointer;"></i>
-       <span class="info-caption">
-        Paterno St, Downtown, Tacloban City, 6500 Leyte</span>
-        <br>
-        <i class="fas fa-phone icon-color"></i>
-       <span class="info-caption">
-        +(63) 916 438 9070</span>
-        <br>
-        <i class="fas fa-envelope icon-color"></i>
-       <span class="info-caption">
-        hotellairico@gmail.com</span>
-    </div>
-    <div class="col-md-4">
-        <div class="row mt-4 d-flex justify-content-center">
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-              <a href="https://www.facebook.com/Hotel-Lai-Rico-101290814760138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook icon-color"></i></a>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fab fa-twitter icon-color"></i>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fab fa-instagram icon-color"></i>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fas fa-globe-americas icon-color"></i>
-            </div>
-            <span class="info-caption">
-                Follow us on our socila media accounts</span>
-        </div>
-    </div>
- </div>
+</div>  
  
     {{-- BookNowModal --}}
     <div class="modal fade" id="bookNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -395,7 +359,46 @@ crossorigin="anonymous" />
     </div>
 </div>
 </div>
-
+  
+  
+ 
+<div style="background: white; height: 50px"></div>
+<footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">
+<div class="container-fluid text-center text-md-left">
+<div class="row my-5 ml-5">
+    <div class="col-md-8">
+       <i class="fas fa-map-marker-alt icon-color" id="locationBtn" style="cursor: pointer;"></i>
+       <span class="info-caption">
+        Paterno St, Downtown, Tacloban City, 6500 Leyte</span>
+        <br>
+        <i class="fas fa-phone icon-color"></i>
+       <span class="info-caption">
+        +(63) 916 438 9070</span>
+        <br>
+        <i class="fas fa-envelope icon-color"></i>
+       <span class="info-caption">
+        hotellairico@gmail.com</span>
+    </div>
+    <div class="col-md-4">
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+              <a href="https://www.facebook.com/Hotel-Lai-Rico-101290814760138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook icon-color"></i></a>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fab fa-twitter icon-color"></i>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fab fa-instagram icon-color"></i>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fas fa-globe-americas icon-color"></i>
+            </div>
+            <span class="info-caption">
+                Follow us on our socila media accounts</span>
+        </div>
+    </div>
+ </div>
+</div>
         
     <!-- Copyright -->
     <div class="footer-copyright text-center py-2 black">© 2020 Copyright

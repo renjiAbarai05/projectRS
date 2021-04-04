@@ -32,7 +32,7 @@
 @include('layouts.vtab')
 
 <div class="content content-margin pb-2" id="content">
-    <div class="container" style="margin-top: 20px">
+    <div style="padding:1%;">
         <div class="d-flex flex-column">
             <div class="HeaderBanner p-2 px-3">
                 <span class="HeaderBannerText">CHECKED-IN</span>
@@ -40,7 +40,7 @@
             </div>
                 <div class="flex DivLinks-bg" >
                     <ul class="mb-1">
-                        <li class="DivLinks-header p-1" style="margin-left:-3%;">
+                        <li class="DivLinks-header p-1" style="margin-left:-30px">
                             <a class="header-link" onclick="window.location='{{ route('booking.index') }}'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
