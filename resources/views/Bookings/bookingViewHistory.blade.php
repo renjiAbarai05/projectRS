@@ -41,7 +41,7 @@
                 <div class="flex DivLinks-bg" >
                     <ul class="mb-1">
                         <li class="DivLinks-header p-1" style="margin-left:-3%;">
-                            <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
+                            <a class="header-link" onclick="window.location='{{ route('booking.index') }}'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-1 pl-2">

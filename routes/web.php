@@ -32,22 +32,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('booking/createBooking', 'BookingController@CreateBooking')->name('booking.createBooking');
     Route::post('booking/addPayment', 'BookingController@AddPayment')->name('booking.addPayment');
 
+
     //Report
     Route::resource('report', 'ReportController');
     
     Route::get('/adminPage', 'HomeController@adminPage')->name('homePage');
-
-    Route::get('/booknow', function () {
-        return view('booknow');
-    });
-    // Route::get('/adminPage', function () {
-    //     return view('adminPage');
-    // });
-    Route::get('/roomCategory', function () {
-        return view('roomCategory');
-    });
-    Route::get('/bookings', function () {
-        return view('bookings');
-    });
 
 });
