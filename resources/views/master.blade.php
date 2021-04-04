@@ -287,8 +287,55 @@ crossorigin="anonymous" />
 
     @yield('content')
 
-
-
+  <div class="modal fade" id="mapModal"  role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>LOCATION</u></h4>
+        </div>
+        <div class="modal-body mx-3 mb-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923.4108623441076!2d125.00378075106126!3d11.240884650899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330870d2f0620439%3A0x767237f51fc810e9!2sHOTEL%20Lai%20Rico!5e0!3m2!1sen!2sph!4v1617190923270!5m2!1sen!2sph" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        </div>
+    </div>
+</div>
+<div style="background: white; height: 50px"></div>
+<footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">
+<div class="container-fluid text-center text-md-left">
+<div class="row my-5 ml-5">
+    <div class="col-md-8">
+       <i class="fas fa-map-marker-alt icon-color" id="locationBtn" style="cursor: pointer;"></i>
+       <span class="info-caption">
+        Paterno St, Downtown, Tacloban City, 6500 Leyte</span>
+        <br>
+        <i class="fas fa-phone icon-color"></i>
+       <span class="info-caption">
+        +(63) 916 438 9070</span>
+        <br>
+        <i class="fas fa-envelope icon-color"></i>
+       <span class="info-caption">
+        hotellairico@gmail.com</span>
+    </div>
+    <div class="col-md-4">
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+              <a href="https://www.facebook.com/Hotel-Lai-Rico-101290814760138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook icon-color"></i></a>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fab fa-twitter icon-color"></i>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fab fa-instagram icon-color"></i>
+            </div>
+            <div class="col-md-auto mt-md-0 mt-3 pb-3">
+                <i class="fas fa-globe-americas icon-color"></i>
+            </div>
+            <span class="info-caption">
+                Follow us on our socila media accounts</span>
+        </div>
+    </div>
+ </div>
+ 
     {{-- BookNowModal --}}
     <div class="modal fade" id="bookNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true" style="margin-top: 100px">
@@ -347,62 +394,8 @@ crossorigin="anonymous" />
         </div>  
     </div>
 </div>
-
-  <div class="modal fade" id="mapModal"  role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" >
-        <div class="modal-content">
-        <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>LOCATION</u></h4>
-        </div>
-        <div class="modal-body mx-3 mb-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923.4108623441076!2d125.00378075106126!3d11.240884650899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330870d2f0620439%3A0x767237f51fc810e9!2sHOTEL%20Lai%20Rico!5e0!3m2!1sen!2sph!4v1617190923270!5m2!1sen!2sph" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        </div>
-    </div>
 </div>
-  
-  
- 
 
-
-
-<div style="background: white; height: 50px"></div>
-<footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">
-<div class="container-fluid text-center text-md-left">
-<div class="row my-5 ml-5">
-    <div class="col-md-8">
-       <i class="fas fa-map-marker-alt icon-color" id="locationBtn" style="cursor: pointer;"></i>
-       <span class="info-caption">
-        Paterno St, Downtown, Tacloban City, 6500 Leyte</span>
-        <br>
-        <i class="fas fa-phone icon-color"></i>
-       <span class="info-caption">
-        +(63) 916 438 9070</span>
-        <br>
-        <i class="fas fa-envelope icon-color"></i>
-       <span class="info-caption">
-        hotellairico@gmail.com</span>
-    </div>
-    <div class="col-md-4">
-        <div class="row mt-4 d-flex justify-content-center">
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-              <a href="https://www.facebook.com/Hotel-Lai-Rico-101290814760138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook icon-color"></i></a>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fab fa-twitter icon-color"></i>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fab fa-instagram icon-color"></i>
-            </div>
-            <div class="col-md-auto mt-md-0 mt-3 pb-3">
-                <i class="fas fa-globe-americas icon-color"></i>
-            </div>
-            <span class="info-caption">
-                Follow us on our socila media accounts</span>
-        </div>
-    </div>
- </div>
-</div>
         
     <!-- Copyright -->
     <div class="footer-copyright text-center py-2 black">© 2020 Copyright
