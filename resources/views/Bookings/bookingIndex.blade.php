@@ -45,15 +45,15 @@
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-1 pl-2">
-                            <a class="header-link" onclick="window.location='/bookingToday'">View Booking Today</a>
+                            <a class="header-link" onclick="window.location='{{ route('booking.viewToday') }}'">View Booking Today</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-1 pl-2">
-                            <a class="header-link" onclick="window.location='/bookingViewCheckedIn'">View Checked-in</a>
+                            <a class="header-link" onclick="window.location='{{ route('booking.viewCheckedIn') }}'">View Checked-in</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
                         <li class="DivLinks-header p-1 pl-2">
-                            <a class="header-link" onclick="window.location='/viewHistory'">View History</a>
+                            <a class="header-link" onclick="window.location='{{ route('booking.viewHistory') }}'">View History</a>
                         </li>
                     </ul>
                 </div>

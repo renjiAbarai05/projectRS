@@ -24,6 +24,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('roomList', 'RoomListController');
 
     //Booking
+    Route::get('booking/viewToday', 'BookingController@viewToday')->name('booking.viewToday');
+    Route::get('booking/viewCheckedIn', 'BookingController@viewCheckedIn')->name('booking.viewCheckedIn');
+    Route::get('booking/viewHistory', 'BookingController@viewHistory')->name('booking.viewHistory');
     Route::resource('booking', 'BookingController');
     Route::post('booking/searchAvailableRooms', 'BookingController@searchAvailableRooms')->name('booking.searchAvailableRooms');
     Route::post('booking/createBooking', 'BookingController@CreateBooking')->name('booking.createBooking');
@@ -47,14 +50,4 @@ Route::group(['middleware' => 'auth'], function() {
         return view('bookings');
     });
 
-    Route::get('/bookingToday', function () {
-        return view('Bookings/bookingToday');
-    });
-
-    Route::get('/bookingViewCheckedIn', function () {
-        return view('Bookings/bookingViewCheckin');
-    });
-    Route::get('/viewHistory', function () {
-        return view('Bookings/bookingViewHistory');
-    });
 });
