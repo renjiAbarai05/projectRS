@@ -36,23 +36,23 @@
         <div class="d-flex flex-column">
             <div class="HeaderBanner p-2 px-3">
                 <span class="HeaderBannerText">TODAY'S BOOKING</span>
-                <button id="bookNowButton" style="border:none; background:none; float:right;"><i class="fas fa-plus add-button"></i></button>
+                <i class="fas fa-plus add-button mt-1 ml-1"  onclick="window.location='{{ route('booking.create') }}'"  style="cursor: pointer; float:right"></i>
             </div>
-                <div class="flex DivLinks-bg">
-                    <ul class="mb-0">
-                        <li class="DivLinks-header p-2">
+                <div class="flex DivLinks-bg" >
+                    <ul class="mb-1">
+                        <li class="DivLinks-header p-1" style="margin-left:-3%;">
                             <a class="header-link" onclick="window.location='/booking'">View Booking All</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/bookingToday'">View Booking Today</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/bookingViewCheckedIn'">View Checked-in</a>
                         </li>
                         <span class="DivLinks-divider">|</span>
-                        <li class="DivLinks-header p-2 pl-3">
+                        <li class="DivLinks-header p-1 pl-2">
                             <a class="header-link" onclick="window.location='/viewHistory'">View History</a>
                         </li>
                     </ul>

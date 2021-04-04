@@ -45,11 +45,6 @@
 <link href="{{ asset('css/croppie.css') }}" rel="stylesheet" />
 <script type="text/javascript" src="{{ asset('js/croppie.js') }}" defer></script>
 
-@if (Session::has('message'))
-<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-@endif
-
-
 <form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
     @csrf
     @include('layouts.vtab')

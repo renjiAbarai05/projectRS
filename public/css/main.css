@@ -251,6 +251,7 @@ table.dataDisplayer td {
 .fa-sign-out-alt{
     font-size: 25px;
 }
+
 .book-btn{
     background:#ed9e21;
     width: 110px;
@@ -259,4 +260,8 @@ table.dataDisplayer td {
     text-align: center;
     border-radius: 5px;
     color: #474747 !important;
+}
+
+label{
+    font-size: 13px;
 }

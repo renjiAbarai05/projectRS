@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\RoomList;
 use Auth;
 
+use Carbon\Carbon;
+
 class RoomListController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class RoomListController extends Controller
      */
     public function index()
     {
-        $roomListData = RoomList::where('isActive',1)->where('deleted',0)->get();
+        $roomListData = RoomList::whereNull('deleted_at')->get();
         return view('RoomList.roomIndex',compact('roomListData'));
 
     }
@@ -42,6 +44,8 @@ class RoomListController extends Controller
             'roomType' => $request->roomType,
             'roomNumber' => $request->roomNumber,
             'price' => $request->price,
+            'roomRate' => $request->roomRate,
+            'capacity' => $request->capacity,
             'details' => $request->details,
             'userId' => Auth::id(),
         ]);
@@ -86,6 +90,9 @@ class RoomListController extends Controller
             'roomType' => $request->roomType,
             'roomNumber' => $request->roomNumber,
             'price' => $request->price,
+            'roomRate' => $request->roomRate,
+            'capacity' => $request->capacity,
+            'isActive' => $request->isActive,
             'details' => $request->details,
         ]);
 
@@ -101,7 +108,7 @@ class RoomListController extends Controller
     public function destroy($id)
     {
         RoomList::find($id)->update([
-            'deleted' => 1,
+            'deleted_at' => Carbon::now()->toDateTimeString(),
         ]);
 
         return redirect()->back()->with('success', 'Deleted Successfully');

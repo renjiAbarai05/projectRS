@@ -10,7 +10,7 @@ class BookingReserve extends Model
 
     protected $guarded = ['id'];
 
-    public function room(){
-        return $this->hasOne(RoomList::class , 'id', 'roomId'); 
-    }
+    // public function room(){
+    //     return $this->hasOne(RoomList::class , 'id', 'roomId'); 
+    // }
 }

@@ -1,3 +1,19 @@
+
+APRIL 4, 2021
+    NOTE: 
+      - php artisan migrate:fresh
+      - php artisan db:seed --class=FactorySeeder
+
+
+
+
+
+
+
+
+
+
+
 April 3,2020
     Layout
         - remove border on Div template
