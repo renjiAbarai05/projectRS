@@ -32,7 +32,7 @@
 @include('layouts.vtab')
 
 <div class="content content-margin pb-2" id="content">
-    <div class="container" style="margin-top: 20px">
+    <div style="padding:1%;">
         <div class="d-flex flex-column">
             <div class="HeaderBanner p-2 px-3">
                 <span class="HeaderBannerText">VIEW HISTORY</span>
