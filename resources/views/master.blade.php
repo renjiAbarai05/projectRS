@@ -363,9 +363,6 @@ crossorigin="anonymous" />
   
   
  
-
-
-
 <div style="background: white; height: 50px"></div>
 <footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">
 <div class="container-fluid text-center text-md-left">
