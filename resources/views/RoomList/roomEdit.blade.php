@@ -35,8 +35,8 @@
     @csrf
     @method('PUT')
     <div class="content content-margin pb-2" id="content">
-        <div class="container" style="margin-top: 20px">
-        <div class="header-banner mt-5">
+        <div style="padding:1%;">
+        <div class="header-banner">
             <p class="p-0 m-0 header d-inline">UPDATE ROOM</p>
         </div>
         <div class="divContainer mt-n2">

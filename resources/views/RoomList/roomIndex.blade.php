@@ -4,7 +4,7 @@
 @include('layouts.vtab')
 
 <div class="content content-margin pb-2" id="content">
-    <div class="container" style="margin-top: 20px">
+    <div style="padding:1%;">
         <div class="HeaderBanner">
             <p class="p-0 m-0 header d-inline">ROOM LIST</p>
             <i class="fas fa-plus add-button mt-1 ml-1"  onclick="window.location='{{ route('roomList.create') }}'"  style="cursor: pointer; float:right"></i>

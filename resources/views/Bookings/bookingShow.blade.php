@@ -33,7 +33,7 @@
 
 
     <div class="content content-margin pb-2" id="content">
-        <div style="margin-top: 10px; padding:1%;">
+        <div style="padding:1%;">
             <div class="row">
                 <div class="col-sm-6">
                         <div class="DivTemplate">
