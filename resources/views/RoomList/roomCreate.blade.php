@@ -22,17 +22,17 @@
             <div class="row mt-1">
                 <div class="col-sm-6">
                     <label>Room Name:</label>
-                    <input type="text" class="form-control" name="roomType" required>
+                    <input type="text" class="form-control" name="roomType" autocomplete="off" required>
                 </div>
                 <div class="col-sm-6">
                     <label>Room Number:</label>
-                    <input type="number" class="form-control" name="roomNumber" required>
+                    <input type="number" class="form-control" name="roomNumber" autocomplete="off" required>
                 </div>
             </div>
             <div class="row mt-1">
                 <div class="col-sm-6">
                     <label>Price:</label>
-                    <input type="number" class="form-control" name="price" required>
+                    <input type="number" class="form-control" name="price" autocomplete="off" required>
                 </div>
                 <div class="col-sm-6">
                     <label>Room Rate:</label>
@@ -47,7 +47,7 @@
             <div class="row mt-1">
                 <div class="col-sm-12">
                     <label>Capacity:</label>
-                    <input type="number" class="form-control" name="capacity" required>
+                    <input type="number" class="form-control" name="capacity" autocomplete="off" required>
                 </div>
             </div>
             <div class="row mt-1">

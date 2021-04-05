@@ -41,7 +41,7 @@
         <div class="header-banner">
             <p class="p-0 m-0 header d-inline">AVAILABLE ROOMS</p>
         </div>
-        <div class="divContainer mt-n2">
+        <div class="divContainer mt-n2 mb-2">
           <div class="table-responsive mt-1">
             <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
               <thead class="thead-bg">
@@ -73,7 +73,12 @@
           </table>
          
       </div>
+    </div>
+        <div class="row"> 
+            <div class="col-sm-6"> <button class="save-button mt-1" type="submit" style="width:100%; border-radius:3px; "  onclick="window.location='{{ route('booking.create') }}'">Search Again</button></div>
+            <div class="col-sm-6"><button class="back-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px;"  onclick="window.location='{{ route('booking.index') }}'">Cancel</button></div>
         </div>
+       
         
     </div>
 {{-- </div> --}}
@@ -81,35 +86,23 @@
 
 <script>
 $(document).ready(function(){
-    
-    $('#bookNowButton').click(function(){
-            $('#bookNowCreate').modal('show');
-    });
-
     $('#TblSorter').DataTable({
         "columnDefs": [
         { "orderable": false, "targets": 2 }
         ],
         "order": [[ 0, "desc" ]],
     });
+
+    // Swal.fire({
+    //     icon: 'success',
+    //     title: 'Search Successfully.',
+    //     showConfirmButton: false,
+    //     timer: 3000,
+    // });
 });
 
 
-function checkinModal(thisRow){
-    var id = $(thisRow).attr('data-id');
-        $('#editCategoryModal').modal('show');
-}
 
-var msg = "{{Session::get('success')}}";
-var exist = "{{Session::has('success')}}";
-if(exist){
-    Swal.fire({
-        icon: 'success',
-        title: msg,
-        showConfirmButton: false,
-        timer: 2000,
-    });
-}
     </script>
 
 @endsection

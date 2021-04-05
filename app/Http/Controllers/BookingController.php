@@ -67,7 +67,7 @@ class BookingController extends Controller
             BookingPayment::create([
                 'bookingId' => $bookingId,
                 'paymentAmount' => $payment,
-                'changeAmount' => 0,
+                'changeAmount' => $request->amountChange,
                 'userId' => Auth::id(),
             ]);
 
@@ -174,7 +174,7 @@ class BookingController extends Controller
             BookingPayment::create([
                 'bookingId' => $id,
                 'paymentAmount' => $payment,
-                'changeAmount' => 0,
+                'changeAmount' => $request->amountChange,
                 'userId' => Auth::id(),
             ]);
 
