@@ -43,19 +43,21 @@
                 <div class="hr"></div>
                 <div class="row mt-3">
                     <div class="col-sm-6">
-                        <label>Room Name:</label>
-                        <input type="text" class="form-control" name="roomName" value="{{$thisRoom->roomType}}" autocomplete="off" readonly="readonly">
-                        <input type="hidden" class="form-control" name="roomId" value="{{$thisRoom->id}}"autocomplete="off">
-                    </div>
-                    <div class="col-sm-3">
                         <label>Room Number:</label>
                         <input type="text" class="form-control" name="roomNumber" value="{{$thisRoom->roomNumber}}" autocomplete="off" readonly="readonly">
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <label>Room Rate:</label>
                         <input type="text" class="form-control" value="₱{{$thisRoom->price}} By {{$thisRoom->roomRate}} Hours" autocomplete="off" readonly="readonly">
                         <input type="hidden" class="form-control" id="roomPrice" name="roomPrice" value="{{$thisRoom->price}}" autocomplete="off">
                         <input type="hidden" class="form-control" id="roomRate" name="roomRate" value="{{$thisRoom->roomRate}}" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <label>Room Name:</label>
+                        <input type="text" class="form-control" name="roomName" value="{{$thisRoom->roomType}}" autocomplete="off" readonly="readonly">
+                        <input type="hidden" class="form-control" name="roomId" value="{{$thisRoom->id}}"autocomplete="off">
                     </div>
                 </div>
                 <div class="row mt-2 pb-2">
@@ -74,11 +76,13 @@
                 <p class="DivHeaderText center-align">GUEST DETAILS</p>
                 <div class="hr"></div>
                 <div class="row mt-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <label>Full Name:</label>
-                        <input type="text" class="form-control" name="guestFullName" autocomplete="off" required>
+                        <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" required>
                     </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="row mt-1">
+                    <div class="col-sm-12">
                         <label>Contact Number:</label>
                         <input type="number" class="form-control"  name="guestContactNumber" autocomplete="off" required>
                     </div>
@@ -89,12 +93,14 @@
                     <input type="text" class="form-control"  name="guestAddress" autocomplete="off" required>
                     </div>
                 </div>
-                <div class="row mt-1 pb-2">
-                    <div class="col-sm-6">
+                <div class="row mt-1">
+                    <div class="col-sm-12">
                         <label>Number of guests:</label>
-                        <input type="text" class="form-control"  name="numberOfGuest" value="{{$thisRoom->capacity}}" autocomplete="off" required>
+                        <input type="number" class="form-control"  name="numberOfGuest" value="{{$thisRoom->capacity}}" autocomplete="off" required>
                     </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="row mt-1 pb-2">
+                    <div class="col-sm-12">
                         <label>Email:</label>
                         <input type="email" class="form-control" name="guestEmail" autocomplete="off" required>
                     </div>
@@ -108,23 +114,39 @@
                 <div class="row mt-2">
                     <div class="col-sm-12" >
                         <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                            <label style="font-size:40px!important; color:white;"><b>Bill Amount:</b></label>
-                            <label style="font-size:40px!important; color:white;" id="billAmount"></label>
+                            <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Total Bill:</b></label>
+                            <label style="font-size:40px!important; color:white; margin-left:3px;" id="billAmount"></label>
                             <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12" >
+                        <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
+                            <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
+                            <label style="font-size:40px!important; color:white; margin-left:3px;" id="balanceOutput">0</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12" >
+                        <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
+                            <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
+                            <label style="font-size:40px!important; color:white; margin-left:3px;" id="changeOutput">0</label>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-1 pb-2">
                     <div class="col-sm-12">
                         <label>Payment Amount:</label>
-                        <input type="text" class="form-control" name="paymentAmount" autocomplete="off">
-                        <input type="hidden" class="form-control" name="amountChange" value="0" autocomplete="off">
+                        <input type="number" class="form-control"  id="paymentAmount" name="paymentAmount" step="any" autocomplete="off" required>
+                        <input type="hidden" class="form-control" id="changeInput" name="amountChange" value="0" autocomplete="off">
                     </div>
                 </div>
             </div>
 
-            <button class="save-button" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
-            <button class="back-button" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
+            <button class="save-button mt-1" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
+            <button class="back-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
         </div>
     </div>
 
@@ -136,6 +158,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+
+        $('#fullname').focus();
 
         var checkInDate = $('#datetimepicker').val(),
             checkOutDate = $('#datetimepicker2').val();
@@ -153,6 +177,24 @@
 
         $('#billAmount').html('₱'+totalBill.toFixed(2));
         $('#billAmountHidden').val(totalBill.toFixed(2));
+
+
+        $('#paymentAmount').change(function(){
+            var paymentAmount = parseFloat($(this).val()),
+                billAmount =  parseFloat($('#billAmountHidden').val());
+                var balance = 0, change = 0;
+
+            if(paymentAmount > billAmount){
+                change =  paymentAmount - billAmount;
+            }else if(paymentAmount < billAmount){
+                balance = billAmount - paymentAmount;
+            }
+
+            $('#balanceOutput').html('₱'+balance.toFixed(2));
+            $('#changeOutput').html('₱'+change.toFixed(2));
+            $('#changeInput').val(change);
+        });
+
     });
 </script>
 

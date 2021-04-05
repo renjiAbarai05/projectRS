@@ -3,6 +3,13 @@
 
 @include('layouts.vtab')
 
+<style>
+    .swal2-modal{
+            margin-left:42% !important;
+            margin-top:14% !important;
+        }
+</style>
+
 <div class="content content-margin pb-2" id="content">
     <div style="padding:1%;">
         <div class="HeaderBanner">

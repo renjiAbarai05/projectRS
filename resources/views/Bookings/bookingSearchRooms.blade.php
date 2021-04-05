@@ -81,6 +81,7 @@
 
     function datePicker4(thisVal){
         var today = new Date(thisVal);
+        $('#datetimepicker4').val("");
         $('#datetimepicker4').datetimepicker({
             minDate: today, //today is minimum date
             format:'M j,Y g:i A',
@@ -96,6 +97,7 @@
       }else if($('#numberOfGuest').val() == ""){
             Swal.fire('Number of guest is Required.');
       }else{
+          $('#content').hide();
         let timerInterval
         Swal.fire({
             title: 'Search Available Room...',

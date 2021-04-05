@@ -39,22 +39,6 @@
                         <div class="DivTemplate">
                             <div class="DivHeaderText">ROOM DETAILS</div>
                         <div class="hr my-1" style="height:2px;"></div>
-                            <div class='row' >
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Number</div>
-                                    <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Name</div>
-                                
-                                    <p class='viewText pl-3'><b>{{$bookingData->roomName}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Rate</div>
-                                    <p class='viewText pl-3'><b>₱{{$bookingData->roomPrice}} By {{$bookingData->roomRate}} Hours </b></p>
-                                </div>
-                            </div>
-                
                             <div class='row'>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Check-in Date:</div>
@@ -65,6 +49,23 @@
                                     <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
                                 </div>
                             </div>
+                            <div class='row' >
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room Number:</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room Name:</div>
+                                
+                                    <p class='viewText pl-3'><b>{{$bookingData->roomName}} </b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Room Rate:</div>
+                                    <p class='viewText pl-3'><b>₱{{$bookingData->roomPrice}} By {{$bookingData->roomRate}} Hours </b></p>
+                                </div>
+                            </div>
+                
+                           
                         </div>
 
                         <div class="DivTemplate">
@@ -74,11 +75,6 @@
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Guest Full Name</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->guestFullName}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Address</div>
-                                   
-                                    <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Contact Number</div>
@@ -94,6 +90,10 @@
                                     <div class='label text-left'>Number of Guest</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->numberOfGuest}} </b></p>
                                 </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Address</div>
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
+                                </div>
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@
                                 </tr>
                                 <tr  class="thead-light DivHeaderText">
                                     <th class="th-text" width="150px">Bill Total</th>
-                                    <td id="sub_total">₱{{$bookingData->billAmount}}</td>
+                                    <td id="sub_total">₱{{number_format($bookingData->billAmount, 2)}}</td>
                                 </tr>
                                 <tr class="thead-light DivHeaderText">
                                     <th class="th-text" width="150px">Total Payment</th>
@@ -135,8 +135,8 @@
                                     @foreach($payments as $payment)
                                         <tr>
                                             <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
-                                            <td class="cash_received_value">{{$payment->paymentAmount}}</td>
-                                            <td class="cash_change_value">{{$payment->changeAmount}}</td>
+                                            <td class="cash_received_value">{{number_format($payment->paymentAmount, 2)}}</td>
+                                            <td class="cash_change_value">{{number_format($payment->changeAmount, 2)}}</td>
                                         </tr>
                                     @endforeach
                             </table>
@@ -165,19 +165,27 @@
         </div>
         <div class="modal-body mx-3 mb-3">
             <input type="hidden" class="form-control" name="bookingId" value="{{$bookingData->id}}">
-            <div class="row mt-1">
+            <div class="row mt-2">
                 <div class="col-sm-12" >
-                    <div style="border-radius: 5px;">
-                        <label style="font-size:18px !important; font-weight: 500; color: #676767; width: 90px">Balance:</label>
-                        <label style="font-size:25px !important; font-weight: 500; color: #fc8621; width: 100%; background: #fbebd8" id="balanceAmount"></label>
-                        <input type="hidden" class="form-control" name="balanceAmount" id="balanceAmountInput">
+                    <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
+                        <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
+                        <label style="font-size:40px!important; color:white; margin-left:3px;" id="balanceOutput">0</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-12" >
+                    <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
+                        <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
+                        <label style="font-size:40px!important; color:white; margin-left:3px;" id="changeOutput">0</label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <label>Payment Amount</label>
-                    <input type="number" class="form-control" name="paymentAmount" required>
+                    <input type="number" class="form-control" name="paymentAmount" id="paymentAmount" required>
+                    <input type="hidden" class="form-control" id="changeInput" name="amountChange" value="0" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -197,28 +205,27 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var checkInDate = $('#datetimepicker').val(),
-            checkOutDate = $('#datetimepicker2').val();
-
-        var ckInDate = new Date(checkInDate),
-            ckOutDate = new Date(checkOutDate);
-
-        var hours = Math.abs(ckInDate - ckOutDate) / 36e5;
-
-        var roomPrice = $('#roomPrice').val();
-
-        var roomRate = $('#roomRate').val()
-
-        var totalBill = (hours / roomRate) * roomPrice;
-
-        $('#billAmount').html('₱'+totalBill.toFixed(2));
-        $('#billAmountHidden').val(totalBill.toFixed(2));
-
         $('#amount_received_total').html("₱" + parseFloat(cashReceived() - cashChange()).toFixed(2));
 
         showBalance();
 
+        $('#paymentAmount').change(function(){
+            var paymentAmount = parseFloat($(this).val()),
+                balanceAmount = parseFloat($('#balance_total').text().replace(/[^\d.-]/g, ''));
+                balance =  parseFloat($('#balance_total').text().replace(/[^\d.-]/g, ''));
+                var change = 0;
 
+            if(paymentAmount > balanceAmount){
+                change =  paymentAmount - balanceAmount;
+                balance = 0;
+            }else if(paymentAmount < balanceAmount){
+                balance = balanceAmount - paymentAmount;
+            }
+
+            $('#balanceOutput').html('₱'+balance.toFixed(2));
+            $('#changeOutput').html('₱'+change.toFixed(2));
+            $('#changeInput').val(change);
+        });
     });
 
 function cashReceived(){
@@ -254,8 +261,9 @@ function showBalance(){
 
 function openPaymentModal(){
     $('#paymentModal').modal('show');
-    $('#balanceAmount').html($('#balance_total').text());
-    $('#balanceAmountInput').val(parseFloat($('#balance_total').text().replace(/[^\d.-]/g, '')));
+    $('#balanceOutput').html($('#balance_total').text());
+
+
 }
 
 var msg = "{{Session::get('success')}}";

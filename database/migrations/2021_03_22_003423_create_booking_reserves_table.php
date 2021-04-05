@@ -30,7 +30,8 @@ class CreateBookingReservesTable extends Migration
             $table->string('guestAddress')->nullable();
             $table->integer('numberOfGuest');
             $table->string('guestEmail')->nullable();
-
+            
+            //billInfo
             $table->float('billAmount');
             $table->integer('paymentStatus')->default(0);
 
