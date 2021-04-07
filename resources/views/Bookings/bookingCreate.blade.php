@@ -173,7 +173,7 @@
 
         var roomRate = $('#roomRate').val()
 
-        var totalBill = (hours / roomRate) * roomPrice;
+        var totalBill = (roomPrice / roomRate) * hours;
 
         $('#billAmount').html('₱'+totalBill.toFixed(2));
         $('#billAmountHidden').val(totalBill.toFixed(2));
