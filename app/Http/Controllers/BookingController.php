@@ -20,7 +20,7 @@ class BookingController extends Controller
     public function index()
     {
         $booked = BookingReserve::where('isDismiss',0)->get();
-        return view('Bookings.bookingIndex',compact('booked'));
+        return view('AdminPage.Bookings.BookingIndex.bookingIndex',compact('booked'));
     }
 
     /**
@@ -30,7 +30,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('Bookings.bookingSearchRooms');
+        return view('AdminPage.Bookings.bookingSearchRooms');
     }
 
     /**
@@ -97,7 +97,7 @@ class BookingController extends Controller
 
         $payments = BookingPayment::where('bookingId',$id)->get();
 
-        return view('Bookings.bookingShow',compact('bookingData','payments'));
+        return view('AdminPage.Bookings.bookingShow',compact('bookingData','payments'));
     }
 
     /**
@@ -151,7 +151,7 @@ class BookingController extends Controller
 
         $roomListData = RoomList::whereNotIn('id', $array)->where('capacity','>=',$request->numberOfGuest)->whereNull('deleted_at')->get();
 
-        return view('Bookings.bookingSearchedResults',compact('roomListData','dateID','dateOD'));
+        return view('AdminPage.Bookings.bookingSearchedResults',compact('roomListData','dateID','dateOD'));
     }
 
 
@@ -162,7 +162,7 @@ class BookingController extends Controller
 
         $thisRoom = RoomList::find($id);
 
-        return view('Bookings.bookingCreate',compact('thisRoom','checkOut','checkIn'));
+        return view('AdminPage.Bookings.bookingCreate',compact('thisRoom','checkOut','checkIn'));
     }
 
     public function AddPayment(Request $request){
@@ -193,14 +193,17 @@ class BookingController extends Controller
     }
 
     public function viewToday(){
-        return view('Bookings/bookingToday');
+
+        $booked = BookingReserve::where('isDismiss',0)->whereDate('checkinDate','=',Carbon::today())->get();
+
+        return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
     }
 
     public function viewCheckedIn(){
-        return view('Bookings/bookingViewCheckin');
+        return view('AdminPage.Bookings.BookingIndex.bookingViewCheckin');
     }
 
     public function viewHistory(){
-        return view('Bookings/bookingViewHistory');
+        return view('AdminPage.Bookings.BookingIndex.bookingViewHistory');
     }
 }

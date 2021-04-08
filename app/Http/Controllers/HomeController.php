@@ -25,8 +25,8 @@ class HomeController extends Controller
     {
         return view('homepage');
     }
-    public function adminPage()
+    public function dashboard()
     {
-        return view('adminPage');
+        return view('AdminPage.Dashboard.dashboard');
     }
 }

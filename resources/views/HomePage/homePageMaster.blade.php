@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Hotel Booking</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Hotel Booking</title>
 
     <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -34,14 +34,6 @@ crossorigin="anonymous" />
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-   
-    
     <style>
         /* .container{
             margin: 0px !important;
@@ -73,10 +65,6 @@ crossorigin="anonymous" />
         }
 		body
 		{
-			/* background-image: url('images/home_bg.jpg'); */
-			/* background-repeat: no-repeat;
-			background-attachment: fixed; */
-            /* margin: 0px !important; */
             font-family: 'Segoe UI';
             
 		}
@@ -291,7 +279,7 @@ crossorigin="anonymous" />
     <div class="modal-dialog modal-lg" role="document" >
         <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215"><u>LOCATION</u></h4>
+            <h4 class="modal-title w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215">LOCATION</h4>
         </div>
         <div class="modal-body mx-3 mb-3">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923.4108623441076!2d125.00378075106126!3d11.240884650899558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x330870d2f0620439%3A0x767237f51fc810e9!2sHOTEL%20Lai%20Rico!5e0!3m2!1sen!2sph!4v1617190923270!5m2!1sen!2sph" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

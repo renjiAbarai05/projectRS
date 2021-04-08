@@ -1,25 +1,12 @@
-@extends('dashboard')
-@section('content2')
-
-
-<style>
-    body
-		{
-          background-color:#ebebeb;
-		}
-</style>
-
-@include('layouts.vtab')
+@extends('AdminPage.RoomList.roomListMaster')
+@section('roomList')
 
 <form class="form-horizontal" method="POST" action="{{route('roomList.store')}}">
     @csrf
-    <div class="content content-margin pb-2" id="content">
-        <div style="padding:1%;">
-        <div class="header-banner">
-            <p class="p-0 m-0 header d-inline">CREATE ROOM</p>
-        </div>
-        <div class="divContainer mt-n2">
-            <div class="row mt-1">
+    <div class="DivTemplate">
+        <p class="DivHeaderText center-align">ROOM CREATE</p>
+        <div class="hr"></div>
+            <div class="row mt-2">
                 <div class="col-sm-6">
                     <label>Room Name:</label>
                     <input type="text" class="form-control" name="roomType" autocomplete="off" required>
@@ -63,10 +50,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </form>
-{{-- </div> --}}
 
 
 @endsection

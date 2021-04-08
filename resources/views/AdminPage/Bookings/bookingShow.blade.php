@@ -1,39 +1,37 @@
-@extends('dashboard')
+@extends('AdminPage.masterAdmin')
 @section('content2')
 
 
-<style>
-    body
-		{
-          background-color:#ebebeb;
-		}
-        .header-banner{
-            background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
-            padding: 15px 15px;
-            width: 100%;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-        }
-        .data{
-            color: #676767;
-            font-size: 15px;
-            font-weight: bold;
-            padding: 0;
-            margin: 0;
-            padding-left: 10px;
-        }
-        .add-button{
-            color: #c24914;
-            font-size: 28px;
-            margin-top: -5px;
-        }
-</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <button type="button" id="sidebarCollapse" class="btn btn-primaryToggle">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+    </button>
+    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+    </button>
 
-@include('layouts.vtab')
-
-
-    <div class="content content-margin pb-2" id="content">
-        <div style="padding:1%;">
+    <h4 class="ml-2 mt-2">BOOKINGS</h4>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {{-- <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('booking.viewHistory') }}">Checked-out</a>
+        </li>
+        </ul> --}}
+    </div>
+</div>
+</nav>
+<div class="container" style="margin-top:-20px;">
             <div class="row">
                 <div class="col-sm-6">
                         <div class="DivTemplate">
@@ -148,7 +146,6 @@
                     <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                 </div>
             </div>
-    </div>
 </div>
 
 
@@ -199,7 +196,6 @@
     </div>
 </div>
 </form>
-{{-- </div> --}}
 
 
 <script type="text/javascript">
