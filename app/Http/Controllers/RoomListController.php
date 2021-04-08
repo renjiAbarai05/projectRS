@@ -18,7 +18,7 @@ class RoomListController extends Controller
     public function index()
     {
         $roomListData = RoomList::whereNull('deleted_at')->get();
-        return view('RoomList.roomIndex',compact('roomListData'));
+        return view('AdminPage.RoomList.roomIndex',compact('roomListData'));
 
     }
 
@@ -29,7 +29,7 @@ class RoomListController extends Controller
      */
     public function create()
     {
-        return view('RoomList.roomCreate');
+        return view('AdminPage.RoomList.roomCreate');
     }
 
     /**
@@ -74,7 +74,7 @@ class RoomListController extends Controller
     {
         $room = RoomList::find($id);
 
-        return view('RoomList.roomEdit',compact('room'));
+        return view('AdminPage.RoomList.roomEdit',compact('room'));
     }
 
     /**

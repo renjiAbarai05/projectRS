@@ -11,9 +11,15 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('homepage');
+// });
+
 Route::get('/', function () {
-    return view('homepage');
+    return view('Homepage.homePage');
 });
+
+
 
 Auth::routes();
 
@@ -36,6 +42,6 @@ Route::group(['middleware' => 'auth'], function() {
     //Report
     Route::resource('report', 'ReportController');
     
-    Route::get('/adminPage', 'HomeController@adminPage')->name('homePage');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 });

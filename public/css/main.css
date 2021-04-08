@@ -306,3 +306,12 @@ label{
     margin: 0;
     letter-spacing: 1px;
 }
+
+.hr {
+    border: 0;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, #ed9e21, #c24914, #ed9e21);
+    margin-top: -10px;
+    width: 100%;
+}

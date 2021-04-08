@@ -1,12 +1,7 @@
-@extends('dashboard')
-@section('content2')
+@extends('AdminPage.RoomList.roomListMaster')
+@section('roomList')
 
-
-<style>
-    body
-		{
-          background-color:#ebebeb;
-		}
+{{-- <style>
         .header-banner{
             background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
             padding: 15px 15px;
@@ -27,20 +22,16 @@
             font-size: 28px;
             margin-top: -5px;
         }
-</style>
+</style> --}}
 
-@include('layouts.vtab')
 
 <form class="form-horizontal" method="POST" action="{{route('roomList.update',$room->id)}}">
     @csrf
     @method('PUT')
-    <div class="content content-margin pb-2" id="content">
-        <div style="padding:1%;">
-        <div class="header-banner">
-            <p class="p-0 m-0 header d-inline">UPDATE ROOM</p>
-        </div>
-        <div class="divContainer mt-n2">
-            <div class="row mt-1">
+    <div class="DivTemplate">
+        <p class="DivHeaderText center-align">ROOM EDIT</p>
+        <div class="hr"></div>
+            <div class="row mt-2">
                 <div class="col-sm-6">
                     <label>Room Name:</label>
                     <input type="text" class="form-control" name="roomType" value="{{$room->roomType}}" required>
@@ -91,10 +82,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </form>
-{{-- </div> --}}
+
 
 <script>
     $(document).ready(function(){

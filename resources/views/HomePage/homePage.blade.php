@@ -1,4 +1,4 @@
-@extends('master')
+@extends('Homepage.homePageMaster')
 @section('content')
 
 <style>
