@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 use App\BookingReserve;
 use App\BookingPayment;
 use App\RoomList;
@@ -19,6 +20,8 @@ class BookingController extends Controller
      */
     public function index()
     {
+        Session::put('adminPage', 'booking-all');
+
         $booked = BookingReserve::where('isDismiss',0)->get();
         return view('AdminPage.Bookings.BookingIndex.bookingIndex',compact('booked'));
     }
@@ -193,17 +196,19 @@ class BookingController extends Controller
     }
 
     public function viewToday(){
-
+        Session::put('adminPage', 'booking-today');
         $booked = BookingReserve::where('isDismiss',0)->whereDate('checkinDate','=',Carbon::today())->get();
 
         return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
     }
 
     public function viewCheckedIn(){
+        Session::put('adminPage', 'booking-checkedin');
         return view('AdminPage.Bookings.BookingIndex.bookingViewCheckin');
     }
 
     public function viewHistory(){
+        Session::put('adminPage', 'booking-history');
         return view('AdminPage.Bookings.BookingIndex.bookingViewHistory');
     }
 }
