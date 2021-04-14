@@ -96,6 +96,16 @@
             datePicker4($(this).val());
         });
 
+        $('#datetimepicker4').change(function(){
+           var date1 = new Date($('#datetimepicker3').val()),
+               date2 = new Date($(this).val());
+            if(date2 < date1){
+                Swal.fire('Please Select Date or Time Greater Than Check-in.')
+                $(this).val("");
+            }
+        });
+
+
     });
 
     function datePicker4(thisVal){

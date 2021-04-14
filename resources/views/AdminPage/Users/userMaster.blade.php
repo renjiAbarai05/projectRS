@@ -20,28 +20,29 @@
             <i class="fa fa-bars"></i>
         </button>
 
-        <h4 class="ml-2 mt-2">BOOKINGS</h4>
+        <h4 class="ml-2 mt-2">USER MANAGEMENT</h4>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item @if (Session::get("adminPage") == 'booking-all') active @endif">
-                <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
+            {{-- <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
             </li>
-            <li class="nav-item  @if (Session::get("adminPage") == 'booking-today') active @endif">
-                <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
             </li>
-            <li class="nav-item  @if (Session::get("adminPage") == 'booking-checkedin') active @endif">
-                <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Portfolio</a>
             </li>
-            <li class="nav-item  @if (Session::get("adminPage") == 'booking-history') active @endif">
-                <a class="nav-link" href="{{ route('booking.viewHistory') }}">Checked-out</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
             </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </nav>
 <div class="container" style="margin-top:-20px;">
-     @yield('booking')
+     @yield('users')
 </div>
+
 
 <script>
 $(document).ready(function(){

@@ -1,0 +1,179 @@
+@extends('AdminPage.Users.userMaster')
+@section('users')
+
+<style>
+/* Upload Button - Input Field */
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(40deg, #fc8621, #f9e0ae);
+    color: white;
+    padding: 9px;
+    border: none;
+    width: 100%;
+    border-radius: 50px;
+}
+.fileContainer:hover {
+    background: linear-gradient(40deg, #fc8621, #f9e0ae);
+}
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+</style>
+
+<link href="{{ asset('css/croppie.css') }}" rel="stylesheet" />
+<script type="text/javascript" src="{{ asset('js/croppie.js') }}" defer></script>
+@include('Layouts.cropImageModal')
+<form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
+    @csrf
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="DivTemplate">
+                <p class="DivHeaderText center-align">USER DETAILS</p>
+                <div class="hr"></div>
+                <div class="form-row mb-4 mt-2">
+                    <div class="form-group col-md-6">
+                        <label>Username</label>
+                        <input type="text"class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" name="lastName" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="firstName" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Middle Name</label>
+                        <input type="text" class="form-control" name="middleName">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="address">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Birth Date</label>
+                        <input type="date" class="form-control" name="birthDate">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Contact Number</label>
+                        <input type="text" class="form-control" name="number">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="DivTemplate mb-2">
+                <p class="DivHeaderText center-align">USER PHOTO</p>
+                <div class="hr"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-center">
+                                <img id='photoDisplay' class='mx-auto' src='{{ asset('images/defaultpic.jpg') }}' style='border: 3px solid #0996c1; height: 145px; width: 145px; background-size: cover; border-radius: 50%; margin-bottom: 15px'>
+                            </div>
+                            <button type="button" class="fileContainer mx-auto d-block" style="width: 45%">
+                                Upload Photo
+                                <input type="file" name="user_photo" id="user_photo">
+                            </button>
+                            <input type="hidden" id='photoSaving' name="picture"  class='form-control'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <button type="submit" class="save-button mt-1" style="width:100%;">Save</button>
+                <button type="button" class="back-button float-right mt-1" style="width:100%;" onclick="window.location='{{route('users.index')}}'">Back</button>
+        </div>
+    </div>
+
+    </form>
+
+
+</div>
+
+
+
+<script>
+$(document).ready(function(){
+   //Crop image
+  $image_crop = $('#image_demo').croppie({
+                enableExif: true,
+                viewport: {
+                width:200,
+                height:200,
+                type:'square' //circle
+                },
+                boundary:{
+                width:300,
+                height:300
+                }
+            });
+
+            $('#user_photo').on('change', function(){
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                 $image_crop.croppie('bind', {
+                    url: event.target.result
+                }).then(function(){
+                    console.log('jQuery bind complete');
+                });
+                }
+                reader.readAsDataURL(this.files[0]);
+                $('#uploadimageModal').modal('show');
+            });
+
+            $('.crop_image').click(function(event){
+                $image_crop.croppie('result', {
+                type: 'canvas',
+                size: 'viewport'
+                }).then(function(response){
+                $('#photoDisplay').attr('src', response);
+                $("#photoSaving").val(response);
+                $('#uploadimageModal').modal('hide');
+                })
+            });
+          
+   
+
+    $(function () {
+          $("#user_photo").change(function () {
+              readURL(this);
+          });
+      });
+
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  //alert(e.target.result);
+                  $('#Photo').attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+});
+   
+</script>
+
+@endsection

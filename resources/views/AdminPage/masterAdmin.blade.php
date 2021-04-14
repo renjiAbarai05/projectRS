@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Hotel Booking</title>
+<link rel="icon" type="image/ico" href="images/LAIRICO.jpg" />
 
     <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -75,10 +76,12 @@ crossorigin="anonymous" />
             color: #ed9e21;
             /* background: rgba(0,0,0,0.4); */
         }
-
+        .swal2-modal{
+            margin-left:42% !important;
+            margin-top:14% !important;
+        }
 
     </style>
-    
     
 </head>
 
@@ -137,11 +140,13 @@ crossorigin="anonymous" />
                                 <a href="{{route('booking.index')}}">Bookings</a>
                             </li>
                             <li>
+                                <a href="{{route('users.index')}}">User Management</a>
+                            </li>
+                            <li>
                                 <a href="#">Report</a>
                             </li>
                             <li>
-                                <a href="{{ route('logout') }}"onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('') }}Logout</a>
+                                <a href="#" onclick="logout()">{{ __('') }}Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -208,6 +213,24 @@ $('#sidebarCollapse').on('click', function () {
 });
 
 })(jQuery);
+
+function logout(){
+    // event.preventDefault();
+    Swal.fire({
+        title: 'Are you sure You want to Logout?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        allowOutsideClick:false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#logout-form').submit();
+            }
+        });
+}
 </script>
 
 

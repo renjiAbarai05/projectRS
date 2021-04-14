@@ -27,7 +27,7 @@
                               <td class="td-border">@if($data->isActive == 1) Active @else Inactive @endif</td>
                               <td class="td-border">
                                 <button class="bg-none" onclick="window.location='{{ route('roomList.edit',$data->id) }}'" title="update"><i class="update-icon fas fa-arrow-alt-circle-up"></i></button>
-                                <button class="bg-none" data-id="{{$data->id}}" onclick="deleteModal(this)" title="DELETE"><i class="cancel-icon fas fa-minus-circle"></i></button>
+                                <button class="bg-none" data-id="{{$data->id}}" onclick="deleteModal(this)" title="DELETE"><i class="cancel-icon fas fa-trash"></i></button>
                               </td>
                            </tr>
                         @endforeach

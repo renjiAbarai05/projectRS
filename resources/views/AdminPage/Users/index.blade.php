@@ -1,66 +1,7 @@
-@extends('dashboard')
-@section('content2')
+@extends('AdminPage.Users.userMaster')
+@section('users')
 
 <style>
-    body{
-        background-color:#ebebeb;
-    }
-    .header-banner{
-        background-image: linear-gradient(to right, #fc8621 , #f9e0ae);
-        padding: 15px 15px;
-        width: 100%;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-    }
-
-/* {{-- <div class="container mb-5">
-    <div class="header-banner mt-5">
-        <p class="p-0 m-0 header d-inline">USERS</p>
-        <div class="float-right">
-            <a href="{{route('users.create')}}">Add User</a>
-        </div>
-    </div>
-    <div class="divContainer mt-n2">
-        <div class="form-row">
-        @foreach ($users as $user)
-            <div class="form-group col-md-12">
-                <div class="card-header">{{$user->lastName}}, {{$user->firstName}} {{$user->middleName ?? ''}}</div>
-                <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-sm-12">
-                            <label>Address</label>
-                            <p>
-                                {{$user->address ?? 'N/A'}}
-                            </p>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Contact Number</label>
-                            <p>
-                                {{$user->number ?? 'N/A'}}
-                            </p>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Email</label>
-                            <p>
-                                {{$user->email ?? 'N/A'}}
-                            </p>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Birthdate</label>
-                            <p>
-                                {{$user->birthDate ?? 'N/A'}}
-                            </p>
-                        </div>
-                    </div>
-                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">Update</a>
-                </div>
-            </div>
-        @endforeach
-        </div>
-    </div>
-</div> --}} */
-
-
 
 .partition{
     display: none;
@@ -120,30 +61,21 @@
         width:100%;
     } 
 }
-/* @media(max-width: 490px){
+ @media(max-width: 490px){
     .partition{
         margin-top: 40px;
     }
-} */
-</style>
+}
+</style> 
 
-@include('layouts.vtab')
 
-<div class="content content-margin pb-2" id="content">
-    <div class="container" style="margin-top: 20px">
-        <div class="d-flex flex-column">
-            <div class="HeaderBanner p-2 px-3">
-                <span class="HeaderBannerText">USER MANAGEMENT</span>
-                <button id="bookNowButton" style="border:none; background:none; float:right;" onclick="window.location='{{ route('users.create') }}'"><i class="fas fa-plus add-button"></i></button>
-            </div>
-                <div class="flex DivLinks-bg">
-                    <ul class="mb-0">
-                        <li class="DivLinks-header p-2">
-                            {{-- <a class="header-link" onclick="window.location='/users'">Add New User</a> --}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="DivTemplate">
+        <i class="fas fa-plus add-button mr-1"  onclick="window.location='{{ route('users.create') }}'"  style="cursor: pointer; float:right; margin-top:1px;"></i>
+        <p class="DivHeaderText center-align">ROOM LIST</p>
+        <div class="hr"></div>
+    </div>
+
+
     @foreach ($users as $user)
     <div class="DivTemplate">
         <div class="row mt-4">
@@ -196,6 +128,8 @@
             </div>
         </div>
     </div>
+
+
     @endforeach
 </div> <!-- container -->
 
