@@ -38,10 +38,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('booking/createBooking', 'BookingController@CreateBooking')->name('booking.createBooking');
     Route::post('booking/addPayment', 'BookingController@AddPayment')->name('booking.addPayment');
 
-
     //Report
     Route::resource('report', 'ReportController');
     
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-
+    Route::get('/bookingPdf/{id}', 'BookingsPrintingController@bookingsPdf')->name('bookingPdf');
 });

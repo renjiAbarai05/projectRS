@@ -1,3 +1,10 @@
+April 14, 2021 (Ritche)
+    - booking pdf
+    Run this commands:
+        composer update
+        php artisan config:cache
+        php artisan cache:clear
+
 April 8 (ivan)
     -Update The Admin Page Layout
 

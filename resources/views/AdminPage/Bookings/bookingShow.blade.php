@@ -1,7 +1,20 @@
 @extends('AdminPage.masterAdmin')
 @section('content2')
 
-
+<style>
+.print-button {
+    background-color: #17a2b8;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    margin: 2px;
+    font-weight: 500;
+}
+.print-button:hover{
+    background-color: #007bff;
+}
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
     <button type="button" id="sidebarCollapse" class="btn btn-primaryToggle">
@@ -143,6 +156,7 @@
 
                     <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
                     <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;">Cancel Booking</button>
+                    <button type="button" class="print-button mt-1" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
                     <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                 </div>
             </div>
