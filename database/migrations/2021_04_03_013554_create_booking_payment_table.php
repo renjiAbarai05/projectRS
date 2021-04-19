@@ -17,8 +17,9 @@ class CreateBookingPaymentTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->Integer('bookingId');
-            $table->float('paymentAmount');
+            $table->float('cashReceived');
             $table->float('changeAmount')->nullable();
+            $table->string('paymentMethod');
             $table->Integer('userId');
         });
     }

@@ -27,7 +27,7 @@
                 <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
             </li>
             <li class="nav-item  @if (Session::get("adminPage") == 'booking-today') active @endif">
-                <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
+                <a class="nav-link" href="{{ route('booking.viewToday') }}">Today's Booking</a>
             </li>
             <li class="nav-item  @if (Session::get("adminPage") == 'booking-checkedin') active @endif">
                 <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>

@@ -23,27 +23,14 @@
 
     <h4 class="ml-2 mt-2">BOOKINGS</h4>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {{-- <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewHistory') }}">Checked-out</a>
-        </li>
-        </ul> --}}
+  
     </div>
 </div>
 </nav>
 <div class="container" style="margin-top:-20px;">
         <form class="form-horizontal" id="searchForm" method="POST" action="{{route('booking.searchAvailableRooms')}}">
             @csrf
-            <div class="DivTemplate" id="searchDiv">
+            <div class="DivTemplate" id="searchDiv" style="width:60%; margin-left:21%;">
                 <p class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</p>
                 <div class="hr"></div>
                     <div class="row mt-2 pb-2">
@@ -59,7 +46,7 @@
                     <div class="row mt-2">
                         <div class="col-sm-12">
                             <label>Number of guest:</label>
-                            <input type="number" id="numberOfGuest" class="form-control" name="numberOfGuest" autocomplete="off" required>
+                            <input type="number" id="guestNumber" class="form-control" name="guestNumber" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -123,7 +110,7 @@
             Swal.fire('Check-in date is Required.');
       }else if($('#datetimepicker4').val() == ""){
             Swal.fire('Check-out date is Required.');
-      }else if($('#numberOfGuest').val() == ""){
+      }else if($('#guestNumber').val() == ""){
             Swal.fire('Number of guest is Required.');
       }else{
           $('#searchDiv').hide();

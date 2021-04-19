@@ -1,8 +1,6 @@
 @extends('AdminPage.masterAdmin')
 @section('content2')
 
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
     <button type="button" id="sidebarCollapse" class="btn btn-primaryToggle">
@@ -15,20 +13,7 @@
 
     <h4 class="ml-2 mt-2">BOOKINGS</h4>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {{-- <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewHistory') }}">Checked-out</a>
-        </li>
-        </ul> --}}
+  
     </div>
 </div>
 </nav>
@@ -41,33 +26,40 @@
                     <div class="DivTemplate">
                         <p class="DivHeaderText center-align">ROOM DETAILS</p>
                         <div class="hr"></div>
-                        <div class="row mt-3">
-                            <div class="col-sm-6">
-                                <label>Room Number:</label>
-                                <input type="text" class="form-control" name="roomNumber" value="{{$thisRoom->roomNumber}}" autocomplete="off" readonly="readonly">
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Room Rate:</label>
-                                <input type="text" class="form-control" value="₱{{$thisRoom->price}} By {{$thisRoom->roomRate}} Hours" autocomplete="off" readonly="readonly">
-                                <input type="hidden" class="form-control" id="roomPrice" name="roomPrice" value="{{$thisRoom->price}}" autocomplete="off">
-                                <input type="hidden" class="form-control" id="roomRate" name="roomRate" value="{{$thisRoom->roomRate}}" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-sm-12">
-                                <label>Room Name:</label>
-                                <input type="text" class="form-control" name="roomName" value="{{$thisRoom->roomType}}" autocomplete="off" readonly="readonly">
-                                <input type="hidden" class="form-control" name="roomId" value="{{$thisRoom->id}}"autocomplete="off">
-                            </div>
-                        </div>
                         <div class="row mt-2 pb-2">
                             <div class="col-sm-6">
                                 <label>Check-in date:</label>
                                 <input id="datetimepicker" class="form-control" type="text" name="checkinDate" value="{{$checkIn}}" autocomplete="off" readonly="readonly">
                             </div>
                             <div class="col-sm-6">
-                                <label>Check-in date:</label>
+                                <label>Check-out date:</label>
                                 <input id="datetimepicker2" class="form-control" type="text" name="checkoutDate" value="{{$checkOut}}" autocomplete="off" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="row mt-2 pb-2 px-3">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <tr class="thead-light">
+                                        <th class="th-text" width="100px">Room #</th>
+                                        <th class="th-text">Room Name</th>
+                                        <th class="th-text">Room Rate</th>
+                                    </tr>
+                                    <?php $count = 0;?>
+                                    @foreach($thisRoom as $thisRoom)
+                                    <?php $count++;?>
+                                        <tr>
+                                            <td>{{$thisRoom->roomNumber}}</td>
+                                            <td>{{$thisRoom->roomType}}</td>
+                                            <td>₱{{$thisRoom->price}} By {{$thisRoom->roomRate}} Hours</td>
+                                            <input type="hidden" class="roomPriceAndRate" data-roomPrice="{{$thisRoom->price}}" data-roomRate="{{$thisRoom->roomRate}}">
+                                            <input type="hidden" value="{{$thisRoom->id}}" name="rooms[{{$count}}][roomId]">
+                                            <input type="hidden" value="{{$thisRoom->roomNumber}}" name="rooms[{{$count}}][roomNumber]">
+                                            <input type="hidden" value="{{$thisRoom->roomType}}" name="rooms[{{$count}}][roomName]">
+                                            <input type="hidden" value="{{$thisRoom->roomRate}}" name="rooms[{{$count}}][roomRate]">
+                                            <input type="hidden" value="{{$thisRoom->price}}" name="rooms[{{$count}}][roomPrice]">
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -96,7 +88,7 @@
                         <div class="row mt-1">
                             <div class="col-sm-12">
                                 <label>Number of guests:</label>
-                                <input type="number" class="form-control"  name="numberOfGuest" value="{{$thisRoom->capacity}}" autocomplete="off" required>
+                                <input type="number" class="form-control"  name="guestNumber" value="{{$thisRoom->capacity}}" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="row mt-1 pb-2">
@@ -120,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-2" id="balanceDiv">
                             <div class="col-sm-12" >
                                 <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
                                     <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
@@ -128,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-2" id="changeDiv">
                             <div class="col-sm-12" >
                                 <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
                                     <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
@@ -138,9 +130,21 @@
                         </div>
                         <div class="row mt-1 pb-2">
                             <div class="col-sm-12">
-                                <label>Payment Amount:</label>
-                                <input type="number" class="form-control"  id="paymentAmount" name="paymentAmount" step="any" autocomplete="off" required>
+                                <label>Cash Received:</label>
+                                <input type="number" class="form-control"  id="cashReceived" name="cashReceived" step="any" autocomplete="off" required>
                                 <input type="hidden" class="form-control" id="changeInput" name="amountChange" value="0" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="row mt-1 pb-2">
+                            <div class="col-sm-12">
+                                <label>Payment Method:</label>
+                                <select class="form-control" name="paymentMethod" id="" required>
+                                    <option value="" selected>Select</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Paymaya">Paymaya</option>
+                                    <option value="Gcash">Gcash</option>
+                                    <option value="Bank Deposit">Bank Deposit</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -153,10 +157,14 @@
 
 </div>
 
+
+
 <script type="text/javascript">
     $(document).ready(function() {
 
         $('#fullname').focus();
+        $('#changeDiv').hide();
+        $('#balanceDiv').hide();
 
         var checkInDate = $('#datetimepicker').val(),
             checkOutDate = $('#datetimepicker2').val();
@@ -166,33 +174,46 @@
 
         var hours = Math.abs(ckInDate - ckOutDate) / 36e5;
 
-        var roomPrice = $('#roomPrice').val();
-
-        var roomRate = $('#roomRate').val()
-
-        var totalBill = (roomPrice / roomRate) * hours;
+        var totalBill = 0;
+        $('.roomPriceAndRate').each(function(){
+            var roomRate = $(this).attr('data-roomRate'),
+                roomPrice = $(this).attr('data-roomPrice');
+             totalBill += (roomPrice / roomRate) * hours;
+        });
 
         $('#billAmount').html('₱'+totalBill.toFixed(2));
         $('#billAmountHidden').val(totalBill.toFixed(2));
 
 
-        $('#paymentAmount').change(function(){
-            var paymentAmount = parseFloat($(this).val()),
+        $('#cashReceived').change(function(){
+            var cashReceived = parseFloat($(this).val()),
                 billAmount =  parseFloat($('#billAmountHidden').val());
                 var balance = 0, change = 0;
 
-            if(paymentAmount > billAmount){
-                change =  paymentAmount - billAmount;
-            }else if(paymentAmount < billAmount){
-                balance = billAmount - paymentAmount;
+            if($(this).val() != ""){
+                if(cashReceived >= billAmount){
+                    change =  cashReceived - billAmount;
+                    $('#changeDiv').show();
+                    $('#balanceDiv').hide();
+                }else if(cashReceived < billAmount){
+                    balance = billAmount - cashReceived;
+                    $('#changeDiv').hide();
+                    $('#balanceDiv').show();
+                }
+                $('#balanceOutput').html('₱'+balance.toFixed(2));
+                $('#changeOutput').html('₱'+change.toFixed(2));
+                $('#changeInput').val(change);
+            }else{
+                $('#changeDiv').hide();
+                $('#balanceDiv').hide();
             }
-
-            $('#balanceOutput').html('₱'+balance.toFixed(2));
-            $('#changeOutput').html('₱'+change.toFixed(2));
-            $('#changeInput').val(change);
         });
-
     });
+
+    function CheckinModal(thisBtn){
+    $('#checkinModal').modal('show');
+
+  }
 </script>
 
 @endsection

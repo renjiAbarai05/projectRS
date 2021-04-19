@@ -19,6 +19,7 @@
                               <td class="td-border">Today</td>
                               <td class="td-border">Room Room</td>
                               <td class="td-border">
+                                <button class="update-button" style="color:white; width:100%;">Extend</button>
                                 <button class="update-button" style="color:white; width:100%;">Check-out </button>
                                 {{-- <button class="delete-button" style="color:white; width:100%;" > Delete</button> --}}
                               </td>

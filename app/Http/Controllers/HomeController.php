@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,9 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
+        // $loginUser = Auth::id();
+        Session::put('loginUser', Auth::id());
+
         return view('AdminPage.Dashboard.dashboard');
     }
 }

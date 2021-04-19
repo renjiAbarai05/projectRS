@@ -8,6 +8,7 @@ use Session;
 use App\BookingReserve;
 use App\BookingPayment;
 use App\RoomList;
+use App\BookingReserveRoom;
 
 use Carbon\Carbon;
 
@@ -21,8 +22,9 @@ class BookingController extends Controller
     public function index()
     {
         Session::put('adminPage', 'booking-all');
+        // $loginUser = Auth::id();
 
-        $booked = BookingReserve::where('isDismiss',0)->get();
+        $booked = BookingReserve::where('cancelled',0)->get();
         return view('AdminPage.Bookings.BookingIndex.bookingIndex',compact('booked'));
     }
 
@@ -46,31 +48,46 @@ class BookingController extends Controller
     {
         $checkinDate = Carbon::parse($request->checkinDate)->format('Y-m-d H:i:s');
         $checkoutDate = Carbon::parse($request->checkoutDate)->format('Y-m-d H:i:s');
+        $input = $request->all();
 
        $bookingId = BookingReserve::create([
-            'roomId' => $request->roomId,
-            'roomName' => $request->roomName,
-            'roomNumber' => $request->roomNumber,
-            'roomRate' => $request->roomRate,
-            'roomPrice' => $request->roomPrice,
             'checkinDate' => $checkinDate,
             'checkoutDate' => $checkoutDate,
             'guestFullName' => $request->guestFullName,
             'guestContactNumber' => $request->guestContactNumber,
             'guestAddress' => $request->guestAddress,
-            'numberOfGuest' => $request->numberOfGuest,
+            'guestNumber' => $request->guestNumber,
             'guestEmail' => $request->guestEmail,
             'billAmount' => $request->billAmount,
             'userId' => Auth::id(),
         ])->id;
 
-        $payment = $request->paymentAmount;
+
+        foreach($input['rooms'] as $row) {
+            $rooms[] = [
+                'bookingId' => $bookingId,
+                'userId' => Auth::id(),
+                'roomId' => $row['roomId'],
+                'roomName' => $row['roomName'],
+                'roomNumber' => $row['roomNumber'],
+                'roomRate' => $row['roomRate'],
+                'roomPrice' => $row['roomPrice'],
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ];
+        }
+
+        BookingReserveRoom::insert($rooms);
+
+
+        $payment = $request->cashReceived;
         $billAmount = $request->billAmount;
         if($payment != null){
             BookingPayment::create([
                 'bookingId' => $bookingId,
-                'paymentAmount' => $payment,
+                'cashReceived' => $payment,
                 'changeAmount' => $request->amountChange,
+                'paymentMethod' => $request->paymentMethod,
                 'userId' => Auth::id(),
             ]);
 
@@ -85,7 +102,7 @@ class BookingController extends Controller
             }
         }
 
-        return redirect()->route('booking.index')->with('success', 'Created Successfully');
+        return redirect()->route('booking.show',$bookingId)->with('success', 'Created Successfully');
     }
 
     /**
@@ -97,10 +114,10 @@ class BookingController extends Controller
     public function show($id)
     {
         $bookingData = BookingReserve::find($id);
-
+        $thisRoom = BookingReserveRoom::where('bookingId',$id)->where('isActive',0)->get();
         $payments = BookingPayment::where('bookingId',$id)->get();
 
-        return view('AdminPage.Bookings.bookingShow',compact('bookingData','payments'));
+        return view('AdminPage.Bookings.bookingShow',compact('bookingData','payments','thisRoom'));
     }
 
     /**
@@ -134,7 +151,10 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BookingReserve::find($id)->update([
+            'cancelled' => 1,
+        ]);
+        return redirect()->route('booking.index')->with('success', 'Cancelled Successfully.');
     }
 
     public function searchAvailableRooms(Request $request){
@@ -146,24 +166,29 @@ class BookingController extends Controller
         $dateCheckIn = \Carbon\Carbon::parse($request->checkinDate);
         $dateCheckOut = \Carbon\Carbon::parse($request->checkoutDate);
         
-        $bookedLists = BookingReserve::where('isDismiss',0)->where('checkoutDate' ,'>=', $dateCheckIn)->where('checkinDate' ,'<=', $dateCheckOut)->get();
+        $bookedLists = BookingReserve::where('cancelled',0)->where('checkoutDate' ,'>=', $dateCheckIn)->where('checkinDate' ,'<=', $dateCheckOut)->get();
 
         foreach($bookedLists as $bookedList){
            $array[] = $bookedList->roomId;
         }
 
-        $roomListData = RoomList::whereNotIn('id', $array)->where('capacity','>=',$request->numberOfGuest)->whereNull('deleted_at')->get();
+        $roomListData = RoomList::whereNotIn('id', $array)->where('capacity','>=',$request->guestNumber)->whereNull('deleted_at')->get();
 
         return view('AdminPage.Bookings.bookingSearchedResults',compact('roomListData','dateID','dateOD'));
     }
 
 
     public function CreateBooking(Request $request){
-        $id = $request->roomId;
+        $input = $request->all();
         $checkIn = $request->checkIN;
         $checkOut = $request->checkOUT;
-
-        $thisRoom = RoomList::find($id);
+        
+        $roomId = array();
+        foreach($input['rooms'] as $row) {
+            $roomId[] = $row['roomId'];
+        }
+        
+        $thisRoom = RoomList::whereIn('id', $roomId)->whereNull('deleted_at')->get();
 
         return view('AdminPage.Bookings.bookingCreate',compact('thisRoom','checkOut','checkIn'));
     }
@@ -171,13 +196,14 @@ class BookingController extends Controller
     public function AddPayment(Request $request){
         
         $id = $request->bookingId;
-        $payment = $request->paymentAmount;
+        $payment = $request->cashReceived;
         $balanceAmount = $request->balanceAmount;
         if($payment != null){
             BookingPayment::create([
                 'bookingId' => $id,
-                'paymentAmount' => $payment,
+                'cashReceived' => $payment,
                 'changeAmount' => $request->amountChange,
+                'paymentMethod' => $request->paymentMethod,
                 'userId' => Auth::id(),
             ]);
 
@@ -191,13 +217,13 @@ class BookingController extends Controller
                 ]);
             }
         }
-
+               
         return redirect()->route('booking.show',$id)->with('success', 'Created Successfully');
     }
 
     public function viewToday(){
         Session::put('adminPage', 'booking-today');
-        $booked = BookingReserve::where('isDismiss',0)->whereDate('checkinDate','=',Carbon::today())->get();
+        $booked = BookingReserve::where('cancelled',0)->whereDate('checkinDate','=',Carbon::today())->get();
 
         return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
     }

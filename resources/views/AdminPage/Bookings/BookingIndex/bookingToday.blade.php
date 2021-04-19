@@ -24,7 +24,7 @@
                               <td class="th-sm td-border">₱{{$booked->billAmount}}</td>
                               <td class="th-sm td-border">@if($booked->paymentStatus == 0)No Payment @elseif($booked->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
                               <td class="td-border text-center">
-                                <button class="update-button" onclick="CheckinModal()" style="color:white; width:100%;">Check-in </button>
+                                <button class="update-button" data-paymentStatus="{{$booked->paymentStatus}}" onclick="CheckinModal(this)" style="color:white; width:100%;">Check-in </button>
                               </td>
                           </tr>
                     @endforeach
@@ -32,5 +32,41 @@
               </table>
         </div>
 </div>
+
+
+<div class="modal fade" id="checkinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 100px; z-index: 1000000; margin-left: 150px">
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215;">Check-in</h5>
+        </div>
+          <div class="modal-body mx-3 mb-3">
+              <button onclick="window.location='{{ route('booking.show',$booked->id) }}'" id="addPaymentBtn">ADD PAYMENT</button>
+              <button>ADD ANOTHER ROOM</button>
+              <button id="checkIdBtn">CHECK-IN</button>
+          </div>
+        </div>
+    </div>
+</div>
+
         
+<script>
+  function CheckinModal(thisBtn){
+    $('#checkinModal').modal('show');
+
+    var paymentStatus = $(thisBtn).attr('data-paymentStatus');
+
+    if(paymentStatus == 1){
+        $('#addPaymentBtn').show();
+        $('#checkIdBtn').hide();
+    }else{
+      $('#addPaymentBtn').hide();
+      $('#checkIdBtn').show();
+    }
+
+
+  }
+</script>
+
+
 @endsection

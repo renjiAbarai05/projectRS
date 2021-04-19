@@ -139,12 +139,14 @@ crossorigin="anonymous" />
                             <li>
                                 <a href="{{route('booking.index')}}">Bookings</a>
                             </li>
+                            @if (Session::get("loginUser") == '0')
+                            <li id="reportLi">
+                                <a href="{{route('dailyView')}}">Report</a>
+                            </li>
                             <li>
                                 <a href="{{route('users.index')}}">User Management</a>
                             </li>
-                            <li>
-                                <a href="#">Report</a>
-                            </li>
+                            @endif
                             <li>
                                 <a href="#" onclick="logout()">{{ __('') }}Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -194,6 +196,7 @@ crossorigin="anonymous" />
 </body>
 
 <script>
+
 (function($) {
 
 "use strict";
@@ -231,41 +234,11 @@ function logout(){
             }
         });
 }
+
+
+
+
 </script>
 
-
-
-{{-- <body>
-<nav class="navbar navbar-expand-lg sticky-top">
-    <a class="navbar-brand font-weight-bold" href="#" style="color: #ed9e21;">Hotel Lai Rico</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-
-        <li class="nav-item">
-            <a class="nav-link book-btn" id="modalBtn" href="{{ route('logout') }}"onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">{{ __('') }}LOGOUT</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </li>
-    </ul>
-    </div>
-</nav>
-
-    @yield('content2')
-
-
-</body>
-
-<script>
-    function changePassModal(){
-    $('#changePassword').modal('show');
-}
-
-</script> --}}
 
 </html>
