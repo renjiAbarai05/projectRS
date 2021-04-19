@@ -50,4 +50,22 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/bookingPdf/{id}', 'BookingsPrintingController@bookingsPdf')->name('bookingPdf');
+
+});
+
+//Home page booking
+Route::get('/searchRoom', function () {
+    return view('Booknow.searchRoom');
+});
+
+Route::get('/guestDetails', function () {
+    return view('Booknow.guestDetails');
+});
+
+Route::get('/billDetails', function () {
+    return view('Booknow.billDetails');
+});
+
+Route::get('/selectAvailRooms', function () {
+    return view('Booknow.selectAvailRooms');
 });
