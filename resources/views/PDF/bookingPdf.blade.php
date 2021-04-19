@@ -102,7 +102,7 @@
             <td>
                 <div class="label">Number of Guest</div>
                 <div class="pl-3">
-                    {{$bookingData->numberOfGuest ?? 'N/A'}}
+                    {{$bookingData->guestNumber ?? 'N/A'}}
                 </div>
             </td>
         </tr>
@@ -141,7 +141,7 @@
                 @php
                     $totalPayment = 0;
                     foreach($payments as $payment){
-                        $totalPayment = $totalPayment + $payment->paymentAmount;
+                        $totalPayment = $totalPayment + $payment->cashReceived;
                     }
                 @endphp
                 &#8369;{{number_format($totalPayment, 2)}}
@@ -172,7 +172,7 @@
         @foreach ($payments as $payment)
         <tr>
             <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
-            <td class="cash_received_value">{{number_format($payment->paymentAmount, 2)}}</td>
+            <td class="cash_received_value">{{number_format($payment->cashReceived, 2)}}</td>
             <td class="cash_change_value">{{number_format($payment->changeAmount, 2)}}</td>
         </tr>
         @endforeach

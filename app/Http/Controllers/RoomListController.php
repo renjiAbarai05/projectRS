@@ -61,7 +61,8 @@ class RoomListController extends Controller
      */
     public function show($id)
     {
-        //
+        $roomListData = RoomList::find($id);
+        return view('AdminPage.RoomList.roomShow',compact('roomListData'));
     }
 
     /**
@@ -96,7 +97,7 @@ class RoomListController extends Controller
             'details' => $request->details,
         ]);
 
-        return redirect()->route('roomList.index')->with('success', 'Updated Successfully');
+        return redirect()->route('roomList.show',$id)->with('success', 'Updated Successfully');
     }
 
     /**
@@ -111,6 +112,6 @@ class RoomListController extends Controller
             'deleted_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        return redirect()->back()->with('success', 'Deleted Successfully');
+        return redirect()->route('roomList.index')->with('success', 'Deleted Successfully');
     }
 }

@@ -17,25 +17,20 @@ class CreateBookingReservesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             //roomInfo
-            $table->string('roomId');
-            $table->string('roomName');
-            $table->integer('roomRate');
-            $table->integer('roomPrice');
-            $table->integer('roomNumber');
             $table->DATETIME('checkinDate');
             $table->DATETIME('checkoutDate');
             //guestInfo
             $table->string('guestFullName');
             $table->string('guestContactNumber');
             $table->string('guestAddress')->nullable();
-            $table->integer('numberOfGuest');
+            $table->integer('guestNumber');
             $table->string('guestEmail')->nullable();
             
             //billInfo
             $table->float('billAmount');
             $table->integer('paymentStatus')->default(0);
 
-            $table->integer('isDismiss')->default(0);
+            $table->integer('cancelled')->default(0);
             $table->integer('userId');
         });
     }

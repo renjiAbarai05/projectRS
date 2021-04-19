@@ -27,58 +27,13 @@
 
     <h4 class="ml-2 mt-2">BOOKINGS</h4>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {{-- <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('booking.index') }}">All Bookings</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewToday') }}">Toda's Booking</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewCheckedIn') }}">Checked-in</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('booking.viewHistory') }}">Checked-out</a>
-        </li>
-        </ul> --}}
+  
     </div>
 </div>
 </nav>
 <div class="container" style="margin-top:-20px;">
             <div class="row">
                 <div class="col-sm-6">
-                        <div class="DivTemplate">
-                            <div class="DivHeaderText">ROOM DETAILS</div>
-                        <div class="hr my-1" style="height:2px;"></div>
-                            <div class='row'>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Check-in Date:</div>
-                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}</b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Check-out Date:</div>
-                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
-                                </div>
-                            </div>
-                            <div class='row' >
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Number:</div>
-                                    <p class='viewText pl-3'><b>{{$bookingData->roomNumber}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Name:</div>
-                                
-                                    <p class='viewText pl-3'><b>{{$bookingData->roomName}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Rate:</div>
-                                    <p class='viewText pl-3'><b>₱{{$bookingData->roomPrice}} By {{$bookingData->roomRate}} Hours </b></p>
-                                </div>
-                            </div>
-                
-                           
-                        </div>
-
                         <div class="DivTemplate">
                             <div class="DivHeaderText">GUEST DETAILS</div>
                             <div class="hr my-1" style="height:2px;"></div>
@@ -99,7 +54,7 @@
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Number of Guest</div>
-                                    <p class='viewText pl-3'><b>{{$bookingData->numberOfGuest}} </b></p>
+                                    <p class='viewText pl-3'><b>{{$bookingData->guestNumber}} </b></p>
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Address</div>
@@ -109,6 +64,39 @@
                         </div>
 
                         <div class="DivTemplate mt-3">
+                            <div class="DivHeaderText">ROOM DETAILS</div>
+                            <div class="hr my-1" style="height:2px;"></div>
+                            <div class='row'>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Check-in Date:</div>
+                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}</b></p>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='label text-left'>Check-out Date:</div>
+                                    <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 pb-2 px-3">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <tr class="thead-light">
+                                            <th class="th-text" width="100px">Room #</th>
+                                            <th class="th-text">Room Name</th>
+                                            <th class="th-text">Room Rate</th>
+                                        </tr>
+                                        @foreach($thisRoom as $thisRoom)
+                                            <tr>
+                                                <td>{{$thisRoom->roomNumber}}</td>
+                                                <td>{{$thisRoom->roomName}}</td>
+                                                <td>₱{{$thisRoom->roomPrice}} By {{$thisRoom->roomRate}} Hours</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="DivTemplate mt-3 mb-5">
                             <div class="DivHeaderText">SUMMARY</div>
                             <div class="hr my-1" style="height:2px;"></div>
                             <table class="table table-bordered">
@@ -117,19 +105,20 @@
                                     <td>@if($bookingData->paymentStatus == 0)No Payment @elseif($bookingData->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
                                 </tr>
                                 <tr  class="thead-light DivHeaderText">
-                                    <th class="th-text" width="150px">Bill Total</th>
-                                    <td id="sub_total">₱{{number_format($bookingData->billAmount, 2)}}</td>
+                                    <th class="th-text" width="150px">Total Bill</th>
+                                    <td id="total_bill">₱{{number_format($bookingData->billAmount, 2)}}</td>
                                 </tr>
                                 <tr class="thead-light DivHeaderText">
                                     <th class="th-text" width="150px">Total Payment</th>
-                                    <td id="amount_received_total" style="color:#8cbd01;"></td>
+                                    <td id="total_payment" style="color:#8cbd01;"></td>
                                 </tr>
                                 <tr id="balance-tr" class="thead-light DivHeaderText">
-                                    <th class="th-text" >Balance</th>
+                                    <th class="th-text">Total Balance</th>
                                     <td id="balance_total">0</td>
                                 </tr>
                             </table>
                         </div>
+                        
                         
                 </div>
                 <div class="col-sm-6">
@@ -142,12 +131,14 @@
                                     <th class="th-text">Date and time</th>
                                     <th class="th-text">Cash Received</th>
                                     <th class="th-text">Change</th>
+                                    <th class="th-text">Payment Method</th>
                                 </tr>
                                     @foreach($payments as $payment)
                                         <tr>
                                             <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
-                                            <td class="cash_received_value">{{number_format($payment->paymentAmount, 2)}}</td>
+                                            <td class="cash_received_value">{{number_format($payment->cashReceived, 2)}}</td>
                                             <td class="cash_change_value">{{number_format($payment->changeAmount, 2)}}</td>
+                                            <td class="">{{$payment->paymentMethod}}</td>
                                         </tr>
                                     @endforeach
                             </table>
@@ -155,13 +146,20 @@
                     </div>
 
                     <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
-                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;">Cancel Booking</button>
                     <button type="button" class="print-button mt-1" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
+                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
                     <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                 </div>
             </div>
 </div>
 
+
+
+<form id="deleteForm" method="POST" action="{{ route('booking.destroy',$bookingData->id) }}">
+    @csrf
+    @method('DELETE')
+  
+</form>
 
 
 
@@ -175,16 +173,17 @@
             <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">ADD PAYMENT</h5>
         </div>
         <div class="modal-body mx-3 mb-3">
-            <input type="hidden" class="form-control" name="bookingId" value="{{$bookingData->id}}">
-            <div class="row mt-2">
+            <input type="hidden" name="bookingId" value="{{$bookingData->id}}">
+            <div class="row mt-2" id="balanceDiv">
                 <div class="col-sm-12" >
                     <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
                         <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
                         <label style="font-size:40px!important; color:white; margin-left:3px;" id="balanceOutput">0</label>
+                        <input type="hidden" id="balanceAmount" name="balanceAmount" value="">
                     </div>
                 </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-2" id="changeDiv">
                 <div class="col-sm-12" >
                     <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
                         <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
@@ -195,8 +194,20 @@
             <div class="row">
                 <div class="col-sm-12">
                     <label>Payment Amount</label>
-                    <input type="number" class="form-control" name="paymentAmount" id="paymentAmount" required>
-                    <input type="hidden" class="form-control" id="changeInput" name="amountChange" value="0" autocomplete="off">
+                    <input type="number" class="form-control" name="cashReceived" id="cashReceived" onchange="AddPaymentChange(this)" required>
+                    <input type="hidden" id="changeInput" name="amountChange" value="0">
+                </div>
+            </div>
+            <div class="row mt-1 pb-2">
+                <div class="col-sm-12">
+                    <label>Payment Method:</label>
+                    <select class="form-control" name="paymentMethod" id="">
+                        <option value="" selected>Select</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Paymaya">Paymaya</option>
+                        <option value="Gcash">Gcash</option>
+                        <option value="Bank Deposit">Bank Deposit</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -214,29 +225,41 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
-        $('#amount_received_total').html("₱" + parseFloat(cashReceived() - cashChange()).toFixed(2));
-
+    
+        $('#total_payment').html("₱" + parseFloat(cashReceived() - cashChange()).toFixed(2));
+        $('#changeDiv').hide();
+        
         showBalance();
+    });
 
-        $('#paymentAmount').change(function(){
-            var paymentAmount = parseFloat($(this).val()),
+    function AddPaymentChange(ThisInput){
+               var cashReceived = parseFloat($(ThisInput).val()),
                 balanceAmount = parseFloat($('#balance_total').text().replace(/[^\d.-]/g, ''));
-                balance =  parseFloat($('#balance_total').text().replace(/[^\d.-]/g, ''));
+                var balance =  0;
                 var change = 0;
 
-            if(paymentAmount > balanceAmount){
-                change =  paymentAmount - balanceAmount;
-                balance = 0;
-            }else if(paymentAmount < balanceAmount){
-                balance = balanceAmount - paymentAmount;
+            if($(ThisInput).val() != ""){
+                if(cashReceived >= balanceAmount){
+                    change =  cashReceived - balanceAmount;
+                    $('#changeDiv').show();
+                    $('#balanceDiv').hide();
+                }else if(cashReceived < balanceAmount){
+                    balance = balanceAmount - cashReceived;
+                    $('#changeDiv').hide();
+                    $('#balanceDiv').show();
+                }
+                $('#balanceOutput').html('₱'+balance.toFixed(2));
+                $('#changeOutput').html('₱'+change.toFixed(2));
+                $('#changeInput').val(change);
+            }else{
+                $('#balanceOutput').html('₱'+balanceAmount.toFixed(2));
+                $('#changeOutput').html('₱'+change.toFixed(2));
+                $('#changeInput').val(change);
+                $('#changeDiv').hide();
+                $('#balanceDiv').show();
             }
-
-            $('#balanceOutput').html('₱'+balance.toFixed(2));
-            $('#changeOutput').html('₱'+change.toFixed(2));
-            $('#changeInput').val(change);
-        });
-    });
+                
+    }
 
 function cashReceived(){
     var totalCash = 0;
@@ -257,8 +280,8 @@ function cashChange(){
 }
 
 function showBalance(){
-    var orderTotal = parseFloat($('#sub_total').text().replace(/[^\d.-]/g, ''));
-    var cashReceived = parseFloat($('#amount_received_total').text().replace(/[^\d.-]/g, ''));
+    var orderTotal = parseFloat($('#total_bill').text().replace(/[^\d.-]/g, ''));
+    var cashReceived = parseFloat($('#total_payment').text().replace(/[^\d.-]/g, ''));
     var balance = orderTotal - cashReceived;
 
     $('#balance_total').html("₱" + parseFloat(balance).toFixed(2));
@@ -272,8 +295,25 @@ function showBalance(){
 function openPaymentModal(){
     $('#paymentModal').modal('show');
     $('#balanceOutput').html($('#balance_total').text());
+    $('#balanceAmount').val($('#balance_total').text().replace(/[^\d.-]/g, ''));
+    
+}
 
-
+function cancelBooking(){
+    Swal.fire({
+        title: 'Are you sure You want to Cancel this Booking?',
+        text: "You won't be able to revert this and the payment is non-refundable!",
+        icon: 'warning',
+        showCancelButton: true,
+        allowOutsideClick:false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#deleteForm').submit();
+            }
+        });
 }
 
 var msg = "{{Session::get('success')}}";

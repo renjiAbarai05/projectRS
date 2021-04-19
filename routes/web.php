@@ -39,7 +39,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('booking/addPayment', 'BookingController@AddPayment')->name('booking.addPayment');
 
     //Report
-    Route::resource('report', 'ReportController');
+    Route::get('SalesReport/dailyView', 'ReportController@dailyView')->name('dailyView');
+    Route::post('SalesReport/search/dailyView', 'ReportController@searchByDailyView')->name('searchByDailyView');
+    Route::get('SalesReport/specificDayView', 'ReportController@specificDayView')->name('specificDayView');
+    Route::post('SalesReport/search/specificDayView', 'ReportController@searchBySpecificDay')->name('searchBySpecificDay');
+    Route::get('SalesReport/monthlyView', 'ReportController@monthlyView')->name('monthlyView');
+    Route::post('SalesReport/search/monthlyView', 'ReportController@searchByMonthlyView')->name('searchByMonthlyView');
+    Route::get('SalesReport/search/yearlyView', 'ReportController@yearlyView')->name('yearlyView');
+    // Route::resource('report', 'ReportController');
     
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/bookingPdf/{id}', 'BookingsPrintingController@bookingsPdf')->name('bookingPdf');
