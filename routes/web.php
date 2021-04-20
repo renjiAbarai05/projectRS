@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('roomList', 'RoomListController');
 
-    //Booking
+    //BookingAdminPage
     Route::get('booking/viewToday', 'BookingController@viewToday')->name('booking.viewToday');
     Route::get('booking/viewCheckedIn', 'BookingController@viewCheckedIn')->name('booking.viewCheckedIn');
     Route::get('booking/viewHistory', 'BookingController@viewHistory')->name('booking.viewHistory');
@@ -52,6 +52,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/bookingPdf/{id}', 'BookingsPrintingController@bookingsPdf')->name('bookingPdf');
 
 });
+
+ //BookingHomePage
+ Route::resource('bookingHome', 'BookingHomeController');
+ Route::post('booking/home/searchAvailableRooms', 'BookingHomeController@searchAvailableRoomsHome')->name('bookingHome.searchAvailableRoomsHome');
+ Route::post('booking/home/createBooking', 'BookingHomeController@CreateBookingHome')->name('bookingHome.createBookingHome');
+
 
 //Home page booking
 Route::get('/searchRoom', function () {

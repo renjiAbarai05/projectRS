@@ -290,6 +290,10 @@ function showBalance(){
         $('#balance-tr').hide();
         $('#addPaymentBtn').hide();
     }
+
+    if(cashReceived == 0){
+        $('#balance-tr').hide();
+    }
 }
 
 function openPaymentModal(){

@@ -1,4 +1,4 @@
-@extends('Homepage.homePageMaster')
+@extends('BookNow.bookNowMaster')
 @section('content')
 <style>
     .save-button {
@@ -62,48 +62,100 @@
         background-color: #616161 !important;
     }   
 </style>
-<body style="background-image: url('images/home_gallary/4.jpg'); height: 1050px;  background-size: 100% 100%; background-repeat: no-repeat">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6" style="background: whitesmoke;  margin: 300px 0px; border-radius: 10px">
-                <div class="form-row mt-4 px-3">
-                    <div class="form-group col-sm-12">
-                        <span class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</span>
-                        <div style=" border: 1px solid #fc8621 !important; margin-top: 5px"></div>
+
+
+<div class="container" style="width:50%;">
+        {{-- <div class="row">
+            <div class="col-sm-7"  style="margin-top: 50px; "> --}}
+                <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
+                    <div class="form-row px-3 pt-3">
+                        <div class="form-group col-sm-12">
+                            <span class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</span>
+                            <div style=" border: 1px solid #fc8621 !important; margin-top: 5px"></div>
+                        </div>
                     </div>
-               </div>
-               <div class="table-responsive mt-1 px-3">
-                <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
-                <thead class="thead-bg">
-                    <tr>
-                        <th class="th-sm th-border">Room Name</th>
-                        <th class="th-sm th-border">Room Price</th>
-                        <th class="th-sm th-border" width="100px">Capacity</th>
-                        <th class="th-sm th-border" width="100px">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody-bg">
-                    <tr class="data font-weight-bold">
-                        <td class="td-border">Cosmo</td>
-                        <td class="td-border">₱400 By 4 Hours</td>
-                        <td class="td-border">3</td>
-                        <td class="td-border"><button class="save-button">Book</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-                <div class="form-row mx-2 pb-3">
-                    <div class="form-group col-sm-12">
-                        <button class="save-button float-left" type="submit">Search Again</button>
-                        <button class="back-button float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <form class="form-horizontal" method="POST" action="{{ route('bookingHome.createBookingHome')}}" id="BookForm">
+                @csrf
+                <input type="hidden" name="checkIN" value="{{$dateID}}">
+                <input type="hidden" name="checkOUT" value="{{$dateOD}}">
+                    <div class="table-responsive mt-1 px-3">
+                        <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
+                        <thead class="thead-bg">
+                            <tr>
+                                <th class="th-sm th-border">Room Name</th>
+                                <th class="th-sm th-border">Room Price</th>
+                                <th class="th-sm th-border" width="100px">Capacity</th>
+                                <th class="th-sm th-border" width="100px">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody-bg">
+                            @foreach($roomListData as $data)
+                                <tr class="data font-weight-bold">
+                                    <input type="hidden" class="roomId" value="{{$data->id}}">
+                                    <td class="td-border">
+                                        {{$data->roomType}}
+                                    </td>
+                                    <td class="td-border">
+                                        ₱{{$data->price}} By {{$data->roomRate}} Hours
+                                    </td>
+                                    <td class="td-border">
+                                        {{$data->capacity}}
+                                    </td>
+                                    <td class="td-border">
+                                        <input type="checkbox" onchange="roomCheck(this)">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     </div>
-                </div>  
-            </div>
-            <div class="col-sm" style="margin-top: 350px; margin-left: 57px; color: whitesmoke">
-                <h2 class="font-weight-bold" style="letter-spacing: 2px">MAKE YOUR <br>RESERVATION</h2>
-                <h3>lorem ipsum dolor</h3>
-            </div>
-        </div>
+                    <div class="form-row px-3 pb-3">
+                        <div class="form-group col-sm-12">
+                            <button class="save-button mt-3" style="width:100%;" type="button" onclick="submitForm()">Next</button>
+                            <button class="back-button mt-2" style="width:100%;" type="button" onclick="window.location='{{ route('bookingHome.create') }}'">Search Again</button>
+                        </div>
+                    </div>  
+                </div>
+            {{-- </div> --}}
+            {{-- </form> --}}
+            {{-- <div class="col-sm" style="margin-top: 200px; margin-left: 57px; color: whitesmoke">
+                <h2 class="font-weight-bold" style="letter-spacing: 2px">SELECT YOUR ROOM <br> TO RESERVE</h2> --}}
+                {{-- <h3>lorem ipsum dolor</h3> --}}
+            {{-- </div>
+        </div> --}}
     </div>
-</body>
+        
+<script>
+    $(document).ready(function(){
+        $('#TblSorter').DataTable({
+            "columnDefs": [
+            { "orderable": false, "targets": 2 }
+            ],
+            "order": [[ 0, "desc" ]],
+        });
+    });
+    
+    roomsCount = 0;
+    
+    function roomCheck(thisBtn){
+        var roomId = $(thisBtn).closest("tr").find('.roomId');
+    
+        if ($(thisBtn).is(':checked')) {
+            roomsCount++;
+                roomId.attr('name', 'rooms['+roomsCount+'][roomId]');
+        } else {
+            roomsCount--;
+                roomId.removeAttr('name');
+        }
+    }
+    
+    function submitForm(){
+        if(roomsCount != 0){
+            $('#BookForm').submit();
+        }else{
+            Swal.fire('Please Select Room First.');
+        }
+        
+    }
+    </script>
 @endsection
