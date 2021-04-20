@@ -11,16 +11,16 @@
 <div id="carouselExampleControls" style="margin-top: -100px;" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active view">
-        <div class="carousel-caption animated fadeIn delay-1s">
+        <div class="carousel-caption animated fadeIn delay-1s"> 
             <h1>Spend Quality Holidays With Us</h1>
             <h3>together with your love ones</h3>
             <button class="btn btn-outline-light float-left mt-4 border-radius">Get Started</button>
         </div>
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/1.jpg" alt="First slide">
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/8.jpg" alt="First slide">
         <div class="mask rgba-black-strong"></div>
         </div>
         <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/2.jpg"
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/9.jpg"
             alt="Second slide">
             <div class="carousel-caption animated fadeIn delay-1s">
                 <div class="carou-subheader">AFFORDABLE HOTEL ACCOMODATIONS IN TACLOBAN CITY</div>
@@ -29,7 +29,7 @@
             <div class="mask rgba-black-strong"></div>
         </div>
         <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/3.jpg"
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/4.jpg"
             alt="Third slide">
             <div class="mask rgba-black-strong"></div>
             <div class="carousel-caption animated fadeIn delay-1s">
@@ -38,23 +38,8 @@
         </div>
         </div>
         <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/4.jpg"
-            alt="Forth slide">
-            <div class="mask rgba-black-strong"></div>
-        </div>
-        <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/5.jpg"
-            alt="Third slide">
-            <div class="mask rgba-black-strong"></div>
-        </div> 
-        <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/6.jpg"
-            alt="Third slide">
-            <div class="mask rgba-black-strong"></div>
-        </div>
-        <div class="carousel-item view">
         <img class="d-block w-100 carousel-height" src="images/home_gallary/7.jpg"
-            alt="Third slide">
+            alt="Third slide">      
             <div class="mask rgba-black-strong"></div>
             <div class="carousel-caption animated fadeIn delay-1s">
             <div class="carou-subheader">A SHORT DISTANCE GOING TO THE FAMOUS STO NIÑO CHURCH </div>
@@ -62,12 +47,28 @@
             </div>
         </div>
         <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/8.jpg"
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/5.jpg"
+            alt="Forth slide">
+            <div class="mask rgba-black-strong"></div>
+        </div>
+        <div class="carousel-item view">
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/6.jpg"
+            alt="Third slide">
+            <div class="mask rgba-black-strong"></div>
+        </div> 
+        <div class="carousel-item view">
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/1.jpg"
+            alt="Third slide">
+            <div class="mask rgba-black-strong"></div>
+        </div>
+        
+        <div class="carousel-item view">
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/2.jpg"
             alt="Third slide">
             <div class="mask rgba-black-strong"></div>
         </div>
         <div class="carousel-item view">
-        <img class="d-block w-100 carousel-height" src="images/home_gallary/9.jpg"
+        <img class="d-block w-100 carousel-height" src="images/home_gallary/3.jpg"
             alt="Third slide">
             <div class="mask rgba-black-strong"></div>
         </div>

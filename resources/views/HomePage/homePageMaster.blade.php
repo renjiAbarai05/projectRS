@@ -268,9 +268,9 @@ crossorigin="anonymous" />
             <a class="nav-link" href="/login">ADMIN</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link book-btn" id="modalBtn">BOOK NOW</a>
+            <a class="nav-link book-btn" href="/selectAvailRooms">BOOK NOW</a>
         </li>
-    </ul>
+    </ul> 
     </div>
 </nav>
 
