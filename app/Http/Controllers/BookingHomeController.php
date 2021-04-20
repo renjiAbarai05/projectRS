@@ -11,8 +11,7 @@ use App\RoomList;
 use App\BookingReserveRoom;
 
 use Carbon\Carbon;
-
-class BookingController extends Controller
+class BookingHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +20,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        Session::put('adminPage', 'booking-all');
-        // $loginUser = Auth::id();
-
-        $booked = BookingReserve::where('cancelled',0)->get();
-        return view('AdminPage.Bookings.BookingIndex.bookingIndex',compact('booked'));
+        //
     }
 
     /**
@@ -35,7 +30,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('AdminPage.Bookings.bookingSearchRooms');
+        return view('BookNow.searchRoom');
     }
 
     /**
@@ -59,14 +54,14 @@ class BookingController extends Controller
             'guestNumber' => $request->guestNumber,
             'guestEmail' => $request->guestEmail,
             'billAmount' => $request->billAmount,
-            'userId' => Auth::id(),
+            'userId' => '00',
         ])->id;
 
 
         foreach($input['rooms'] as $row) {
             $rooms[] = [
                 'bookingId' => $bookingId,
-                'userId' => Auth::id(),
+                'userId' => '00',
                 'roomId' => $row['roomId'],
                 'roomName' => $row['roomName'],
                 'roomNumber' => $row['roomNumber'],
@@ -79,30 +74,7 @@ class BookingController extends Controller
 
         BookingReserveRoom::insert($rooms);
 
-
-        $payment = $request->cashReceived;
-        $billAmount = $request->billAmount;
-        if($payment != null){
-            BookingPayment::create([
-                'bookingId' => $bookingId,
-                'cashReceived' => $payment,
-                'changeAmount' => $request->amountChange,
-                'paymentMethod' => $request->paymentMethod,
-                'userId' => Auth::id(),
-            ]);
-
-            if($billAmount > $payment){
-                BookingReserve::find($bookingId)->update([
-                    'paymentStatus' => 1,
-                ]);
-            }else{
-                BookingReserve::find($bookingId)->update([
-                    'paymentStatus' => 2,
-                ]);
-            }
-        }
-
-        return redirect()->route('booking.show',$bookingId)->with('success', 'Created Successfully');
+        return redirect()->route('bookingHome.show',$bookingId)->with('success', 'Booking Successfully');
     }
 
     /**
@@ -114,10 +86,9 @@ class BookingController extends Controller
     public function show($id)
     {
         $bookingData = BookingReserve::find($id);
-        $thisRoom = BookingReserveRoom::where('bookingId',$id)->where('isActive',0)->get();
-        $payments = BookingPayment::where('bookingId',$id)->get();
-
-        return view('AdminPage.Bookings.bookingShow',compact('bookingData','payments','thisRoom'));
+        $roomData = BookingReserveRoom::where('bookingId',$id)->where('isActive',0)->get();
+        
+        return view('BookNow.billDetails',compact('bookingData','roomData'));
     }
 
     /**
@@ -151,13 +122,10 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        BookingReserve::find($id)->update([
-            'cancelled' => 1,
-        ]);
-        return redirect()->route('booking.index')->with('success', 'Cancelled Successfully.');
+        //
     }
 
-    public function searchAvailableRooms(Request $request){
+    public function searchAvailableRoomsHome(Request $request){
 
         $arrayRoomId = array();
         $bookingId = array();
@@ -180,11 +148,10 @@ class BookingController extends Controller
 
         $roomListData = RoomList::whereNotIn('id', $arrayRoomId)->where('capacity','>=',$request->guestNumber)->whereNull('deleted_at')->get();
 
-        return view('AdminPage.Bookings.bookingSearchedResults',compact('roomListData','dateID','dateOD'));
+        return view('Booknow.selectAvailRooms',compact('roomListData','dateID','dateOD'));
     }
 
-
-    public function CreateBooking(Request $request){
+    public function CreateBookingHome(Request $request){
         $input = $request->all();
         $checkIn = $request->checkIN;
         $checkOut = $request->checkOUT;
@@ -196,51 +163,6 @@ class BookingController extends Controller
         
         $thisRoom = RoomList::whereIn('id', $roomId)->whereNull('deleted_at')->get();
 
-        return view('AdminPage.Bookings.bookingCreate',compact('thisRoom','checkOut','checkIn'));
-    }
-
-    public function AddPayment(Request $request){
-        
-        $id = $request->bookingId;
-        $payment = $request->cashReceived;
-        $balanceAmount = $request->balanceAmount;
-        if($payment != null){
-            BookingPayment::create([
-                'bookingId' => $id,
-                'cashReceived' => $payment,
-                'changeAmount' => $request->amountChange,
-                'paymentMethod' => $request->paymentMethod,
-                'userId' => Auth::id(),
-            ]);
-
-            if($balanceAmount > $payment){
-                BookingReserve::find($id)->update([
-                    'paymentStatus' => 1,
-                ]);
-            }else{
-                BookingReserve::find($id)->update([
-                    'paymentStatus' => 2,
-                ]);
-            }
-        }
-               
-        return redirect()->route('booking.show',$id)->with('success', 'Created Successfully');
-    }
-
-    public function viewToday(){
-        Session::put('adminPage', 'booking-today');
-        $booked = BookingReserve::where('cancelled',0)->whereDate('checkinDate','=',Carbon::today())->get();
-
-        return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
-    }
-
-    public function viewCheckedIn(){
-        Session::put('adminPage', 'booking-checkedin');
-        return view('AdminPage.Bookings.BookingIndex.bookingViewCheckin');
-    }
-
-    public function viewHistory(){
-        Session::put('adminPage', 'booking-history');
-        return view('AdminPage.Bookings.BookingIndex.bookingViewHistory');
+        return view('Booknow.guestDetails',compact('thisRoom','checkOut','checkIn'));
     }
 }
