@@ -78,7 +78,7 @@
                     <div class="form-group col-sm-12">
                         <button class="save-button float-left" type="submit">Next</button>
                     </div>
-                </div>  
+                </div>   
             </div>
             <div class="col-sm" style="margin-top: 350px; margin-left: 57px; color: whitesmoke">
                 <h2 class="font-weight-bold" style="letter-spacing: 2px">MAKE YOUR <br>RESERVATION</h2>

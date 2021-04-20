@@ -11,7 +11,7 @@
 <div id="carouselExampleControls" style="margin-top: -100px;" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active view">
-        <div class="carousel-caption animated fadeIn delay-1s">
+        <div class="carousel-caption animated fadeIn delay-1s"> 
             <h1>Spend Quality Holidays With Us</h1>
             <h3>together with your love ones</h3>
             <button class="btn btn-outline-light float-left mt-4 border-radius">Get Started</button>

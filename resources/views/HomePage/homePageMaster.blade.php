@@ -270,7 +270,7 @@ crossorigin="anonymous" />
         <li class="nav-item">
             <a class="nav-link book-btn" href="/selectAvailRooms">BOOK NOW</a>
         </li>
-    </ul>
+    </ul> 
     </div>
 </nav>
 

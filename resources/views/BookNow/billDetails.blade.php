@@ -66,7 +66,7 @@
                 <h2 class="font-weight-bold" style="letter-spacing: 2px">MAKE YOUR <br>RESERVATION</h2>
                 <h3>lorem ipsum dolor</h3>
             </div>
-        </div>
+        </div> 
     </div>
 </body>
 @endsection

@@ -57,7 +57,7 @@
                 <div class="form-row mx-2 pb-3">
                     <div class="form-group col-sm-12">
                         <button class="save-button float-left" type="submit">Search</button>
-                    </div>
+                    </div> 
                 </div>  
             </div>
             <div class="col-sm" style="margin-top: 350px; margin-left: 57px; color: whitesmoke">

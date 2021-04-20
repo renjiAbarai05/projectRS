@@ -50,7 +50,7 @@
     background-color: grey;
     border: none;
     color: white;
-    padding: 9px;
+    padding: 9px; 
     font-size: 16px;
     cursor: pointer;
     width: 120px;

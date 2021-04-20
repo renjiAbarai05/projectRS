@@ -3,7 +3,7 @@ April 19, 2021 (Aleli)
         - booking layout
     Carousel
         - re-arrange images
-        
+
 April 19, 2021 (Ivan)
     - Change Booking to Multiple Rooms
     - Add User Permission (hide User Management and Reports) for Employee
