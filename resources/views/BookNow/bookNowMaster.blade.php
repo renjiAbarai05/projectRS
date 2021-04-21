@@ -74,6 +74,8 @@ crossorigin="anonymous" />
 		body
 		{
             font-family: 'Segoe UI';
+            /* background: url("images/home_bg.jpg"); */
+            /* background-size: cover; */
             
 		}
 		p
@@ -246,9 +248,10 @@ crossorigin="anonymous" />
 
         .bg-Color{
             /* background: rgb(233,233,207); */
-            background-color: grey;
-            /* background-repeat: no-repeat;
-            height:100vh; */
+            /* background-color: pink; */
+            background-image: url("/images/home_bg.jpg") !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
         }
 
 

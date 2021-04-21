@@ -58,6 +58,8 @@ Route::group(['middleware' => 'auth'], function() {
  Route::post('booking/home/searchAvailableRooms', 'BookingHomeController@searchAvailableRoomsHome')->name('bookingHome.searchAvailableRoomsHome');
  Route::post('booking/home/createBooking', 'BookingHomeController@CreateBookingHome')->name('bookingHome.createBookingHome');
 
+//Booking Now
+Route::get('/bookNowPdf/{id}', 'BookingsPrintingController@bookNowPdf')->name('bookNowPdf');
 
 //Home page booking
 Route::get('/searchRoom', function () {

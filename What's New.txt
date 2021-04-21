@@ -1,3 +1,7 @@
+April 21. 2021 (James)
+    - booking now pdf
+    - layout adjustments on booking now
+
 April 19, 2021 (Aleli)
     Homepage    
         - booking layout

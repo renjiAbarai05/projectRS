@@ -36,6 +36,22 @@
     .back-button:hover{
         background-color: #616161 !important;
     }   
+    .delete-button{
+    background-color: #b80f0a;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    float: right !important;
+}
+.delete-button:hover{
+    background-color: red;
+}
 
 </style>
 
@@ -61,7 +77,7 @@
                             <input id="datetimepicker2" class="form-control" type="text" name="checkoutDate" value="{{$checkOut}}" autocomplete="off" readonly="readonly">
                         </div>
                     </div>
-                    <div class="table-responsive mt-2 px-3">
+                    <div class="table-responsive mt-3 px-3 pb-2">
                         <table class="table table-bordered text-center">
                             <tr class="thead-light">
                                 <th class="th-text" width="100px">Room #</th>
@@ -146,10 +162,12 @@
                             </div>
                         </div>
                         <div class="form-row px-3 pb-2">
-                            <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                                <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Total Bill:</b></label>
-                                <label style="font-size:40px!important; color:white; margin-left:3px;" id="billAmount"></label>
-                                <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
+                            <div style="background-color:#fc8621; width:100%; height:70px; border-radius: 3px">
+                                <div class="px-3">
+                                    <label class="py-0 my-0" style="font-size:40px!important; color:white"><b>Total Bill:</b></label>
+                                    <label class="py-0 my-0" style="font-size:40px; color:white; margin-left:3px; font-weight: 400" id="billAmount"></label>
+                                    <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
+                                </div>
                             </div>
                         </div>
                         <div class="form-row px-3 mt-2">
@@ -164,13 +182,14 @@
                                 </select>
                             </div>
                         </div>
-                          <div class="form-row px-2 pb-1 mt-2">
+                        <div class="form-row px-2 mt-2">
                             <div class="form-group col-sm-12">
-                                <button class="save-button " style="width:100%;" type="submit">BOOK</button>
-                                <button class="back-button mt-2"  style="width:100%;"  type="button">Cancel</button>
+                                <button class="save-button" style="width:200px;" type="submit">BOOK</button>
+                                <button class="delete-button"  style="width:200px;"  type="button" onclick="window.location='{{ url('/searchRoom') }}'">Cancel</button>
                             </div>
-                        </div>   
+                        </div>  
                     </div>
+                    
                     
                 </form>
                 {{-- </div> --}}
