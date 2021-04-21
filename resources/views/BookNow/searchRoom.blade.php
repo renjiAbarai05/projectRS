@@ -16,6 +16,22 @@
     .save-button:hover{
         background-color: #00a86b;
     }
+    .delete-button{
+    background-color: #b80f0a;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    float: right !important;
+}
+.delete-button:hover{
+    background-color: red;
+}
     
     .DivHeaderText{
         font-weight: 500;
@@ -57,8 +73,11 @@
                                 <input type="number" id="guestNumber" class="form-control" name="guestNumber" autocomplete="off" required>
                             </div>
                     </div>
-                    <div class="form-row px-3 pb-3">
-                            <button class="save-button" type="button"  style="width:100%;"  onclick="searchEffect()">Search</button>
+                    <div class="form-row px-3 pb-2">
+                        <div class="form-group col-sm-12">
+                            <button class="save-button" type="button"  style="width:200px"  onclick="searchEffect()">Search</button>
+                            <button class="delete-button" type="button"  style="width:200px"  onclick="window.location='{{ url('/') }}'">Cancel</button>
+                        </div>
                             {{-- <a href="/selectAvailRooms">as</a> --}}
                     </div>  
                 </div>

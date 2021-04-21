@@ -47,7 +47,7 @@
         text-align: center;
     }
     .back-button {
-    background-color: grey;
+    background-color: #f05e23;
     border: none;
     color: white;
     padding: 9px; 
@@ -57,17 +57,18 @@
     font-weight: 500;
     letter-spacing: 0.5px;
     border-radius: 3px;
+    float: right;
     }
     .back-button:hover{
-        background-color: #616161 !important;
-    }   
+        background-color: #fc8621 !important;
+    }  
 </style>
 
 
 <div class="container" style="width:50%;">
         {{-- <div class="row">
             <div class="col-sm-7"  style="margin-top: 50px; "> --}}
-                <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
+            <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
                     <div class="form-row px-3 pt-3">
                         <div class="form-group col-sm-12">
                             <span class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</span>
@@ -80,42 +81,42 @@
                 <input type="hidden" name="checkOUT" value="{{$dateOD}}">
                     <div class="table-responsive mt-1 px-3">
                         <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
-                        <thead class="thead-bg">
-                            <tr>
-                                <th class="th-sm th-border">Room Name</th>
-                                <th class="th-sm th-border">Room Price</th>
-                                <th class="th-sm th-border" width="100px">Capacity</th>
-                                <th class="th-sm th-border" width="100px">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody-bg">
-                            @foreach($roomListData as $data)
-                                <tr class="data font-weight-bold">
-                                    <input type="hidden" class="roomId" value="{{$data->id}}">
-                                    <td class="td-border">
-                                        {{$data->roomType}}
-                                    </td>
-                                    <td class="td-border">
-                                        ₱{{$data->price}} By {{$data->roomRate}} Hours
-                                    </td>
-                                    <td class="td-border">
-                                        {{$data->capacity}}
-                                    </td>
-                                    <td class="td-border">
-                                        <input type="checkbox" onchange="roomCheck(this)">
-                                    </td>
+                            <thead class="thead-bg">
+                                <tr>
+                                    <th class="th-sm th-border">Room Name</th>
+                                    <th class="th-sm th-border">Room Price</th>
+                                    <th class="th-sm th-border" width="100px">Capacity</th>
+                                    <th class="th-sm th-border" width="100px">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="tbody-bg">
+                                @foreach($roomListData as $data)
+                                    <tr class="data font-weight-bold">
+                                        <input type="hidden" class="roomId" value="{{$data->id}}">
+                                        <td class="td-border">
+                                            {{$data->roomType}}
+                                        </td>
+                                        <td class="td-border">
+                                            ₱{{$data->price}} By {{$data->roomRate}} Hours
+                                        </td>
+                                        <td class="td-border">
+                                            {{$data->capacity}}
+                                        </td>
+                                        <td class="td-border">
+                                            <input type="checkbox" onchange="roomCheck(this)">
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-row px-3 pb-3">
+                    <div class="form-row px-3 pt-3">
                         <div class="form-group col-sm-12">
-                            <button class="save-button mt-3" style="width:100%;" type="button" onclick="submitForm()">Next</button>
+                            <button class="save-button" style="width:100%;" type="button" onclick="submitForm()">Next</button>
                             <button class="back-button mt-2" style="width:100%;" type="button" onclick="window.location='{{ route('bookingHome.create') }}'">Search Again</button>
                         </div>
                     </div>  
-                </div>
+            </div>
             {{-- </div> --}}
             {{-- </form> --}}
             {{-- <div class="col-sm" style="margin-top: 200px; margin-left: 57px; color: whitesmoke">

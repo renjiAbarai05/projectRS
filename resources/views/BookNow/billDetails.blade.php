@@ -22,7 +22,7 @@
         color: #676767;
     }
     .back-button {
-    background-color: grey;
+    background-color: #f05e23;
     border: none;
     color: white;
     padding: 9px; 
@@ -34,12 +34,12 @@
     border-radius: 3px;
     }
     .back-button:hover{
-        background-color: #616161 !important;
+        background-color: #fc8621 !important;
     }   
 
 </style>
-<body style="background-image: url('images/home_gallary/4.jpg');  background-size: cover; background-repeat: no-repeat">
-    <div class="container">
+<body>
+    <div class="container mb-4 mt-n2">
         <div class="row">
             <div class="col-sm-7" style="background: whitesmoke;  margin-top: 30px; border-radius: 10px">
                 <div class="form-row mt-4 px-2">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="form-row mt-2 px-2">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-bordered">
                             <tr class="thead-light">
                                 <th class="th-text" width="100px">Room #</th>
                                 <th class="th-text">Room Name</th>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <div style=" border: 1px solid #fc8621 !important; margin-top: 3px; height:3px;"></div>
+                <div style=" border: 1px solid #fc8621 !important; margin-top: 3px;"></div>
                 
                 <div class='form-row px-2 mt-2' >
                     <div class='col-md-6'>
@@ -126,15 +126,16 @@
                     
                 </div>
            
-                <div class="form-row pb-3">
+                <div class="form-row mt-4">
                     <div class="form-group col-sm-12">
-                        <button class="btn save-button mt-3 " style="width:100%;">PRINT</button>
-                        <button class="btn back-button " style="width:100%;">BOOK AGAIN</button>
+                        <button class="save-button " type="button" style="width:200px;" onclick="window.location='{{ route('bookNowPdf', $bookingData->id) }}'">PRINT</button>
+                        <button class="back-button float-right" style="width:200px;">BOOK AGAIN</button>
                     </div>
                 </div>  
             </div>
             <div class="col-sm" style="margin-top: 200px; margin-left: 57px; color: whitesmoke">
-                <h2 class="font-weight-bold" style="letter-spacing: 2px">THANK YOU FOR<br>YOUR RESERVATION</h2>
+                <p class="p-0 m-0" style="font-size: 65px; font-weight: 700; text-shadow: 2px 2px rgb(46, 46, 46);">THANK YOU</p>
+                <p class="m-0 p-0" style="font-size: 32px; font-weight: 700; text-shadow: 2px 2px rgb(46, 46, 46);">FOR YOUR RESERVATION</p>
                 {{-- <h3>lorem ipsum dolor</h3> --}}
             </div>
         </div> 

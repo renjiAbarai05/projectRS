@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/bookingPdf/{id}', 'BookingsPrintingController@bookingsPdf')->name('bookingPdf');
+    Route::get('/bookNowPdf/{id}', 'BookingsPrintingController@bookNowPdf')->name('bookNowPdf');
 
 });
 
