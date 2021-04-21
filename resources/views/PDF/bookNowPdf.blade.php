@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <head>
     <title>Room Info</title>
     <style>
@@ -37,16 +36,16 @@
 </head>
 <body>
     <h3>Hotel Lai Rico</h3>
-    <span class="text-uppercase">Room Details</span>
-    <table class="w-100 mb-4" style="border-top: 2px solid #c24914">
+    <span style="text-transform: uppercase">Room Details</span>
+    <table class="mb-4" style="border-top: 2px solid #c24914">
         <tr>
-            <td>
+            <td width="600px">
                 <div class="label">Check-in Date</div>
                 <div class="pl-3">
                     {{$bookingData->checkinDate}}
                 </div>
             </td>
-            <td>
+            <td width="600px">
                 <div class="label">Check-out Date</div>
                 <div class="pl-3">
                     {{$bookingData->checkoutDate}}
@@ -76,16 +75,16 @@
             </td>
         </tr>
     </table>
-    <span class="text-uppercase">Guest Details</span>
-    <table class="w-100 mb-4" style="border-top: 2px solid #c24914">
+    <span style="text-transform: uppercase">Guest Details</span>
+    <table class="mb-4" style="border-top: 2px solid #c24914">
         <tr>
-            <td>
+            <td width="600px">
                 <div class="label">Guest Full Name</div>
                 <div class="pl-3">
                     {{$bookingData->guestFullName}}
                 </div>
             </td>
-            <td>
+            <td width="600px">
                 <div class="label">Contact Number</div>
                 <div class="pl-3">
                     {{$bookingData->guestContactNumber ?? 'N/A'}}
@@ -115,13 +114,13 @@
             </td>
         </tr>
     </table>
-    <span class="text-uppercase">Summary</span>
-    <table class="w-100 mb-4 table-bordered summaryTable" style="border-top: 2px solid #c24914">
+    <span style="text-transform: uppercase">Summary</span>
+    <table class="mb-4 table-bordered summaryTable" style="border-top: 2px solid #c24914">
         <tr>
-            <td>
+            <td width="600px">
                 <div class="label">Status</div>
             </td>
-            <td>
+            <td width="600px">
                 {{$bookingData->paymentStatus == 0 ? 'No Payment' : ($bookingData->paymentStatus == 1 ? 'Partially Paid' : 'Fully Paid')}}
             </td>
         </tr>
@@ -156,16 +155,17 @@
             </td>
         </tr>
     </table>
-    <span class="text-uppercase">Payment Details</span>
-    <table class="w-100 mb-4 table-bordered paymentTable" style="border-top: 2px solid #c24914">
+    <br>
+    <span style="text-transform: uppercase">Payment Details</span>
+    <table class="mb-4 table-bordered paymentTable" style="border-top: 2px solid #c24914">
         <tr>
-            <th class="text-center">
+            <th class="text-center" width="300px">
                 Date and Time
             </th>
-            <th class="text-center">
+            <th class="text-center" width="300px">
                 Cash Received
             </th>
-            <th class="text-center">
+            <th class="text-center" width="300px">
                 Change
             </th>
         </tr>
