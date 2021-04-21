@@ -129,7 +129,7 @@
                 <div class="form-row mt-4">
                     <div class="form-group col-sm-12">
                         <button class="save-button " type="button" style="width:200px;" onclick="window.location='{{ route('bookNowPdf', $bookingData->id) }}'">PRINT</button>
-                        <button class="back-button float-right" style="width:200px;">BOOK AGAIN</button>
+                        <button class="back-button float-right" style="width:200px;" onclick="window.location=' {{ url('/searchRoom') }} '">BOOK AGAIN</button>
                     </div>
                 </div>  
             </div>
