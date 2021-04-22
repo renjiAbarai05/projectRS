@@ -48,11 +48,17 @@
                             </tr>
                         </table>
                         
-                        <button type="button" class="update-button mt-3" style="width:100%; border-radius:3px;" onclick="window.location='{{ route('roomList.edit',$roomListData->id) }}'">Update</button>
-                        <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;" data-id="{{$roomListData->id}}" onclick="deleteModal(this)">Delete</button>
-                        <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('roomList.index') }}'">Back</button>
-                
                     </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="button" class="update-button" style="width:60%; border-radius:3px;" onclick="window.location='{{ route('roomList.edit',$roomListData->id) }}'">Update</button>
+                    </div>
+                    <div class="d-flex justify-content-center mt-1">
+                        <button type="button" class="delete-button" style="width:60%; border-radius:3px;" data-id="{{$roomListData->id}}" onclick="deleteModal(this)">Delete</button>
+                    </div>
+                    <div class="d-flex justify-content-center mt-1">
+                        <button type="button" class="back-button" style="width:60%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('roomList.index') }}'">Back</button>
+                    </div>
+                
                 
 
 

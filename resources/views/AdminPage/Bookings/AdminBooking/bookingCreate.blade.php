@@ -105,8 +105,8 @@
                         <div class="hr"></div>
                         <div class="row mt-2">
                             <div class="col-sm-12" >
-                                <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                                    <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Total Bill:</b></label>
+                                <div style="background-color: #fc8621; width:100%; height:70px; border-radius: 3px;">
+                                    <label style="font-size:40px!important; color:white; margin-left:5px;">Total Bill:</label>
                                     <label style="font-size:40px!important; color:white; margin-left:3px;" id="billAmount"></label>
                                     <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
                                 </div>
@@ -114,8 +114,8 @@
                         </div>
                         <div class="row mt-2" id="balanceDiv">
                             <div class="col-sm-12" >
-                                <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                                    <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
+                                <div style="background-color:red; width:100%; height:70px; border-radius: 3px;">
+                                    <label style="font-size:40px!important; color:white; margin-left:5px;">Balance:</label>
                                     <label style="font-size:40px!important; color:white; margin-left:3px;" id="balanceOutput">0</label>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                     </div>
 
                     <button class="save-button mt-1" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
-                    <button class="back-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
+                    <button class="delete-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
                 </div>
             </div>
         </form>

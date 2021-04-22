@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="col-sm-5">
-                 <button class="save-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">ADD</button>
+                 <button class="save-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">Add</button>
                  <button class="back-button mt-2" type="button" style="width:100%; border-radius:3px;"  onclick="window.location='{{ route('booking.show',$bookingId) }}'">Cancel</button>
         </div>
     </div>

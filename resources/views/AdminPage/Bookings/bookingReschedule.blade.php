@@ -26,7 +26,7 @@
     <input type="hidden" name="checkIN" value="{{$dateID}}">
     <input type="hidden" name="checkOUT" value="{{$dateOD}}">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-7 offset-sm-2">
             <div class="DivTemplate">
                 <p class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</p>
                 <div class="hr"></div>
@@ -70,10 +70,11 @@
                     
                 </div>
             </div>
-        </div>
-        <div class="col-sm-5">
-                 <button class="save-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">RESCHEDULE</button>
+            <button class="print-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">Reschedule</button>
                  <button class="back-button mt-2" type="button" style="width:100%; border-radius:3px;"  onclick="window.location='{{ route('booking.show',$bookingId) }}'">Cancel</button>
+        </div>
+        <div class="">
+                 
         </div>
     </div>
 </form>

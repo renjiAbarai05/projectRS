@@ -1,7 +1,23 @@
 @extends('AdminPage.masterAdmin')
 @section('content2')
 
-
+<style>
+    .search-button {
+    background-color: #f05e23;
+    border: none;
+    color: white;
+    padding: 9px; 
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    }
+    .search-button:hover{
+        background-color: #fc8621 !important;
+    }  
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -25,7 +41,7 @@
     <input type="hidden" name="checkIN" value="{{$dateID}}">
     <input type="hidden" name="checkOUT" value="{{$dateOD}}">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-7 offset-sm-2">
             <div class="DivTemplate">
                 <p class="DivHeaderText center-align">Available Rooms From {{date_format(\Carbon\Carbon::parse($dateID),"M j,Y g:i A")}} to {{date_format(\Carbon\Carbon::parse($dateOD),"M j,Y g:i A")}} </p>
                 <div class="hr"></div>
@@ -62,12 +78,14 @@
                     </table>
                     
                 </div>
+                
             </div>
+            <button class="save-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">Book Now</button>
+                <button class="search-button mt-2" type="button" style="width:100%; border-radius:3px;" onclick="window.location='{{ route('booking.create') }}'">Search Again</button>
+                <button class="back-button mt-2" type="button" style="width:100%; border-radius:3px;"  onclick="window.location='{{ route('booking.index') }}'">Cancel</button>
         </div>
-        <div class="col-sm-5">
-                 <button class="save-button mt-3" type="button" onclick="submitForm()" style="width:100%; border-radius:3px;">Book Now</button>
-                 <button class="save-button mt-2" type="button" style="width:100%; border-radius:3px;" onclick="window.location='{{ route('booking.create') }}'">Search Again</button>
-                 <button class="back-button mt-2" type="button" style="width:100%; border-radius:3px;"  onclick="window.location='{{ route('booking.index') }}'">Cancel</button>
+        <div class="">
+                
         </div>
     </div>
 </form>

@@ -154,16 +154,16 @@
 
                     {{-- Buttons --}}
                     @if($bookingData->bookingStatus == 0)
-                        <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
+                        <button type="button" class="search-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
                     @if(date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"Y-m-d 00:00:00") == \Carbon\Carbon::today())
                         <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" data-paymentStatus="{{$bookingData->paymentStatus}}" onclick="CheckinModal(this)">Check-in</button>
                     @endif
-                        <button type="button" class="update-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
-                        <button type="button" class="update-button mt-1" id="cancelBtn" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
+                        <button type="button" class="print-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
+                        <button type="button" class="delete-button mt-1" id="cancelBtn" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
                         <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                     @elseif($bookingData->bookingStatus == 1)
-                        <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" onclick="CheckoutModal()">Check-Out</button>
-                        <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                        <button type="button" class="delete-button mt-1" id="checkInButton" style="width:100%; border-radius:3px; border: none" onclick="CheckoutModal()">Check-Out</button>
+                        <button type="button" class="back-button mt-1 ml-0" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
                     @elseif($bookingData->bookingStatus == 2)
                     <button type="button" class="print-button" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
                     <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
@@ -224,8 +224,8 @@
             <input type="hidden" name="bookingId" value="{{$bookingData->id}}">
             <div class="row mt-2" id="balanceDiv">
                 <div class="col-sm-12" >
-                    <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                        <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Balance:</b></label>
+                    <div style="background-color:red; width:100%; height:70px; border-radius: 3px;">
+                        <label style="font-size:40px!important; color:white; margin-left:5px;">Balance:</label>
                         <label style="font-size:40px!important; color:white; margin-left:3px;" id="balanceOutput">0</label>
                         <input type="hidden" id="balanceAmount" name="balanceAmount" value="">
                     </div>
@@ -233,8 +233,8 @@
             </div>
             <div class="row mt-2" id="changeDiv">
                 <div class="col-sm-12" >
-                    <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
-                        <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
+                    <div style="background-color:#00a86b; width:100%; height:70px; border-radius: 3px;">
+                        <label style="font-size:40px!important; color:white; margin-left:5px;">Change:</label>
                         <label style="font-size:40px!important; color:white; margin-left:3px;" id="changeOutput">0</label>
                     </div>
                 </div>
