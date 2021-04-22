@@ -23,7 +23,6 @@ class CreateBookingReservesRoomsTable extends Migration
             $table->integer('roomRate');
             $table->integer('roomPrice');
             $table->integer('isActive')->default(0);
-            $table->integer('userId');
         });
     }
 

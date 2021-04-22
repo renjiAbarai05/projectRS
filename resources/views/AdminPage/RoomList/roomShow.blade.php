@@ -17,49 +17,43 @@
 }
 </style>
 
-
-            <div class="row">
-                <div class="col-sm-6">
-                        <div class="DivTemplate">
-                            <div class="DivHeaderText">ROOM DETAILS</div>
-                            <div class="hr my-1" style="height:2px;"></div>
-                            <div class='row'>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Name</div>
-                                    <p class='viewText pl-3'><b>{{$roomListData->roomType}}</b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Number</div>
-                                    <p class='viewText pl-3'><b>{{$roomListData->roomNumber}}</b></p>
-                                </div>
-                            </div>
-                            <div class='row' >
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Price</div>
-                                    <p class='viewText pl-3'><b>₱{{$roomListData->price}} By {{$roomListData->roomRate}} Hours </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Room Capacity</div>
-                                    <p class='viewText pl-3'><b>{{$roomListData->capacity}} </b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Status</div>
-                                    <p class='viewText pl-3'><b>@if($roomListData->isActive == 1) Active @else Inactive @endif</b></p>
-                                </div>
-                                <div class='col-md-6'>
-                                    <div class='label text-left'>Details</div>
-                                    <p class='viewText pl-3'><b>{{$roomListData->details}}</b></p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="DivTemplate " style="width:60%; margin-left:20%;">
+                        <div class="DivHeaderText">ROOM DETAILS</div>
+                        <div class="hr my-1" style="height:2px;"></div>
+                    
+                        <table class="table table-bordered mt-2">
+                            <tr  class="thead-light DivHeaderText">
+                                <th class="th-text" width="150px">Room Name</th>
+                                <td>{{$roomListData->roomType}}</td>
+                            </tr>
+                            <tr  class="thead-light DivHeaderText">
+                                <th class="th-text" width="150px">Room Number</th>
+                                <td> {{$roomListData->roomNumber}}</td>
+                            </tr>
+                            <tr class="thead-light DivHeaderText">
+                                <th class="th-text" width="150px">Room Price</th>
+                                <td >₱{{$roomListData->price}} By {{$roomListData->roomRate}} Hours </td>
+                            </tr>
+                            <tr  class="thead-light DivHeaderText">
+                                <th class="th-text">Room Capacity</th>
+                                <td id="balance_total">{{$roomListData->capacity}} </td>
+                            </tr>
+                            <tr  class="thead-light DivHeaderText">
+                                <th class="th-text">Status</th>
+                                <td id="balance_total">@if($roomListData->isActive == 1) Active @else Inactive @endif </td>
+                            </tr>
+                            <tr  class="thead-light DivHeaderText">
+                                <th class="th-text">Details</th>
+                                <td id="balance_total">{{$roomListData->details}} </td>
+                            </tr>
+                        </table>
                         
-                </div>
-                <div class="col-sm-6">
-                    <button type="button" class="update-button mt-3" style="width:100%; border-radius:3px;" onclick="window.location='{{ route('roomList.edit',$roomListData->id) }}'">Update</button>
-                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;" data-id="{{$roomListData->id}}" onclick="deleteModal(this)">Delete</button>
-                    <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('roomList.index') }}'">Back</button>
-                </div>
-            </div>
+                        <button type="button" class="update-button mt-3" style="width:100%; border-radius:3px;" onclick="window.location='{{ route('roomList.edit',$roomListData->id) }}'">Update</button>
+                        <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;" data-id="{{$roomListData->id}}" onclick="deleteModal(this)">Delete</button>
+                        <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('roomList.index') }}'">Back</button>
+                
+                    </div>
+                
 
 
 

@@ -315,3 +315,52 @@ label{
     margin-top: -10px;
     width: 100%;
 }
+
+.save-button {
+    background-color: #4cbb17;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    }
+    .save-button:hover{
+        background-color: #00a86b;
+    }
+    .delete-button{
+    background-color: #b80f0a;
+    border: none;
+    color: white;
+    padding: 9px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    float: right !important;
+}
+.delete-button:hover{
+    background-color: red;
+}
+
+.search-button {
+    background-color: #f05e23;
+    border: none;
+    color: white;
+    padding: 9px; 
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    float: right;
+    }
+    .search-button:hover{
+        background-color: #fc8621 !important;
+    }  

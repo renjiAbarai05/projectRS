@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="DivTemplate">
+                    <div class="DivTemplate mb-3">
                         <p class="DivHeaderText center-align">GUEST DETAILS</p>
                         <div class="hr"></div>
                         <div class="row mt-2">
@@ -88,7 +88,7 @@
                         <div class="row mt-1">
                             <div class="col-sm-12">
                                 <label>Number of guests:</label>
-                                <input type="number" class="form-control"  name="guestNumber" value="{{$thisRoom->capacity}}" autocomplete="off" required>
+                                <input type="number" class="form-control"  name="guestNumber"  autocomplete="off" required>
                             </div>
                         </div>
                         <div class="row mt-1 pb-2">
@@ -143,7 +143,6 @@
                                     <option value="Cash">Cash</option>
                                     <option value="Paymaya">Paymaya</option>
                                     <option value="Gcash">Gcash</option>
-                                    <option value="Bank Deposit">Bank Deposit</option>
                                 </select>
                             </div>
                         </div>

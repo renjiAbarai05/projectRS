@@ -46,8 +46,7 @@ class RoomListController extends Controller
             'price' => $request->price,
             'roomRate' => $request->roomRate,
             'capacity' => $request->capacity,
-            'details' => $request->details,
-            'userId' => Auth::id(),
+            'details' => $request->details
         ]);
        
         return redirect()->route('roomList.index')->with('success', 'Created Successfully');

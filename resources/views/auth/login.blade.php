@@ -8,7 +8,7 @@
   align-items: center;
   min-height: 100vh;
   /* background: #eceffc; */
-  background-image: url("/images/LAIRICO.jpg"); 
+  background-image: url("/images/home_bg.jpg"); 
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -92,7 +92,7 @@
             <h1>Login</h1>
             <div class="form-input-material">
               <label for="username">Username</label>
-              <input type="text"  name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" placeholder="Username" required autofocus/>
+              <input type="text"  name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" required autofocus/>
               @if ($errors->has('username'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('username') }}</strong>
@@ -101,7 +101,7 @@
             </div>
             <div class="form-input-material mt-1">
               <label for="password">Password</label>
-              <input type="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="1234" required />
+              <input type="password" type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  required />
               @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('password') }}</strong>

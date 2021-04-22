@@ -147,8 +147,7 @@
               $('#searchDiv').hide();
             let timerInterval
             Swal.fire({
-                title: 'Search Available Room...',
-                html: 'Searching <b></b> .',
+                title: 'Searching Available Room...',
                 timer: 2000,
                 allowOutsideClick: false,
                 timerProgressBar: true,
