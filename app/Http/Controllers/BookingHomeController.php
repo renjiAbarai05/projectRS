@@ -54,14 +54,12 @@ class BookingHomeController extends Controller
             'guestNumber' => $request->guestNumber,
             'guestEmail' => $request->guestEmail,
             'billAmount' => $request->billAmount,
-            'userId' => '00',
         ])->id;
 
 
         foreach($input['rooms'] as $row) {
             $rooms[] = [
                 'bookingId' => $bookingId,
-                'userId' => '00',
                 'roomId' => $row['roomId'],
                 'roomName' => $row['roomName'],
                 'roomNumber' => $row['roomNumber'],
@@ -135,7 +133,7 @@ class BookingHomeController extends Controller
         $dateCheckIn = \Carbon\Carbon::parse($request->checkinDate);
         $dateCheckOut = \Carbon\Carbon::parse($request->checkoutDate);
         
-        $bookedLists = BookingReserve::where('cancelled',0)->where('checkoutDate' ,'>=', $dateCheckIn)->where('checkinDate' ,'<=', $dateCheckOut)->get();
+        $bookedLists = BookingReserve::where('cancelled',0)->where('bookingStatus',0)->where('checkoutDate' ,'>=', $dateCheckIn)->where('checkinDate' ,'<=', $dateCheckOut)->get();
 
         foreach($bookedLists as $bookedList){
            $bookingId[] =  $bookedList->id;

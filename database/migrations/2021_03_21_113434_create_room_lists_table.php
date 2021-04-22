@@ -23,7 +23,6 @@ class CreateRoomListsTable extends Migration
             $table->Integer('roomRate');
             $table->Integer('capacity');
             $table->text('details')->nullable();
-            $table->Integer('userId');
             $table->softDeletes();
         });
     }

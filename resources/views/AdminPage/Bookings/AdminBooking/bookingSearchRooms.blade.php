@@ -30,6 +30,7 @@
 <div class="container" style="margin-top:-20px;">
         <form class="form-horizontal" id="searchForm" method="POST" action="{{route('booking.searchAvailableRooms')}}">
             @csrf
+            <input type="hidden" value="create" name="searchCategory">
             <div class="DivTemplate" id="searchDiv" style="width:60%; margin-left:21%;">
                 <p class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</p>
                 <div class="hr"></div>
@@ -52,7 +53,7 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <button class="save-button float-left" type="button" onclick="searchEffect()">Search</button>
-                            <button class="back-button float-right" type="button" onclick="window.location='{{ route('booking.index') }}'">Cancel</button>
+                            <button class="delete-button float-right" type="button" onclick="window.location='{{ route('booking.index') }}'">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -116,8 +117,7 @@
           $('#searchDiv').hide();
         let timerInterval
         Swal.fire({
-            title: 'Search Available Room...',
-            html: 'Searching <b></b> .',
+            title: 'Searching Available Room...',
             timer: 2000,
             allowOutsideClick: false,
             timerProgressBar: true,

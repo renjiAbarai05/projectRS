@@ -7,22 +7,24 @@
             <div class="table-responsive mt-3">
                 <table id="TblSorter"  class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
-                      <tr>
-                          <th class="th-sm th-border" width="200px">Date</th>
-                          <th class="th-sm th-border">Room Name</th>
-                          <th class="th-sm th-border text-center" width="200px">Action</th>
-                      </tr>
+                    <tr>
+                      <th class="th-sm th-border" width="150px">Check-in Date</th>
+                      <th class="th-sm th-border">Guest Name</th>
+                      <th class="th-sm th-border"  width="150px">Booking Status</th>
+                      <th class="th-sm th-border text-center" width="100px">Action</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  
-                            <tr  class="data font-weight-bold">
-                              <td class="td-border">Today</td>
-                              <td class="td-border">Room Room</td>
-                              <td class="td-border">
-                                <button class="update-button" style="color:white; width:100%;">Check-out </button>
-                                {{-- <button class="delete-button" style="color:white; width:100%;" > Delete</button> --}}
+                    @foreach($booked as $booked)
+                          <tr class="data font-weight-bold">
+                              <td class="td-border"> {{date('F j, Y g:i A', strtotime($booked->checkinDate)) }} </td>
+                              <td class="td-border">{{$booked->guestFullName}}</td>
+                              <td class="th-sm td-border">@if($booked->bookingStatus == 2)Checked-out @endif</td>
+                              <td class="td-border text-center">
+                                  <button class="update-button" style="color:white; width:100%;"  onclick="window.location='{{ route('booking.show',$booked->id) }}'">Select</button>
                               </td>
                           </tr>
+                    @endforeach
                   </tbody>
               </table>
              

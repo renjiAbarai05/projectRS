@@ -33,10 +33,17 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('booking/viewToday', 'BookingController@viewToday')->name('booking.viewToday');
     Route::get('booking/viewCheckedIn', 'BookingController@viewCheckedIn')->name('booking.viewCheckedIn');
     Route::get('booking/viewHistory', 'BookingController@viewHistory')->name('booking.viewHistory');
+   
     Route::resource('booking', 'BookingController');
     Route::post('booking/searchAvailableRooms', 'BookingController@searchAvailableRooms')->name('booking.searchAvailableRooms');
     Route::post('booking/createBooking', 'BookingController@CreateBooking')->name('booking.createBooking');
     Route::post('booking/addPayment', 'BookingController@AddPayment')->name('booking.addPayment');
+    Route::post('booking/addRoom', 'BookingController@AddRoomBooking')->name('booking.AddRoomBooking');
+    Route::post('booking/reschedule', 'BookingController@rescheduleBooking')->name('rescheduleBooking');
+    Route::post('booking/reschedule/update', 'BookingController@rescheduleBookingUpdate')->name('rescheduleBookingUpdate');
+    Route::post('booking/bookingCheckinUpdate', 'BookingController@bookingCheckinUpdate')->name('bookingCheckinUpdate');
+    Route::post('booking/bookingCheckoutUpdate', 'BookingController@bookingCheckoutUpdate')->name('bookingCheckoutUpdate');
+    
 
     //Report
     Route::get('SalesReport/dailyView', 'ReportController@dailyView')->name('dailyView');

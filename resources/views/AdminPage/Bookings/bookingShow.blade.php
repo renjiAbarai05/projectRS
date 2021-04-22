@@ -64,16 +64,21 @@
                         </div>
 
                         <div class="DivTemplate mt-3">
+                            @if($bookingData->bookingStatus == 0)
+                               <a class="float-right" onclick="AddRoom()">ADD ROOM</a>
+                            @endif
                             <div class="DivHeaderText">ROOM DETAILS</div>
                             <div class="hr my-1" style="height:2px;"></div>
                             <div class='row'>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Check-in Date:</div>
                                     <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}</b></p>
+                                    <input type="hidden" value="{{$bookingData->checkinDate}}" id="checkinDateValue">
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Check-out Date:</div>
                                     <p class='viewText pl-3'><b>{{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}</b></p>
+                                    <input type="hidden" value="{{$bookingData->checkoutDate}}" id="checkoutDateValue">
                                 </div>
                             </div>
                             <div class="row mt-2 pb-2 px-3">
@@ -89,6 +94,7 @@
                                                 <td>{{$thisRoom->roomNumber}}</td>
                                                 <td>{{$thisRoom->roomName}}</td>
                                                 <td>₱{{$thisRoom->roomPrice}} By {{$thisRoom->roomRate}} Hours</td>
+                                                <input type="hidden" class="roomPriceAndRate" data-roomPrice="{{$thisRoom->roomPrice}}" data-roomRate="{{$thisRoom->roomRate}}">
                                             </tr>
                                         @endforeach
                                     </table>
@@ -106,7 +112,7 @@
                                 </tr>
                                 <tr  class="thead-light DivHeaderText">
                                     <th class="th-text" width="150px">Total Bill</th>
-                                    <td id="total_bill">₱{{number_format($bookingData->billAmount, 2)}}</td>
+                                    <td id="total_bill"></td>
                                 </tr>
                                 <tr class="thead-light DivHeaderText">
                                     <th class="th-text" width="150px">Total Payment</th>
@@ -145,21 +151,63 @@
                         </div>
                     </div>
 
-                    <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
-                    <button type="button" class="print-button mt-1" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
-                    <button type="button" class="delete-button mt-1" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
-                    <button type="button" class="back-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+
+                    {{-- Buttons --}}
+                    @if($bookingData->bookingStatus == 0)
+                        <button type="button" class="update-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
+                    @if(date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"Y-m-d 00:00:00") == \Carbon\Carbon::today())
+                        <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" data-paymentStatus="{{$bookingData->paymentStatus}}" onclick="CheckinModal(this)">Check-in</button>
+                    @endif
+                        <button type="button" class="update-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
+                        <button type="button" class="update-button mt-1" id="cancelBtn" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
+                        <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                    @elseif($bookingData->bookingStatus == 1)
+                        <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" onclick="CheckoutModal()">Check-Out</button>
+                        <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                    @elseif($bookingData->bookingStatus == 2)
+                    <button type="button" class="print-button" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
+                    <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                    @endif
+
+
+                   
+
+                    
+                   
                 </div>
             </div>
 </div>
 
 
-
+{{-- FORMS --}}
 <form id="deleteForm" method="POST" action="{{ route('booking.destroy',$bookingData->id) }}">
     @csrf
     @method('DELETE')
-  
 </form>
+
+<form id="addRoomForm" method="POST" action="{{ route('booking.searchAvailableRooms') }}">
+    @csrf
+        <input type="hidden" value="{{$bookingData->checkinDate}}" name="checkinDate">
+        <input type="hidden" value="{{$bookingData->checkoutDate}}" name="checkoutDate">
+        <input type="hidden" value="update" name="searchCategory">
+        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
+        <input type="hidden" value="{{$bookingData->paymentStatus}}" name="bookingPaymentStatus">
+</form>
+
+<form id="rescheduleForm" method="POST" action="{{ route('rescheduleBooking') }}">
+    @csrf
+        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
+</form>
+
+<form id="checkInForm" method="POST" action="{{ route('bookingCheckinUpdate') }}">
+    @csrf
+        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
+  </form>
+
+  <form id="checkOutForm" method="POST" action="{{ route('bookingCheckoutUpdate') }}">
+    @csrf
+        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
+  </form>
 
 
 
@@ -214,7 +262,7 @@
         <div class="row px-4 pb-4">
             <div class="col-sm-12">
                 <button class="save-button" type="submit">Add</button>
-                <button class="back-button float-right" type="button" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="back-button float-right" type="button" onclick="$('#paymentModal').modal('hide');">Cancel</button>
             </div>
         </div>
         </div>
@@ -227,8 +275,32 @@
     $(document).ready(function() {
     
         $('#total_payment').html("₱" + parseFloat(cashReceived() - cashChange()).toFixed(2));
+      
+        if($('#total_payment').text().replace(/[^\d.-]/g, '') > 0){
+            $('#cancelBtn').hide();
+        }
+
         $('#changeDiv').hide();
         
+        
+
+        var checkInDate = $('#checkinDateValue').val(),
+            checkOutDate = $('#checkoutDateValue').val();
+        
+        var ckInDate = new Date(checkInDate),
+            ckOutDate = new Date(checkOutDate);
+
+        var hours = Math.abs(ckInDate - ckOutDate) / 36e5;
+
+        var totalBill = 0;
+        $('.roomPriceAndRate').each(function(){
+            var roomRate = $(this).attr('data-roomRate'),
+                roomPrice = $(this).attr('data-roomPrice');
+             totalBill += (roomPrice / roomRate) * hours;
+        });
+
+
+        $('#total_bill').html('₱'+totalBill.toFixed(2));
         showBalance();
     });
 
@@ -318,6 +390,72 @@ function cancelBooking(){
                 $('#deleteForm').submit();
             }
         });
+}
+
+function AddRoom(){
+
+    let timerInterval
+        Swal.fire({
+            title: 'Search Available Room...',
+            timer: 2000,
+            allowOutsideClick: false,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                const content = Swal.getContent()
+                if (content) {
+                    const b = content.querySelector('b')
+                    if (b) {
+                    b.textContent = Swal.getTimerLeft()
+                    }
+                }
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+             $('#addRoomForm').submit();
+        });
+}
+
+
+function bookingReschedule(){
+    Swal.fire({
+        title: 'Are you sure You want to Reschedule this Booking?',
+        text: "You need to Select Another Available room if you change the date of your booking.",
+        icon: 'warning',
+        showCancelButton: true,
+        allowOutsideClick:false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#rescheduleForm').submit();
+            }
+        });
+}
+
+
+function CheckinModal(thisBtn){
+
+    var paymentStatus = $(thisBtn).attr('data-paymentStatus');
+
+    if(paymentStatus == 1 || paymentStatus == 0){
+            Swal.fire('Please pay available balance to check-in.')
+    }else{
+        $('#checkInForm').submit();
+    }
+
+}
+
+
+function CheckoutModal(){
+    $('#checkOutForm').submit();
+
 }
 
 var msg = "{{Session::get('success')}}";

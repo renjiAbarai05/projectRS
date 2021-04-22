@@ -12,8 +12,7 @@
                     <th class="th-sm th-border" width="150px">Check-in Date</th>
                     <th class="th-sm th-border" width="150px">Check-out Date</th>
                     <th class="th-sm th-border">Guest Name</th>
-                    {{-- <th class="th-sm th-border">Total Bill</th> --}}
-                    <th class="th-sm th-border"  width="100px">Status</th>
+                    <th class="th-sm th-border"  width="150px">Payment Status</th>
                     <th class="th-sm th-border text-center" width="100px">Action</th>
                 </tr>
             </thead>
@@ -23,7 +22,6 @@
                         <td class="td-border"> {{date('F j, Y g:i A', strtotime($booked->checkinDate)) }} </td>
                         <td class="td-border"> {{ date('F j, Y g:i A', strtotime($booked->checkoutDate)) }}</td>
                         <td class="td-border">{{$booked->guestFullName}}</td>
-                        {{-- <td class="th-sm td-border">₱{{$booked->billAmount}}</td> --}}
                         <td class="th-sm td-border">@if($booked->paymentStatus == 0)No Payment @elseif($booked->paymentStatus == 1) Partially Paid @else Fully Paid @endif</td>
                         <td class="td-border text-center">
                         <button class="update-button" style="color:white; width:100%;" onclick="window.location='{{ route('booking.show',$booked->id) }}'">Select</button>

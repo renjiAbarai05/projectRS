@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-sm-7">
             <div class="DivTemplate">
-                <p class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</p>
+                <p class="DivHeaderText center-align">Available Rooms From {{date_format(\Carbon\Carbon::parse($dateID),"M j,Y g:i A")}} to {{date_format(\Carbon\Carbon::parse($dateOD),"M j,Y g:i A")}} </p>
                 <div class="hr"></div>
                     <div class="table-responsive mt-1">
                         <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">

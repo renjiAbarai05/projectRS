@@ -71,7 +71,7 @@
             <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
                     <div class="form-row px-3 pt-3">
                         <div class="form-group col-sm-12">
-                            <span class="DivHeaderText center-align">SEARCH AVAILABLE ROOM</span>
+                            <span class="DivHeaderText center-align">Available Rooms From {{date_format(\Carbon\Carbon::parse($dateID),"M j,Y g:i A")}} to {{date_format(\Carbon\Carbon::parse($dateOD),"M j,Y g:i A")}} </span>
                             <div style=" border: 1px solid #fc8621 !important; margin-top: 5px"></div>
                         </div>
                     </div>

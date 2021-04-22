@@ -45,12 +45,7 @@
 
 <script>
 $(document).ready(function(){
-    $('#TblSorter').DataTable({
-        "columnDefs": [
-        { "orderable": false, "targets": 2 }
-        ],
-        "order": [[ 0, "desc" ]],
-    });
+    $('#TblSorter').DataTable({});
 });
 
 var msg = "{{Session::get('success')}}";
