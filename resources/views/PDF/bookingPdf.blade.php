@@ -5,11 +5,12 @@
     <title>Room Info</title>
     <style>
         body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
             color: #676767;
+            font-size: 18px;
         }
         .label {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: normal !important;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -37,45 +38,6 @@
 </head>
 <body>
     <h3>Hotel Lai Rico</h3>
-    <span class="text-uppercase">Room Details</span>
-    <table class="w-100 mb-4" style="border-top: 2px solid #c24914">
-        <tr>
-            <td>
-                <div class="label">Check-in Date</div>
-                <div class="pl-3">
-                    {{$bookingData->checkinDate}}
-                </div>
-            </td>
-            <td>
-                <div class="label">Check-out Date</div>
-                <div class="pl-3">
-                    {{$bookingData->checkoutDate}}
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="label">Room Number</div>
-                <div class="pl-3">
-                    {{$bookingData->roomNumber}}
-                </div>
-            </td>
-            <td>
-                <div class="label">Room Name</div>
-                <div class="pl-3">
-                    {{$bookingData->roomName}}
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="label">Room Rate</div>
-                <div class="pl-3">
-                    &#8369;{{$bookingData->roomPrice}} / {{$bookingData->roomRate}} Hours
-                </div>
-            </td>
-        </tr>
-    </table>
     <span class="text-uppercase">Guest Details</span>
     <table class="w-100 mb-4" style="border-top: 2px solid #c24914">
         <tr>
@@ -115,6 +77,50 @@
             </td>
         </tr>
     </table>
+    <span class="text-uppercase">Room Details</span>
+    <table class="mb-4" style="border-top: 2px solid #c24914">
+        <tr>
+            <td width="600px">
+                <div class="label">Check-in Date</div>
+                <div class="pl-3">
+                    {{date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"M j,Y g:i A")}}
+                </div>
+            </td>
+            <td width="600px">
+                <div class="label">Check-out Date</div>
+                <div class="pl-3">
+                    {{date_format(\Carbon\Carbon::parse($bookingData->checkoutDate),"M j,Y g:i A")}}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="mb-4 table-bordered paymentTable">
+        <tr>
+            <th class="text-center" width="300px">
+                Room #
+            </th>
+            <th class="text-center" width="300px">
+                Room Name
+            </th>
+            <th class="text-center" width="300px">
+                Room Rate
+            </th>
+        </tr>
+        @php
+            $totalBill = 0;
+            $hours = round((strtotime($bookingData->checkoutDate) - strtotime($bookingData->checkinDate))/3600, 1);
+        @endphp
+        @foreach($roomData as $roomData)
+        <tr>
+            <td>{{$roomData->roomNumber}}</td>
+            <td>{{$roomData->roomName}}</td>
+            <td>&#8369;{{$roomData->roomPrice}} By {{$roomData->roomRate}} Hours</td>
+        </tr>
+        @php
+            $totalBill += ($roomData->roomPrice/$roomData->roomRate) * $hours;
+        @endphp
+        @endforeach
+    </table>
     <span class="text-uppercase">Summary</span>
     <table class="w-100 mb-4 table-bordered summaryTable" style="border-top: 2px solid #c24914">
         <tr>
@@ -127,10 +133,10 @@
         </tr>
         <tr>
             <td>
-                <div class="label">Bill Total</div>
+                <div class="label">Total Bill</div>
             </td>
             <td>
-                &#8369;{{number_format($bookingData->billAmount, 2)}}
+                &#8369;{{number_format($totalBill, 2)}}
             </td>
         </tr>
         <tr>
@@ -147,14 +153,6 @@
                 &#8369;{{number_format($totalPayment, 2)}}
             </td>
         </tr>
-        <tr>
-            <td>
-                <div class="label">Balance</div>
-            </td>
-            <td>
-                &#8369;{{number_format($bookingData->billAmount-$totalPayment, 2)}}
-            </td>
-        </tr>
     </table>
     <span class="text-uppercase">Payment Details</span>
     <table class="w-100 mb-4 table-bordered paymentTable" style="border-top: 2px solid #c24914">
@@ -168,12 +166,16 @@
             <th class="text-center">
                 Change
             </th>
+            <th class="text-center">
+                Payment Method
+            </th>
         </tr>
         @foreach ($payments as $payment)
         <tr>
             <td>{{date_format($payment->created_at,"M j,Y g:i A")}}</td>
             <td class="cash_received_value">{{number_format($payment->cashReceived, 2)}}</td>
             <td class="cash_change_value">{{number_format($payment->changeAmount, 2)}}</td>
+            <td>{{$payment->paymentMethod}}</td>
         </tr>
         @endforeach
     </table>
