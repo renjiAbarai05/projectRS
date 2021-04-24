@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row px-3 mt-2">
+                        {{-- <div class="form-row px-3 mt-2">
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-money-check-alt"></i></span>
@@ -181,7 +181,7 @@
                                     <option value=""> Paymaya</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-row px-2 mt-2">
                             <div class="form-group col-sm-12">
                                 <button class="save-button" style="width:200px;" type="submit">BOOK</button>

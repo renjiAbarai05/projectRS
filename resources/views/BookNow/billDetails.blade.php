@@ -106,24 +106,23 @@
 
                 <div style=" border: 1px solid #fc8621 !important; margin-top: 3px;"></div>
                 
-                <div class='form-row px-2 mt-2' >
-                    <div class='col-md-6'>
+                <div class='form-row px-2 mt-2'>
+                    <div class='col-md-12'>
                         <div class='label text-left'>Total Bill</div>
-                        <p class='viewText pl-3'><b>₱{{number_format($bookingData->billAmount, 2)}}</b></p>
+                        <p class='viewText pl-3 font-weight-bold' style="font-size: 20px"><b>₱{{number_format($bookingData->billAmount, 2)}}</b></p>
                     </div>
-                    <div class='col-md-6'>
-                        <div class='label text-left'>Payment Method</div>
-                        <p class='viewText pl-3'><b>Gcash</b></p>
+                    <div class='col-md-12'>
+                        <b>You can send your downpayment through:</b>
                     </div>
-                    <div class='col-md-6'>
-                        <div class='label text-left'>Gcash Number</div>
-                        <p class='viewText pl-3'><b>090922120342</b></p>
+                    <div class="col-md-6">
+                        <b>GCash<br>Account #: 09234346456<br>Name: Hotel Lai rico.</b>
                     </div>
-                    <div class='col-md-6'>
-                        <div class='label text-left'>Gcash Name</div>
-                        <p class='viewText pl-3'><b>Hotel Lai Rico</b></p>
+                    <div class="col-md-6">
+                        <b>Paymaya<br>Account #: 09354365636<br>Name: Hotel Lai rico.</b>
                     </div>
-                    
+                    <div class="col-md-12 pt-2">
+                        <b>Please pay immediately to reserve your booking.</b>
+                    </div>
                 </div>
            
                 <div class="form-row mt-4">
