@@ -32,7 +32,12 @@ Route::group(['middleware' => 'auth'], function() {
     //BookingAdminPage
     Route::get('booking/viewToday', 'BookingController@viewToday')->name('booking.viewToday');
     Route::get('booking/viewCheckedIn', 'BookingController@viewCheckedIn')->name('booking.viewCheckedIn');
+    Route::get('booking/viewCheckingOut', 'BookingController@viewCheckingOut')->name('booking.viewCheckingOut');
     Route::get('booking/viewHistory', 'BookingController@viewHistory')->name('booking.viewHistory');
+    Route::get('booking/viewCancelled', 'BookingController@viewCancelled')->name('booking.viewCancelled');
+    
+
+    
    
     Route::resource('booking', 'BookingController');
     Route::post('booking/searchAvailableRooms', 'BookingController@searchAvailableRooms')->name('booking.searchAvailableRooms');

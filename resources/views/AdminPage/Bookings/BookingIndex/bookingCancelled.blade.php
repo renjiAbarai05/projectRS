@@ -28,7 +28,7 @@
 </nav>
 <div class="container" style="margin-top:-20px;">
     <div class="DivTemplate">
-        <p class="DivHeaderText center-align">Booking History</p>
+        <p class="DivHeaderText center-align">Cancelled Bookings</p>
         <div class="hr"></div>
                 <div class="table-responsive mt-3">
                     <table id="TblSorter"  class="table dataDisplayer table-hover" style="width:100%">
@@ -45,7 +45,7 @@
                               <tr class="data font-weight-bold">
                                   <td class="td-border"> {{date('F j, Y g:i A', strtotime($booked->checkinDate)) }} - {{date('F j, Y g:i A', strtotime($booked->checkoutDate)) }} </td>
                                   <td class="td-border">{{$booked->guestFullName}}</td>
-                                  <td class="th-sm td-border">@if($booked->bookingStatus == 2)Checked-out @endif</td>
+                                  <td class="th-sm td-border">@if($booked->cancelled == 1)Cancelled @endif</td>
                                   <td class="td-border text-center">
                                       <button class="update-button" style="color:white; width:100%;"  onclick="window.location='{{ route('booking.show',$booked->id) }}'">View</button>
                                   </td>

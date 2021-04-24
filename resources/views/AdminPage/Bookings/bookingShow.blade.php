@@ -64,8 +64,10 @@
                         </div>
 
                         <div class="DivTemplate mt-3">
-                            @if($bookingData->bookingStatus == 0)
-                               <a class="float-right" onclick="AddRoom()">ADD ROOM</a>
+                            @if($bookingData->cancelled == 0)
+                                @if($bookingData->bookingStatus == 0)
+                                <a class="float-right" style="color: #fc8621;  font-weight:bold; letter-spacing: 0.5px; font-size: 13px; border:1px solid #fc8621; border-radius:5px;" onclick="AddRoom()">ADD ROOM</a>
+                                @endif
                             @endif
                             <div class="DivHeaderText">ROOM DETAILS</div>
                             <div class="hr my-1" style="height:2px;"></div>
@@ -151,28 +153,20 @@
                         </div>
                     </div>
 
-                    {{-- Buttons --}}
-                    @if($bookingData->bookingStatus == 0)
-                        <button type="button" class="search-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
-                    @if(date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"Y-m-d 00:00:00") == \Carbon\Carbon::today('Asia/Manila'))
-                        <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" data-paymentStatus="{{$bookingData->paymentStatus}}" onclick="CheckinModal(this)">Check-in</button>
+                    @if($bookingData->cancelled == 0)
+                        {{-- Buttons --}}
+                        @if($bookingData->bookingStatus == 0)
+                            <button type="button" class="search-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
+                            <button type="button" class="print-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
+                            <button type="button" class="delete-button mt-1" id="cancelBtn" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
+                            <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
+                        @elseif($bookingData->bookingStatus == 2)
+                            <button type="button" class="print-button" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
+                            <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.viewHistory') }}'">Back</button>
+                        @endif
+                    @else
+                            <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.viewCancelled') }}'">Back</button>
                     @endif
-                        <button type="button" class="print-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
-                        <button type="button" class="delete-button mt-1" id="cancelBtn" style="width:100%; border-radius:3px;" onclick="cancelBooking()">Cancel Booking</button>
-                        <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
-                    @elseif($bookingData->bookingStatus == 1)
-                        <button type="button" class="delete-button mt-1" id="checkInButton" style="width:100%; border-radius:3px; border: none" onclick="CheckoutModal()">Check-Out</button>
-                        <button type="button" class="back-button mt-1 ml-0" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
-                    @elseif($bookingData->bookingStatus == 2)
-                    <button type="button" class="print-button" style="width:100%; border-radius:3px;" onclick="window.open('{{ route('bookingPdf', $bookingData->id) }}')">Print</button>
-                    <button type="button" class="update-button mt-1" style="width:100%; border-radius:3px; background-color: grey;" onclick="window.location='{{ route('booking.index') }}'">Back</button>
-                    @endif
-
-
-                   
-
-                    
-                   
                 </div>
             </div>
 </div>
@@ -197,17 +191,6 @@
     @csrf
         <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
 </form>
-
-<form id="checkInForm" method="POST" action="{{ route('bookingCheckinUpdate') }}">
-    @csrf
-        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
-  </form>
-
-  <form id="checkOutForm" method="POST" action="{{ route('bookingCheckoutUpdate') }}">
-    @csrf
-        <input type="hidden" value="{{$bookingData->id}}" name="bookingId">
-  </form>
-
 
 
 
@@ -437,24 +420,6 @@ function bookingReschedule(){
         });
 }
 
-
-function CheckinModal(thisBtn){
-
-    var paymentStatus = $(thisBtn).attr('data-paymentStatus');
-
-    if(paymentStatus == 1 || paymentStatus == 0){
-            Swal.fire('Please pay available balance to check-in.')
-    }else{
-        $('#checkInForm').submit();
-    }
-
-}
-
-
-function CheckoutModal(){
-    $('#checkOutForm').submit();
-
-}
 
 var msg = "{{Session::get('success')}}";
 var exist = "{{Session::has('success')}}";

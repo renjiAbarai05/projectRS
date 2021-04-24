@@ -21,10 +21,11 @@ class BookingController extends Controller
      */
     public function index()
     {
-        Session::put('adminPage', 'booking-all');
-        // $loginUser = Auth::id();
+        Session::put('masterAdminSide', 'BookingAll');
+        Session::put('BookingAll', 'booking-all');
+        
+        $booked = BookingReserve::where('cancelled',0)->where('bookingStatus',0)->where('checkinDate' ,'>', Carbon::tomorrow('Asia/Manila'))->get();
 
-        $booked = BookingReserve::where('cancelled',0)->where('bookingStatus',0)->get();
         return view('AdminPage.Bookings.BookingIndex.bookingIndex',compact('booked'));
     }
 
@@ -303,23 +304,39 @@ class BookingController extends Controller
     }
 
     public function viewToday(){
-        Session::put('adminPage', 'booking-today');
+        Session::put('BookingAll', 'booking-today');
         $booked = BookingReserve::where('cancelled',0)->whereDate('checkinDate',Carbon::today('Asia/Manila'))->where('bookingStatus',0)->get();
 
         return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
     }
 
     public function viewCheckedIn(){
-        Session::put('adminPage', 'booking-checkedin');
+        Session::put('masterAdminSide', 'CheckedIn');
+        Session::put('CheckedIn', 'CheckedIn-all');
         $booked = BookingReserve::where('cancelled',0)->where('bookingStatus',1)->get();
         return view('AdminPage.Bookings.BookingIndex.bookingViewCheckin',compact('booked'));
     }
 
+    public function viewCheckingOut(){
+        Session::put('CheckedIn', 'CheckingOut-today');
+        $booked = BookingReserve::where('cancelled',0)->where('bookingStatus',1)->whereDate('checkoutDate',Carbon::today('Asia/Manila'))->get();
+      
+        return view('AdminPage.Bookings.BookingIndex.bookingViewCheckingOutToday',compact('booked'));
+    }
+
+
     public function viewHistory(){
-        Session::put('adminPage', 'booking-history');
+        Session::put('masterAdminSide', 'history');
         $booked = BookingReserve::where('cancelled',0)->where('bookingStatus',2)->get();
         return view('AdminPage.Bookings.BookingIndex.bookingViewHistory',compact('booked'));
     }
+
+    public function viewCancelled(){
+        Session::put('masterAdminSide', 'cancelled');
+        $booked = BookingReserve::where('cancelled',1)->get();
+        return view('AdminPage.Bookings.BookingIndex.bookingViewHistory',compact('booked'));
+    }
+
 
     public function bookingCheckinUpdate(Request $request){
 
@@ -343,7 +360,7 @@ class BookingController extends Controller
            'CheckedOutTime' => Carbon::now('Asia/Manila')->toDateTimeString(),
         ]);
         
-        return redirect()->route('booking.viewCheckedIn')->with('success', 'Checked-out Successfully');
+        return redirect()->route('booking.viewHistory')->with('success', 'Checked-out Successfully');
     }
 
 
