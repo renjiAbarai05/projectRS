@@ -304,7 +304,7 @@ class BookingController extends Controller
 
     public function viewToday(){
         Session::put('adminPage', 'booking-today');
-        $booked = BookingReserve::where('cancelled',0)->whereDate('checkinDate',Carbon::today())->where('bookingStatus',0)->get();
+        $booked = BookingReserve::where('cancelled',0)->whereDate('checkinDate',Carbon::today('Asia/Manila'))->where('bookingStatus',0)->get();
 
         return view('AdminPage.Bookings.BookingIndex.bookingToday',compact('booked'));
     }
@@ -327,7 +327,7 @@ class BookingController extends Controller
 
         BookingReserve::find($bookingId)->update([
            'bookingStatus' => '1',
-           'CheckedInTime' => Carbon::now()->toDateTimeString(),
+           'CheckedInTime' => Carbon::now('Asia/Manila')->toDateTimeString(),
         ]);
         
         return redirect()->route('booking.viewCheckedIn')->with('success', 'Checked-in Successfully');
@@ -340,7 +340,7 @@ class BookingController extends Controller
 
         BookingReserve::find($bookingId)->update([
            'bookingStatus' => '2',
-           'CheckedOutTime' => Carbon::now()->toDateTimeString(),
+           'CheckedOutTime' => Carbon::now('Asia/Manila')->toDateTimeString(),
         ]);
         
         return redirect()->route('booking.viewCheckedIn')->with('success', 'Checked-out Successfully');
