@@ -8,7 +8,7 @@
                 <table id="TblSorter"  class="table dataDisplayer table-hover" style="width:100%">
                   <thead class="thead-bg">
                     <tr>
-                      <th class="th-sm th-border" width="150px">Check-in Date</th>
+                      <th class="th-sm th-border" width="150px">Checked-in Date</th>
                       <th class="th-sm th-border">Guest Name</th>
                       <th class="th-sm th-border"  width="150px">Booking Status</th>
                       <th class="th-sm th-border text-center" width="100px">Action</th>
@@ -18,7 +18,7 @@
                   
                     @foreach($booked as $booked)
                           <tr class="data font-weight-bold">
-                              <td class="td-border"> {{date('F j, Y g:i A', strtotime($booked->checkinDate)) }} </td>
+                              <td class="td-border"> {{date('F j, Y g:i A', strtotime($booked->checkedInTime)) }} </td>
                               <td class="td-border">{{$booked->guestFullName}}</td>
                               <td class="th-sm td-border">@if($booked->bookingStatus == 1)Checked-in @endif</td>
                               <td class="td-border text-center">

@@ -151,11 +151,10 @@
                         </div>
                     </div>
 
-
                     {{-- Buttons --}}
                     @if($bookingData->bookingStatus == 0)
                         <button type="button" class="search-button mt-1" id="addPaymentBtn" style="width:100%; border-radius:3px;" onclick="openPaymentModal()">Add payment</button>
-                    @if(date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"Y-m-d 00:00:00") == \Carbon\Carbon::today())
+                    @if(date_format(\Carbon\Carbon::parse($bookingData->checkinDate),"Y-m-d 00:00:00") == \Carbon\Carbon::today('Asia/Manila'))
                         <button type="button" class="update-button mt-1" id="checkInButton" style="width:100%; border-radius:3px;" data-paymentStatus="{{$bookingData->paymentStatus}}" onclick="CheckinModal(this)">Check-in</button>
                     @endif
                         <button type="button" class="print-button mt-1" id="reschedule" style="width:100%; border-radius:3px;" onclick="bookingReschedule()">Reschedule</button>
@@ -249,12 +248,11 @@
             <div class="row mt-1 pb-2">
                 <div class="col-sm-12">
                     <label>Payment Method:</label>
-                    <select class="form-control" name="paymentMethod" id="">
+                    <select class="form-control" name="paymentMethod" id="" required>
                         <option value="" selected>Select</option>
                         <option value="Cash">Cash</option>
                         <option value="Paymaya">Paymaya</option>
                         <option value="Gcash">Gcash</option>
-                        <option value="Bank Deposit">Bank Deposit</option>
                     </select>
                 </div>
             </div>
