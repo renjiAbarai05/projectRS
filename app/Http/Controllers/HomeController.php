@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\BookingReserve;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -29,9 +31,39 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
-        // $loginUser = Auth::id();
+    
+        Session::put('masterAdminSide', 'Dashboard');
+        
         Session::put('loginUser', Auth::id());
+        Session::put('loginFirstName', Auth::user()->firstName);
+        Session::put('loginLastName', Auth::user()->lastName);
 
-        return view('AdminPage.Dashboard.dashboard');
+        $cancelCount = 0;
+        $checkedInCount = 0;
+        $checkedOutCount = 0;
+        
+
+        $cancelledBooking = BookingReserve::where('cancelled',1)->whereDate('checkinDate',Carbon::today('Asia/Manila'))->get();
+
+        foreach($cancelledBooking as $cancelledBooking){
+            $cancelCount ++;
+        }
+
+        $checkedInBooking = BookingReserve::where('cancelled',0)->whereDate('checkinDate',Carbon::today('Asia/Manila'))->where('bookingStatus',0)->get();
+
+        foreach($checkedInBooking as $checkedInBooking){
+            $checkedInCount ++;
+        }
+
+        $checkedOutBooking = BookingReserve::where('cancelled',0)->where('bookingStatus',1)->whereDate('checkoutDate',Carbon::today('Asia/Manila'))->get();
+
+        foreach($checkedOutBooking as $checkedOutBooking){
+            $checkedOutCount ++;
+        }
+
+       
+
+
+        return view('AdminPage.Dashboard.dashboard',compact('cancelCount','checkedInCount','checkedOutCount'));
     }
 }

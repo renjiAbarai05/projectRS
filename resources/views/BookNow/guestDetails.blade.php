@@ -55,9 +55,7 @@
 
 </style>
 
-    <div class="container" style="width:50%;">
-        {{-- <div class="row" style=" margin-top: 30px;"> --}}
-            {{-- <div class="col-sm-6"> --}}
+    <div class="container pb-4" style="width:50%;">
             <form class="form-horizontal" method="POST" action="{{route('bookingHome.store')}}">
                 @csrf
                 <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
@@ -77,7 +75,7 @@
                             <input id="datetimepicker2" class="form-control" type="text" name="checkoutDate" value="{{$checkOut}}" autocomplete="off" readonly="readonly">
                         </div>
                     </div>
-                    <div class="table-responsive mt-3 px-3 pb-2">
+                    <div class="table-responsive mt-3 px-3">
                         <table class="table table-bordered text-center">
                             <tr class="thead-light">
                                 <th class="th-text" width="100px">Room #</th>
@@ -101,9 +99,19 @@
                             @endforeach
                         </table>
                     </div>
+
+                    <div class="form-row px-3 pb-3">
+                        <div style="background-color:#fc8621; width:100%; height:70px; border-radius: 3px">
+                            <div class="px-3">
+                                <label class="py-0 my-0" style="font-size:40px!important; color:white"><b>Total Bill:</b></label>
+                                <label class="py-0 my-0" style="font-size:40px; color:white; margin-left:3px; font-weight: 400" id="billAmount"></label>
+                                <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div style="background: whitesmoke;  border-radius: 10px;" class="mt-3">
+                <div style="background: whitesmoke;  border-radius: 10px;" class="mt-3 pb-2">
                         <div class="form-row px-3 pt-3">
                             <div class="form-group col-sm-12">
                                 <span class="DivHeaderText center-align">GUEST DETAILS</span>
@@ -150,38 +158,7 @@
                                 <input type="email" class="form-control" name="guestEmail"  placeholder="Email" autocomplete="off" required>
                             </div>
                         </div>
-                      
-                    </div>
-            {{-- </div>
-                <div class="col-sm-6"> --}}
-                    <div style="background: whitesmoke; border-radius: 10px; " class="mt-3 mb-3">
-                        <div class="form-row px-3 pt-3">
-                            <div class="form-group col-sm-12">
-                                <span class="DivHeaderText center-align">AMOUNT</span>
-                                <div style=" border: 1px solid #fc8621 !important; margin-top: 5px"></div>
-                            </div>
-                        </div>
-                        <div class="form-row px-3 pb-2">
-                            <div style="background-color:#fc8621; width:100%; height:70px; border-radius: 3px">
-                                <div class="px-3">
-                                    <label class="py-0 my-0" style="font-size:40px!important; color:white"><b>Total Bill:</b></label>
-                                    <label class="py-0 my-0" style="font-size:40px; color:white; margin-left:3px; font-weight: 400" id="billAmount"></label>
-                                    <input type="hidden" class="form-control" id="billAmountHidden" name="billAmount" autocomplete="off">
-                                </div>
-                            </div>
-                        </div>
-                        {{-- <div class="form-row px-3 mt-2">
-                            <div class="form-group input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-money-check-alt"></i></span>
-                                </div>
-                                <select class="form-control">
-                                    <option value="" selected disabled>Payment Method</option>
-                                    <option value=""> Gcash</option>
-                                    <option value=""> Paymaya</option>
-                                </select>
-                            </div>
-                        </div> --}}
+                       
                         <div class="form-row px-2 mt-2">
                             <div class="form-group col-sm-12">
                                 <button class="save-button" style="width:200px;" type="submit">BOOK</button>
@@ -189,13 +166,10 @@
                             </div>
                         </div>  
                     </div>
-                    
+         
                     
                 </form>
-                {{-- </div> --}}
-                {{-- <h2 class="font-weight-bold" style="letter-spacing: 2px">FILL UP YOUR <br>DETAILS</h2> --}}
-                {{-- <h3>lorem ipsum dolor</h3> --}}
-            {{-- </div> --}}
+               
         </div>
 
         

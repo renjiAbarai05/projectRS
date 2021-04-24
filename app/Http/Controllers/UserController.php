@@ -18,6 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        Session::put('masterAdminSide', 'User');
         $users = User::all();
         return view('AdminPage.Users.index', compact('users'));
     }

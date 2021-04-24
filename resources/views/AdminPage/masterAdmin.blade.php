@@ -130,20 +130,37 @@ crossorigin="anonymous" />
                                 </li>
                                 </ul>
                             </li> --}}
-                            <li>
+                            <li class="@if (Session::get("masterAdminSide") == 'Dashboard') active @endif">
                                 <a href="/dashboard">Dashboard</a>
                             </li>
-                            <li>
+                            <li class="@if (Session::get("masterAdminSide") == 'RoomList') active @endif">
                                 <a href="{{route('roomList.index')}}">Room List</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{route('booking.index')}}">Bookings</a>
+                            </li> --}}
+                            <li>
+                                <a href="#Bookings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Bookings</a>
+                                <ul class="collapse list-unstyled @if (Session::get("masterAdminSide") == 'BookingAll' || Session::get("masterAdminSide") == 'CheckedIn' || Session::get("masterAdminSide") == 'history' || Session::get("masterAdminSide") == 'cancelled') show @endif" id="Bookings">
+                                <li class="@if (Session::get("masterAdminSide") == 'BookingAll') active @endif">
+                                    <a href="{{route('booking.index')}}" class="v-tabs">All Bookings</a>
+                                </li>
+                                <li class="@if (Session::get("masterAdminSide") == 'CheckedIn') active @endif">
+                                    <a href="{{ route('booking.viewCheckedIn') }}">Checked-In</a>
+                                </li>
+                                <li class="@if (Session::get("masterAdminSide") == 'history') active @endif">
+                                    <a href="{{ route('booking.viewHistory') }}">Booking History</a>
+                                </li>
+                                <li class="@if (Session::get("masterAdminSide") == 'cancelled') active @endif">
+                                    <a href="{{ route('booking.viewCancelled') }}">Cancelled Bookings</a>
+                                </li>
+                                </ul>
                             </li>
                             @if (Session::get("loginUser") == '0')
-                            <li id="reportLi">
+                            <li id="reportLi" class="@if (Session::get("masterAdminSide") == 'Report') active @endif">
                                 <a href="{{route('dailyView')}}">Report</a>
                             </li>
-                            <li>
+                            <li class="@if (Session::get("masterAdminSide") == 'User') active @endif">
                                 <a href="{{route('users.index')}}">User Management</a>
                             </li>
                             @endif
@@ -234,9 +251,6 @@ function logout(){
             }
         });
 }
-
-
-
 
 </script>
 

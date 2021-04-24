@@ -219,47 +219,31 @@ cursor: pointer;
                                 <div class="dashboard-header">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <p class="user-greetings text-adjuster"><span class="user-greetings " id="userGreetings"></span> Aleli Santiago!</p>
-                                            <p class="mt-n1 facility-name text-adjuster">
-                                               Facility Name
-                                            </p>
+                                            <p class="user-greetings text-adjuster"><span class="user-greetings " id="userGreetings"></span> {{Session::get("loginFirstName")}} {{Session::get("loginLastName")}}!</p>
+                                       
                                         </div>
                                         <div class="col-lg-4 header-margin">
                                             <p class="facility-name text-r mb-n1 text-adjuster mt-n2" style="font-style: normal">Today is</p>
-                                            <p class="user-greetings text-r text-adjuster"> Apr-22-2020</p>
-                                            <p id='time' class="user-greetings text-r text-adjuster mt-n1" style="font-size: 20px">4:04     AM</p>
+                                            <p class="user-greetings text-r text-adjuster"> {{$dateToday}}</p>
+                                            <p id='time' class="user-greetings text-r text-adjuster mt-n1" style="font-size: 20px">{{$timeNow}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mx-3 margin-top-adjuster">
-                            <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location=''">
-                                    <div class="census-apt">
-                                        <div class="media ml-2 pt-1">
-                                            <i class="fas fa-calendar-check align-self-center census-icon icon-apt"></i>
-                                            <div class="media-body">
-                                                <p class="p-0 text-center census-num num-apt">
-                                                    1
-                                                </p>
-                                                <p class="p-0 text-center census-label label-apt">FOR TODAY</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                         
                             <!-- Waiting Patients -->
                             <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location=''">
+                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewToday') }}'">
                                     <div class="census-wait">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-user-clock align-self-center census-icon icon-wait"></i>
                                             <div class="media-body">
                                                 <p class="p-0 text-center census-num num-wait">
-                                                    2
+                                                    {{$checkedInCount}}
                                                 </p>
-                                                <p class="p-0 text-center census-label label-wait">CHECKED-IN</p>
+                                                <p class="p-0 text-center census-label label-wait">Today's Checking-in</p>
                                             </div>
                                         </div>
                                     </div>
@@ -267,15 +251,15 @@ cursor: pointer;
                             </div>
                             <!-- Unfinished OV Notes -->
                             <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location=''">
+                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewCheckingOut') }}'">
                                     <div class="census-ov">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-user-check align-self-center census-icon icon-ov"> </i>
                                             <div class="media-body">
                                                 <p class="p-0 text-center census-num num-ov">
-                                                   3
+                                                   {{$checkedOutCount}}
                                                 </p>
-                                                <p class="p-0 text-center census-label label-ov">CHECKED-OUT</p>
+                                                <p class="p-0 text-center census-label label-ov">Today's Checking-out</p>
                                             </div>
                                         </div>
                                     </div>
@@ -283,13 +267,13 @@ cursor: pointer;
                             </div>
                             <!-- Co-sign Requests -->
                             <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location=''">
+                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewCancelled') }}'">
                                     <div class="census-cosign">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-times-circle align-self-center census-icon icon-cosign"></i>
                                             <div class="media-body">
                                                 <p class="p-0 text-center census-num num-cosign">
-                                                   3
+                                                   {{$cancelCount}}
                                                 </p>
                                                 <p class="p-0 text-center census-label label-cosign">CANCELLED</p>
                                             </div>

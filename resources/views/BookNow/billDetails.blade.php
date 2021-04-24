@@ -102,15 +102,16 @@
                             @endforeach
                         </table>
                     </div>
+                    <div class='col-md-12'>
+                        <div class='label text-left'>Total Bill</div>
+                        <p class='viewText pl-3 font-weight-bold' style="font-size: 20px"><b>₱{{number_format($bookingData->billAmount, 2)}}</b></p>
+                    </div>
                 </div>
 
                 <div style=" border: 1px solid #fc8621 !important; margin-top: 3px;"></div>
                 
                 <div class='form-row px-2 mt-2'>
-                    <div class='col-md-12'>
-                        <div class='label text-left'>Total Bill</div>
-                        <p class='viewText pl-3 font-weight-bold' style="font-size: 20px"><b>₱{{number_format($bookingData->billAmount, 2)}}</b></p>
-                    </div>
+                  
                     <div class='col-md-12'>
                         <b>You can send your downpayment through:</b>
                     </div>

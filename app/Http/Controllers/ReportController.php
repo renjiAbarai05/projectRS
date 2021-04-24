@@ -11,6 +11,7 @@ use DB;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use DateTime;
 
 class ReportController extends Controller
 {
@@ -18,19 +19,23 @@ class ReportController extends Controller
     
     //Daily View
     public function dailyView(){
+        Session::put('masterAdminSide', 'Report');
         Session::put('report', 'dailyView');
 
         $payments = BookingPayment::all();
         $month = date("m"); 
         $year = date("Y"); 
         
+        $dateObj = DateTime::createFromFormat('!m', $month);
+        // Store the month name to variable
+        $monthName = $dateObj->format('F');
 
         foreach($payments as $key => $payment) {
             $payment->cashTotal = $payment->cashReceived - $payment->changeAmount;
         }
 
         $chart = Charts::database($payments, 'bar', 'highcharts')
-                ->title("Daily Report for the Month of ".$month.' '.$year.'.')
+                ->title("Daily Report for the Month of ".$monthName.' '.$year.'.')
                 ->elementLabel("Total Sales")
                 ->dimensions(1000, 500)
                 ->responsive(true)
@@ -44,6 +49,10 @@ class ReportController extends Controller
         $year = $request->year;
         $month = $request->month;
 
+        $dateObj = DateTime::createFromFormat('!m', $month);
+        // Store the month name to variable
+        $monthName = $dateObj->format('F');
+
         $payments = BookingPayment::all();
 
         foreach($payments as $key => $payment) {
@@ -51,7 +60,7 @@ class ReportController extends Controller
         }
 
         $chart = Charts::database($payments, 'bar', 'highcharts')
-                ->title("Daily Report for the Month of ".$month.' '.$year.'.')
+                ->title("Daily Report for the Month of ".$monthName.' '.$year.'.')
                 ->elementLabel("Total Sales")
                 ->dimensions(1000, 500)
                 ->responsive(true)

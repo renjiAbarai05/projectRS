@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RoomList;
 use Auth;
-
+use Session;
 use Carbon\Carbon;
 
 class RoomListController extends Controller
@@ -17,6 +17,8 @@ class RoomListController extends Controller
      */
     public function index()
     {
+        Session::put('masterAdminSide', 'RoomList');
+
         $roomListData = RoomList::whereNull('deleted_at')->get();
         return view('AdminPage.RoomList.roomIndex',compact('roomListData'));
 
