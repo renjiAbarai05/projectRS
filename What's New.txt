@@ -1,3 +1,9 @@
+April 25, 2021 (James)
+    - Contact Format (11 characters)
+    - input type of contact in user creation change to number (text) ancd create Format
+    - input type email in user creation change to email (text)
+
+
 April 23, 2021 (Aleli)
     Dashboard
         -layout
