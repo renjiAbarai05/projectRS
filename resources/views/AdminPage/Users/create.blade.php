@@ -73,11 +73,11 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Contact Number</label>
-                        <input type="text" class="form-control" name="number">
+                        <input type="number" pattern="/^-?\d+\.?\d*$/" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number">
                     </div>
                     <div class="form-group col-md-12">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="email" class="form-control" name="email">
                     </div>
                 </div>
             </div>
