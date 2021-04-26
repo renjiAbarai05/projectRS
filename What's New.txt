@@ -1,3 +1,9 @@
+April 26, 2021 (Aleli)
+    Dashboard
+        -layout modify
+    User Management
+        - room list change to user management
+
 April 26, 2021(Ivan)
     - Captcha Added  
     Notes: please do this command
@@ -21,7 +27,7 @@ April 25, 2021 (James)
     - input type of contact in user creation change to number (text) ancd create Format
     - input type email in user creation change to email (text)
 
-
+        
 April 23, 2021 (Aleli)
     Dashboard
         -layout
