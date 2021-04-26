@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use Session;
 use App\BookingReserve;
 use App\BookingPayment;
 use App\RoomList;
 use App\BookingReserveRoom;
-
 use Carbon\Carbon;
 class BookingHomeController extends Controller
 {
@@ -41,6 +41,21 @@ class BookingHomeController extends Controller
      */
     public function store(Request $request)
     {
+        // $request->validate([
+        //       'g-recaptcha-response' => 'required|captcha',
+        // ]);
+
+        $validator = Validator::make($request->all(), [
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+
+      
+        if ($validator->fails()) {
+            return redirect('Failed');
+                    
+        }
+        
+
         $checkinDate = Carbon::parse($request->checkinDate)->format('Y-m-d H:i:s');
         $checkoutDate = Carbon::parse($request->checkoutDate)->format('Y-m-d H:i:s');
         $input = $request->all();

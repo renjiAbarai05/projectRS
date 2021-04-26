@@ -36,8 +36,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('booking/viewHistory', 'BookingController@viewHistory')->name('booking.viewHistory');
     Route::get('booking/viewCancelled', 'BookingController@viewCancelled')->name('booking.viewCancelled');
     
-
-    
    
     Route::resource('booking', 'BookingController');
     Route::post('booking/searchAvailableRooms', 'BookingController@searchAvailableRooms')->name('booking.searchAvailableRooms');
@@ -65,10 +63,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
- //BookingHomePage
- Route::resource('bookingHome', 'BookingHomeController');
- Route::post('booking/home/searchAvailableRooms', 'BookingHomeController@searchAvailableRoomsHome')->name('bookingHome.searchAvailableRoomsHome');
- Route::post('booking/home/createBooking', 'BookingHomeController@CreateBookingHome')->name('bookingHome.createBookingHome');
+ 
+  //BookingHomePage
+  Route::resource('bookingHome', 'BookingHomeController');
+  Route::post('booking/home/searchAvailableRooms', 'BookingHomeController@searchAvailableRoomsHome')->name('bookingHome.searchAvailableRoomsHome');
+  Route::post('booking/home/createBooking', 'BookingHomeController@CreateBookingHome')->name('bookingHome.createBookingHome');
 
 //Booking Now
 Route::get('/bookNowPdf/{id}', 'BookingsPrintingController@bookNowPdf')->name('bookNowPdf');
@@ -78,14 +77,10 @@ Route::get('/searchRoom', function () {
     return view('Booknow.searchRoom');
 });
 
-Route::get('/guestDetails', function () {
-    return view('Booknow.guestDetails');
+//Home page booking
+Route::get('/Failed', function () {
+    return view('Booknow.youAreRobot');
 });
 
-Route::get('/billDetails', function () {
-    return view('Booknow.billDetails');
-});
 
-Route::get('/selectAvailRooms', function () {
-    return view('Booknow.selectAvailRooms');
-});
+

@@ -65,9 +65,9 @@
 </style>
 
 
-<div class="container" style="width:50%;">
-        {{-- <div class="row">
-            <div class="col-sm-7"  style="margin-top: 50px; "> --}}
+<div class="container" >
+        <div class="row">
+            <div class="col-sm-7"  style="margin-top: 50px; ">
             <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
                     <div class="form-row px-3 pt-3">
                         <div class="form-group col-sm-12">
@@ -117,13 +117,14 @@
                         </div>
                     </div>  
             </div>
-            {{-- </div> --}}
-            {{-- </form> --}}
-            {{-- <div class="col-sm" style="margin-top: 200px; margin-left: 57px; color: whitesmoke">
-                <h2 class="font-weight-bold" style="letter-spacing: 2px">SELECT YOUR ROOM <br> TO RESERVE</h2> --}}
+            </div>
+            <div class="col-sm" style="margin-top: 200px; margin-left: 57px; color: whitesmoke">
+                <p class="p-0 m-0" style="font-size: 65px; font-weight: 700; text-shadow: 2px 2px rgb(46, 46, 46);">PLEASE SELECT</p>
+                <p class="m-0 p-0" style="font-size: 32px; font-weight: 700; text-shadow: 2px 2px rgb(46, 46, 46);">YOUR DESIRED ROOMS</p>
                 {{-- <h3>lorem ipsum dolor</h3> --}}
-            {{-- </div>
-        </div> --}}
+            </div>
+            </form>
+        </div>
     </div>
         
 <script>
