@@ -159,7 +159,19 @@
                                 <input type="email" class="form-control" name="guestEmail"  placeholder="Email" autocomplete="off" required>
                             </div>
                         </div>
-                       
+                        <div class="form-row px-3 mt-1">
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                <label class="col-md-12 control-label">This Captcha is required.</label>
+                                <div class="col-md-6 pull-center">
+                                    {!! app('captcha')->display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row px-2 mt-2">
                             <div class="form-group col-sm-12">
                                 <button class="save-button" style="width:200px;" type="submit">BOOK</button>
@@ -167,12 +179,10 @@
                             </div>
                         </div>  
                     </div>
-         
-                    
                 </form>
-               
+       
         </div>
-
+      {!! NoCaptcha::renderJs() !!}  
         
 <script type="text/javascript">
     $(document).ready(function() {
@@ -196,7 +206,11 @@
 
         $('#billAmount').html('₱'+totalBill.toFixed(2));
         $('#billAmountHidden').val(totalBill.toFixed(2));
+
+
     });
+
+
 
 </script>
 
