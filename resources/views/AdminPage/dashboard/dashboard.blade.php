@@ -220,7 +220,6 @@ cursor: pointer;
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <p class="user-greetings text-adjuster"><span class="user-greetings " id="userGreetings"></span> {{Session::get("loginFirstName")}} {{Session::get("loginLastName")}}!</p>
-                                       
                                         </div>
                                         <div class="col-lg-4 header-margin">
                                             <p class="facility-name text-r mb-n1 text-adjuster mt-n2" style="font-style: normal">Today is</p>
@@ -231,11 +230,11 @@ cursor: pointer;
                                 </div>
                             </div>
                         </div>
-                        <div class="row mx-3 margin-top-adjuster">
+                        <div class="row margin-top-adjuster">
                          
                             <!-- Waiting Patients -->
-                            <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewToday') }}'">
+                            <div class="col-lg-3" style="margin-left: 130px">
+                                <div class="mx-auto d-block px-2 dashboard-census" onclick="window.location='{{ route('booking.viewToday') }}'">
                                     <div class="census-wait">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-user-clock align-self-center census-icon icon-wait"></i>
@@ -251,7 +250,7 @@ cursor: pointer;
                             </div>
                             <!-- Unfinished OV Notes -->
                             <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewCheckingOut') }}'">
+                                <div class="mx-auto d-block px-2 dashboard-census" onclick="window.location='{{ route('booking.viewCheckingOut') }}'">
                                     <div class="census-ov">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-user-check align-self-center census-icon icon-ov"> </i>
@@ -267,7 +266,7 @@ cursor: pointer;
                             </div>
                             <!-- Co-sign Requests -->
                             <div class="col-lg-3">
-                                <div class="mx-auto d-block px-3 dashboard-census" onclick="window.location='{{ route('booking.viewCancelled') }}'">
+                                <div class="mx-auto d-block px-2 dashboard-census" onclick="window.location='{{ route('booking.viewCancelled') }}'">
                                     <div class="census-cosign">
                                         <div class="media ml-2 pt-1">
                                             <i class="fas fa-times-circle align-self-center census-icon icon-cosign"></i>
@@ -275,7 +274,7 @@ cursor: pointer;
                                                 <p class="p-0 text-center census-num num-cosign">
                                                    {{$cancelCount}}
                                                 </p>
-                                                <p class="p-0 text-center census-label label-cosign">CANCELLED</p>
+                                                <p class="p-0 text-center census-label label-cosign">Cancelled</p>
                                             </div>
                                         </div>
                                     </div>
