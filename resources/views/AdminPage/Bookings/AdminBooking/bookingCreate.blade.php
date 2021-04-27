@@ -70,7 +70,7 @@
                         <div class="row mt-2">
                             <div class="col-sm-12">
                                 <label>Full Name:</label>
-                                <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" required>
+                                <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" onkeypress="return /[a-z]/i.test(event.key)" required>
                             </div>
                         </div>
                         <div class="row mt-1">

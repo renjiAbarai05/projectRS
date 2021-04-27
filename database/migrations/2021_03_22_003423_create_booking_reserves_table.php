@@ -27,7 +27,7 @@ class CreateBookingReservesTable extends Migration
             $table->string('guestEmail')->nullable();
             
             //billInfo
-            $table->float('billAmount')->nullable();
+            $table->string('billAmount')->nullable();
             $table->integer('paymentStatus')->default(0);
             $table->integer('bookingStatus')->default(0);
             $table->DATETIME('checkedInTime')->nullable();

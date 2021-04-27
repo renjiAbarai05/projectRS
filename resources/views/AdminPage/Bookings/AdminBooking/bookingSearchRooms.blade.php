@@ -44,12 +44,12 @@
                             <input id="datetimepicker4" class="form-control thisDate" type="text" name="checkoutDate" autocomplete="off">
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    {{-- <div class="row mt-2">
                         <div class="col-sm-12">
                             <label>Number of guest:</label>
                             <input type="number" id="guestNumber" class="form-control" name="guestNumber" autocomplete="off" required>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <button class="save-button float-left" type="button" onclick="searchEffect()">Search</button>
@@ -111,8 +111,6 @@
             Swal.fire('Check-in date is Required.');
       }else if($('#datetimepicker4').val() == ""){
             Swal.fire('Check-out date is Required.');
-      }else if($('#guestNumber').val() == ""){
-            Swal.fire('Number of guest is Required.');
       }else{
           $('#searchDiv').hide();
         let timerInterval

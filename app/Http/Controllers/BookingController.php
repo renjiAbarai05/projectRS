@@ -179,7 +179,7 @@ class BookingController extends Controller
             $roomListData = RoomList::whereNotIn('id', $arrayRoomId)->whereNull('deleted_at')->get();
             return view('AdminPage.Bookings.bookingAddRoom',compact('roomListData','dateID','dateOD','bookingId','bookingPaymentStatus'));
         }else if($request->searchCategory == "create"){
-            $roomListData = RoomList::whereNotIn('id', $arrayRoomId)->where('capacity','>=',$request->guestNumber)->whereNull('deleted_at')->get();
+            $roomListData = RoomList::whereNotIn('id', $arrayRoomId)->whereNull('deleted_at')->get();
             return view('AdminPage.Bookings.AdminBooking.bookingSearchRoomsResult',compact('roomListData','dateID','dateOD'));
         }else if($request->searchCategory == "reschedule"){
             $bookingId = $request->bookingId;

@@ -53,15 +53,15 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" name="lastName" required>
+                        <input type="text" class="form-control" name="lastName" onkeypress="return /[a-z]/i.test(event.key)" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" name="firstName" required>
+                        <input type="text" class="form-control" name="firstName" onkeypress="return /[a-z]/i.test(event.key)" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" name="middleName">
+                        <input type="text" class="form-control" onkeypress="return /[a-z]/i.test(event.key)" name="middleName">
                     </div>
                     <div class="form-group col-sm-12">
                         <label>Address</label>
