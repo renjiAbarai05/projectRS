@@ -123,7 +123,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="guestFullName" placeholder="Full Name"  id="fullname" autocomplete="off" required>
+                                <input type="text" class="form-control" name="guestFullName" placeholder="Full Name"  id="fullname" autocomplete="off" onkeypress="return /[a-z]/i.test(event.key)" required>
                             </div>
                         </div>
                         <div class="form-row px-3 mt-1">
@@ -207,9 +207,7 @@
         $('#billAmount').html('₱'+totalBill.toFixed(2));
         $('#billAmountHidden').val(totalBill.toFixed(2));
 
-
     });
-
 
 
 </script>

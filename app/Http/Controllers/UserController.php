@@ -130,7 +130,7 @@ class UserController extends Controller
             $user->picture = $name;
             $user->save();
         }
-        return redirect()->route('users.index')->with('success', 'User Updated Successfully');;
+        return redirect()->route('users.index')->with('success', 'User Updated Successfully');
     }
 
     /**
