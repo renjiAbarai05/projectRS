@@ -9,6 +9,7 @@
         "anhskohbo/no-captcha": "^3.3",
         "barryvdh/laravel-snappy": "^0.4.8",
         "consoletvs/charts": "5.*",
+        "doctrine/dbal": "^2.9.3",
         "fideloper/proxy": "^4.0",
         "h4cc/wkhtmltoimage-amd64": "0.12.x",
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
