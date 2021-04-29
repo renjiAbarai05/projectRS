@@ -179,7 +179,7 @@ cursor: pointer;
 </style>
 
 @php
-    $dateTime = Carbon\Carbon::now();
+    $dateTime = Carbon\Carbon::now('Asia/Manila');
     $dateToday = $dateTime->format('F d, Y');
     $timeNow = $dateTime->format('h:i A');
 @endphp

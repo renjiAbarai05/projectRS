@@ -41,24 +41,28 @@
     <input type="hidden" name="checkIN" value="{{$dateID}}">
     <input type="hidden" name="checkOUT" value="{{$dateOD}}">
     <div class="row">
-        <div class="col-sm-7 offset-sm-2">
+        <div class="col-sm-8 offset-sm-2">
             <div class="DivTemplate">
                 <p class="DivHeaderText center-align">Available Rooms From {{date_format(\Carbon\Carbon::parse($dateID),"M j,Y g:i A")}} to {{date_format(\Carbon\Carbon::parse($dateOD),"M j,Y g:i A")}} </p>
                 <div class="hr"></div>
                     <div class="table-responsive mt-1">
-                        <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
+                        <table id="TblSorter" class="table dataDisplayer text-center table-hover" style="width:100%">
                         <thead class="thead-bg">
                             <tr>
+                                <th class="th-sm th-border" width="50px">Room #</th>
                                 <th class="th-sm th-border">Room Name</th>
                                 <th class="th-sm th-border">Room Price</th>
-                                <th class="th-sm th-border" width="100px">Capacity</th>
-                                <th class="th-sm th-border" width="100px">Action</th>
+                                <th class="th-sm th-border" width="50px">Capacity</th>
+                                <th class="th-sm th-border" width="50px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                                 @foreach($roomListData as $data)
                                     <tr class="data font-weight-bold">
                                         <input type="hidden" class="roomId" value="{{$data->id}}">
+                                        <td class="td-border">
+                                            {{$data->roomNumber}}
+                                        </td>
                                         <td class="td-border">
                                             {{$data->roomType}}
                                         </td>
@@ -68,7 +72,7 @@
                                         <td class="td-border">
                                             {{$data->capacity}}
                                         </td>
-                                        <td class="td-border">
+                                        <td class="td-border text-center">
                                             <input type="checkbox" onchange="roomCheck(this)">
                                         </td>
                                     </tr>
