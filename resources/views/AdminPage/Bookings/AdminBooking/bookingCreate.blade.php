@@ -70,7 +70,7 @@
                         <div class="row mt-2">
                             <div class="col-sm-12">
                                 <label>Full Name:</label>
-                                <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" onkeypress="return /[a-z]/i.test(event.key)" required>
+                                <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="row mt-1">
@@ -149,7 +149,7 @@
                     </div>
 
                     <button class="save-button mt-1" type="submit" style="width:100%; border-radius:3px; margin-left:-1px;">Book Now</button>
-                    <button class="delete-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;">Cancel</button>
+                    <button class="delete-button mt-1" type="button" data-dismiss="modal" aria-label="Close" style="width:100%; border-radius:3px; margin-left:-1px;" onclick="window.location='{{ route('booking.index') }}'">Cancel</button>
                 </div>
             </div>
         </form>
