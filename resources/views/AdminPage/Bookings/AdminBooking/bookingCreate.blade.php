@@ -1,6 +1,24 @@
 @extends('AdminPage.masterAdmin')
 @section('content2')
-
+@include('layouts.phLocations')
+<style>
+    .addGenerator{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 5px;
+        margin-right: 2px;
+        z-index: 1;
+        color: #fc8621;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .modal-dialog {
+        max-width: 700px;
+        margin: 1.75rem auto;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
     <button type="button" id="sidebarCollapse" class="btn btn-primaryToggle">
@@ -67,31 +85,34 @@
                     <div class="DivTemplate mb-3">
                         <p class="DivHeaderText center-align">GUEST DETAILS</p>
                         <div class="hr"></div>
-                        <div class="row mt-2">
+                        <div class="form-row mt-2">
                             <div class="col-sm-12">
                                 <label>Full Name:</label>
                                 <input type="text" class="form-control" name="guestFullName" id="fullname" autocomplete="off" onkeypress="return /[a-z ]/i.test(event.key)" required>
                             </div>
                         </div>
-                        <div class="row mt-1">
+                        <div class="form-row mt-1">
                             <div class="col-sm-12">
                                 <label>Contact Number:</label>
                                 <input type="number" pattern="/^-?\d+\.?\d*$/" class="form-control" onKeyPress="if(this.value.length==11) return false;"  name="guestContactNumber" autocomplete="off" required>
                             </div>
                         </div>
-                        <div class="row mt-1">
-                            <div class="col-sm-12">
+                        <div class="form-row mt-1">
+                            <div class="col-sm-12 position-relative">
                                 <label>Address:</label>
-                            <input type="text" class="form-control"  name="guestAddress" autocomplete="off" required>
+                                <input type="text" class="form-control" name="guestAddress" autocomplete="off" id="address" required>
+                                <div class="addGenerator" data-toggle="modal" data-target="#exampleModal">
+                                    <u>Use Address Generator</u>
+                                </div>
                             </div>
                         </div>
-                        <div class="row mt-1">
+                        <div class="form-row mt-1">
                             <div class="col-sm-12">
                                 <label>Number of guests:</label>
                                 <input type="number" class="form-control"  name="guestNumber"  autocomplete="off" required>
                             </div>
                         </div>
-                        <div class="row mt-1 pb-2">
+                        <div class="form-row mt-1 pb-2">
                             <div class="col-sm-12">
                                 <label>Email:</label>
                                 <input type="email" class="form-control" name="guestEmail" autocomplete="off" required>
@@ -103,7 +124,7 @@
                     <div class="DivTemplate mb-1">
                         <p class="DivHeaderText center-align">BILL DETAILS</p>
                         <div class="hr"></div>
-                        <div class="row mt-2">
+                        <div class="form-row mt-2">
                             <div class="col-sm-12" >
                                 <div style="background-color: #fc8621; width:100%; height:70px; border-radius: 3px;">
                                     <label style="font-size:40px!important; color:white; margin-left:5px;">Total Bill:</label>
@@ -112,7 +133,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2" id="balanceDiv">
+                        <div class="form-row mt-2" id="balanceDiv">
                             <div class="col-sm-12" >
                                 <div style="background-color:red; width:100%; height:70px; border-radius: 3px;">
                                     <label style="font-size:40px!important; color:white; margin-left:5px;">Balance:</label>
@@ -120,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2" id="changeDiv">
+                        <div class="form-row mt-2" id="changeDiv">
                             <div class="col-sm-12" >
                                 <div style="background-color:grey; width:100%; height:70px; border-radius: 5px;">
                                     <label style="font-size:40px!important; color:white; margin-left:5px;"><b>Change:</b></label>
@@ -128,14 +149,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-1 pb-2">
+                        <div class="form-row mt-1 pb-2">
                             <div class="col-sm-12">
                                 <label>Cash Received:</label>
                                 <input type="number" class="form-control"  id="cashReceived" name="cashReceived" step="any" autocomplete="off" required>
                                 <input type="hidden" class="form-control" id="changeInput" name="amountChange" value="0" autocomplete="off">
                             </div>
                         </div>
-                        <div class="row mt-1 pb-2">
+                        <div class="form-row mt-1 pb-2">
                             <div class="col-sm-12">
                                 <label>Payment Method:</label>
                                 <select class="form-control" name="paymentMethod" id="" required>
@@ -156,6 +177,64 @@
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Address Generator</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Unit/Floor</label>
+                        <input type="text" class="form-control" id="unit">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Building Name</label>
+                        <input type="text" class="form-control" id="buildingName">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Lot/Blk/House/Bldg. No.</label>
+                        <input type="text" class="form-control" id="bldgNumber">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Street</label>
+                        <input type="text" class="form-control" id="street">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Region</label>
+                        <select id="region" class="form-control"></select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Province</label>
+                        <select id="province" class="form-control"></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="input-label required-label">City</label>
+                        <select id="city" class="form-control"></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="input-label required-label">Barangay</label>
+                        <select id="barangay" class="form-control"></select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="input-label required-label">Zip Code</label>
+                        <input type="number" class="form-control" id="zipCode">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="generate">Use</button>
+        </div>
+      </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
@@ -213,6 +292,49 @@
     $('#checkinModal').modal('show');
 
   }
+
+var my_handlers = {
+    fill_provinces:  function(){
+        var region_code = $(this).val();
+        $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
+        $('#city,#barangay').empty();
+    },
+    fill_cities: function(){
+        var province_code = $(this).val();
+        $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
+        $('#barangay').empty();
+    },
+    fill_barangays: function(){
+        var city_code = $(this).val();
+        $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+    }
+};
+$(function(){
+    $('#region').on('change', my_handlers.fill_provinces);
+    $('#province').on('change', my_handlers.fill_cities);
+    $('#city').on('change', my_handlers.fill_barangays);
+
+    $('#region').ph_locations({'location_type': 'regions'});
+    $('#province').ph_locations({'location_type': 'provinces'});
+    $('#city').ph_locations({'location_type': 'cities'});
+    $('#barangay').ph_locations({'location_type': 'barangays'});
+
+    $('#region').ph_locations('fetch_list');
+
+    $('#generate').on('click', function(){
+        var unit = $('#unit').val() != '' ? $('#unit').val() : '';
+        var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
+        var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
+        var street = $('#street').val() != '' ? " "+$('#street').val() : '';
+        var region = $('#region option:selected').attr('value') ? ", "+$('#region option:selected').text() : '';
+        var province = $('#province option:selected').attr('value') ? ", "+$('#province option:selected').text() : '';
+        var city = $('#city option:selected').attr('value') ? ", "+$('#city option:selected').text() : '';
+        var barangay = $('#barangay option:selected').attr('value') ? ", "+$('#barangay option:selected').text() : '';
+        var zipCode = $('#zipCode').attr('value') ? " "+$('#zipCode').val() : '';
+        $('#address').val(unit+buildingName+bldgNumber+street+region+province+city+barangay+zipCode);
+        $('#exampleModal').modal('toggle');
+    });
+});
 </script>
 
 @endsection
