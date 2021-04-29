@@ -65,7 +65,7 @@
 </style>
 
 
-<div class="container" >
+<div class="container-fluid" style="padding-left: 150px;padding-right: 150px">
         <div class="row">
             <div class="col-sm-7"  style="margin-top: 50px; ">
             <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
@@ -83,6 +83,7 @@
                         <table id="TblSorter" class="table dataDisplayer table-hover" style="width:100%">
                             <thead class="thead-bg">
                                 <tr>
+                                    <th class="th-sm th-border">Room #</th>
                                     <th class="th-sm th-border">Room Name</th>
                                     <th class="th-sm th-border">Room Price</th>
                                     <th class="th-sm th-border" width="100px">Capacity</th>
@@ -93,6 +94,9 @@
                                 @foreach($roomListData as $data)
                                     <tr class="data font-weight-bold">
                                         <input type="hidden" class="roomId" value="{{$data->id}}">
+                                        <td class="td-border">
+                                            {{$data->roomNumber}}
+                                        </td>
                                         <td class="td-border">
                                             {{$data->roomType}}
                                         </td>

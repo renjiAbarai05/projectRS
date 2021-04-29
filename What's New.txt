@@ -1,3 +1,8 @@
+April 27 
+    Please run on terminal: 
+    - composer update
+    - php artisan migrate
+
 April 27 (ivan)
     Please Do: 
     - php artisan migrate:fresh
