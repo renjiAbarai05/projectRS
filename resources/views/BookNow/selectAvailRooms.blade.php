@@ -67,7 +67,7 @@
 
 <div class="container-fluid" style="padding-left: 150px;padding-right: 150px">
         <div class="row">
-            <div class="col-sm-7"  style="margin-top: 50px; ">
+            <div class="col-sm-9"  style="margin-top: 50px; ">
             <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
                     <div class="form-row px-3 pt-3">
                         <div class="form-group col-sm-12">
