@@ -1,3 +1,10 @@
+
+
+
+NOCAPTCHA_SECRET =6LcNGrkaAAAAANE9dOQ9Bo5JsXjADA-IPRWrtYU4
+NOCAPTCHA_SITEKEY =6LcNGrkaAAAAALClsl_8Tqp51QwNaFBAM_HLIPoh
+
+
 April 27 
     Please run on terminal: 
     - composer update
