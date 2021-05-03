@@ -183,9 +183,13 @@
                                 <label>Lot/Blk/House/Bldg. No.</label>
                                 <input type="text" class="form-control" id="bldgNumber">
                             </div>
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label>Street</label>
                                 <input type="text" class="form-control" id="street">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>District</label>
+                                <input type="text" class="form-control" id="district">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="input-label required-label">City</label>
@@ -284,9 +288,10 @@ $(function(){
         var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
         var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
         var street = $('#street').val() != '' ? " "+$('#street').val() : '';
+        var district = $('#district').val() != '' ? ", "+$('#district').val() : '';
         var province = $('#province option:selected').val() ? ", "+$('#province option:selected').val() : '';
         var city = $('#city option:selected').val() ? ", "+$('#city option:selected').val() : '';
-        var str = unit+buildingName+bldgNumber+street+city+province;
+        var str = unit+buildingName+bldgNumber+street+district+city+province;
         $('#address').val(str.replace(/^,/, '').trim()); // remove comma and space on first index
         // $('#address').val(str.replace(/^ /, '')); // remove comma on index
         // $('#address').val(str);
