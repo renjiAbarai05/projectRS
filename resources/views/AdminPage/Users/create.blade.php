@@ -68,7 +68,8 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label>Address</label>
-                        <textarea name="address" id="address" rows="2" class="form-control readonly" autocomplete="off" required></textarea>
+                        <input type="text" class="form-control readonly" name="address" id="address">
+                        {{-- <textarea name="address" id="address" rows="2" class="form-control readonly"></textarea> --}}
                     </div>
                     <div class="form-group col-md-6">
                         <label>Birth Date</label>
@@ -246,7 +247,7 @@ $(function (){
         // $('#address').val(str);
         $('#exampleModal').modal('toggle');
     });
-    $('textarea').on('click focus',function(){
+    $('#address').on('click focus',function(){
         // $('#exampleModal').modal('toggle');
         $('#exampleModal').modal({
             backdrop: 'static',

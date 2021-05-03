@@ -235,8 +235,8 @@ $(document).ready(function(){
 
     // load Dropdown value
     
-    $('#province option[value={{$user->province}}]').attr('selected','selected');
-    $('#city option[value={{$user->city}}]').attr('selected','selected');
+    $('#province').val('{{$user->province}}').trigger('change');
+    $('#city').val('{{$user->city}}').trigger('change');
     
 
 });
