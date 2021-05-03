@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-row mt-1">
                             <div class="col-sm-12">
-                                <label>Contact Number:</label>
+                                <label>Mobile Number:</label>
                                 <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;"  name="guestContactNumber" autocomplete="off" required>
                             </div>
                         </div>
