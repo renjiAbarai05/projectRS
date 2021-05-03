@@ -115,7 +115,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6">
                         <div class="label">Province</div>
                         <p class="data pl-4">
@@ -128,7 +128,7 @@
                             {{$user->city ?? 'N/A'}}
                         </p>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="col-md">
                         <div class="label">CONTACT NUMBER</div>

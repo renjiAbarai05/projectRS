@@ -18,6 +18,7 @@ class UpdateUserTable extends Migration
             $table->string('buildingName')->nullable();
             $table->string('bldgNumber')->nullable();
             $table->string('street')->nullable();
+            $table->string('district')->nullable();
         });
     }
 
@@ -33,6 +34,7 @@ class UpdateUserTable extends Migration
             $table->dropColumn('buildingName');
             $table->dropColumn('bldgNumber');
             $table->dropColumn('street');
+            $table->dropColumn('district');
         });
     }
 }
