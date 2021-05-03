@@ -60,14 +60,14 @@
                                     <div class='label text-left'>Address</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
                                 </div>
-                                <div class='col-md-6'>
+                                {{-- <div class='col-md-6'>
                                     <div class='label text-left'>Province</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->province ?? 'N/A'}} </b></p>
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>City</div>
                                     <p class='viewText pl-3'><b>{{$bookingData->city ?? 'N/A'}} </b></p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
