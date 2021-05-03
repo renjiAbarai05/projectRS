@@ -2,18 +2,6 @@
 @section('content2')
 @include('layouts.phLocations')
 <style>
-    .addGenerator{
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 5px;
-        margin-right: 2px;
-        z-index: 1;
-        color: #fc8621;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
-    }
     .modal-dialog {
         max-width: 700px;
         margin: 1.75rem auto;
@@ -98,12 +86,31 @@
                             </div>
                         </div>
                         <div class="form-row mt-1">
-                            <div class="col-sm-12 position-relative">
-                                <label>Address:</label>
-                                <input type="text" class="form-control" name="guestAddress" autocomplete="off" id="address" required>
-                                <div class="addGenerator" data-toggle="modal" data-target="#exampleModal">
-                                    <u>Use Address Generator</u>
-                                </div>
+                            <div class="col-sm-12">
+                                <label>Address</label>
+                                <input type="text" class="form-control" name="guestAddress">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Province</label>
+                                <select name="province" id="province" class="form-control">
+                                    <option value="">Select...</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{$province}}">
+                                            {{$province}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>City</label>
+                                <select name="city" id="city" class="form-control">
+                                    <option value="">Select...</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city }}">
+                                            {{$city}}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-row mt-1">
@@ -183,9 +190,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Address Generator</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> --}}
         </div>
         <div class="modal-body">
             <div class="container-fluid">
@@ -293,48 +300,6 @@
 
   }
 
-var my_handlers = {
-    fill_provinces:  function(){
-        var region_code = $(this).val();
-        $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
-        $('#city,#barangay').empty();
-    },
-    fill_cities: function(){
-        var province_code = $(this).val();
-        $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
-        $('#barangay').empty();
-    },
-    fill_barangays: function(){
-        var city_code = $(this).val();
-        $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-    }
-};
-$(function(){
-    $('#region').on('change', my_handlers.fill_provinces);
-    $('#province').on('change', my_handlers.fill_cities);
-    $('#city').on('change', my_handlers.fill_barangays);
-
-    $('#region').ph_locations({'location_type': 'regions'});
-    $('#province').ph_locations({'location_type': 'provinces'});
-    $('#city').ph_locations({'location_type': 'cities'});
-    $('#barangay').ph_locations({'location_type': 'barangays'});
-
-    $('#region').ph_locations('fetch_list');
-
-    $('#generate').on('click', function(){
-        var unit = $('#unit').val() != '' ? $('#unit').val() : '';
-        var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
-        var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
-        var street = $('#street').val() != '' ? " "+$('#street').val() : '';
-        var region = $('#region option:selected').attr('value') ? ", "+$('#region option:selected').text() : '';
-        var province = $('#province option:selected').attr('value') ? ", "+$('#province option:selected').text() : '';
-        var city = $('#city option:selected').attr('value') ? ", "+$('#city option:selected').text() : '';
-        var barangay = $('#barangay option:selected').attr('value') ? ", "+$('#barangay option:selected').text() : '';
-        var zipCode = $('#zipCode').attr('value') ? " "+$('#zipCode').val() : '';
-        $('#address').val(unit+buildingName+bldgNumber+street+region+province+city+barangay+zipCode);
-        $('#exampleModal').modal('toggle');
-    });
-});
 </script>
 
 @endsection

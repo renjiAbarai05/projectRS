@@ -1,7 +1,5 @@
 @extends('BookNow.bookNowMaster')
 @section('content')
-{{-- <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script> --}}
-@include('layouts.phLocations')
 <style>
     .save-button {
     background-color: #4cbb17;
@@ -54,18 +52,6 @@
 .delete-button:hover{
     background-color: red;
 }
-.addGenerator{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: -20px;
-    margin-right: 2px;
-    z-index: 1;
-    color: #fc8621;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-}
 .modal-dialog {
     max-width: 700px;
     margin: 1.75rem auto;
@@ -73,7 +59,7 @@
 </style>
 
 <div class="container pb-4" style="width:50%;">
-    <form class="form-horizontal" method="POST" action="{{route('bookingHome.store')}}">
+    <form class="form-horizontal" method="POST" action="{{route('bookingHome.store')}}" autocomplete="off">
         @csrf
         <div style="background: whitesmoke;  border-radius: 10px;" class="mt-4">
             <div class="form-row px-3 pt-3">
@@ -152,15 +138,42 @@
                         {{-- <input type="number" class="form-control"  name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required> --}}
                     </div>
                 </div>
-                <div class="form-row px-3 mt-2">
-                    <div class="form-group input-group position-relative">
-                        <div class="addGenerator" data-toggle="modal" data-target="#exampleModal">
-                            <u>Use Address Generator</u>
-                        </div>
+                <div class="form-row px-3 mt-1">
+                    <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="guestAddress" id="address" placeholder="Home Address" required>
+                        <input type="text" class="form-control" name="guestAddress" placeholder="Address">
+                    </div>
+                </div>
+                <div class="form-row px-3 mt-1">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon2"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                        </div>
+                        <select name="province" id="province" class="form-control">
+                            <option value="">Province</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{$province}}">
+                                    {{$province}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row px-3 mt-1">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon2"><i class="fas fa-city"></i></span>
+                        </div>
+                        <select name="city" id="city" class="form-control">
+                            <option value="">City</option>
+                            @foreach ($cities as $city)
+                                <option value="{{$city}}">
+                                    {{$city}}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="form-row px-3 mt-1">
@@ -207,10 +220,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Address Generator</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">Home Address</h5>
+          {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> --}}
         </div>
         <div class="modal-body">
             <div class="container-fluid">
@@ -285,51 +298,6 @@ $(document).ready(function() {
     $('#billAmount').html('₱'+totalBill.toFixed(2));
     $('#billAmountHidden').val(totalBill.toFixed(2));
 
-    // $('#region').ph_locations({'location_type': 'regions'});
-    // $('#region').ph_locations( 'fetch_list');
-
-});
-var my_handlers = {
-    fill_provinces:  function(){
-        var region_code = $(this).val();
-        $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
-        $('#city,#barangay').empty();
-    },
-    fill_cities: function(){
-        var province_code = $(this).val();
-        $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
-        $('#barangay').empty();
-    },
-    fill_barangays: function(){
-        var city_code = $(this).val();
-        $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-    }
-};
-$(function(){
-    $('#region').on('change', my_handlers.fill_provinces);
-    $('#province').on('change', my_handlers.fill_cities);
-    $('#city').on('change', my_handlers.fill_barangays);
-
-    $('#region').ph_locations({'location_type': 'regions'});
-    $('#province').ph_locations({'location_type': 'provinces'});
-    $('#city').ph_locations({'location_type': 'cities'});
-    $('#barangay').ph_locations({'location_type': 'barangays'});
-
-    $('#region').ph_locations('fetch_list');
-
-    $('#generate').on('click', function(){
-        var unit = $('#unit').val() != '' ? $('#unit').val() : '';
-        var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
-        var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
-        var street = $('#street').val() != '' ? " "+$('#street').val() : '';
-        var region = $('#region option:selected').attr('value') ? ", "+$('#region option:selected').text() : '';
-        var province = $('#province option:selected').attr('value') ? ", "+$('#province option:selected').text() : '';
-        var city = $('#city option:selected').attr('value') ? ", "+$('#city option:selected').text() : '';
-        var barangay = $('#barangay option:selected').attr('value') ? ", "+$('#barangay option:selected').text() : '';
-        var zipCode = $('#zipCode').attr('value') ? " "+$('#zipCode').val() : '';
-        $('#address').val(unit+buildingName+bldgNumber+street+region+province+city+barangay+zipCode);
-        $('#exampleModal').modal('toggle');
-    });
 });
 
 </script>

@@ -76,6 +76,20 @@
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <div class="label">Province</div>
+                <div class="pl-3">
+                    {{$bookingData->province ?? 'N/A'}}
+                </div>
+            </td>
+            <td>
+                <div class="label">City</div>
+                <div class="pl-3">
+                    {{$bookingData->city ?? 'N/A'}}
+                </div>
+            </td>
+        </tr>
     </table>
     <table class="mb-4" style="border-top: 2px solid #c24914">
         <tr>
