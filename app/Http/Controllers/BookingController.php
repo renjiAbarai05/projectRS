@@ -59,6 +59,8 @@ class BookingController extends Controller
             'guestAddress' => $request->guestAddress,
             'guestNumber' => $request->guestNumber,
             'guestEmail' => $request->guestEmail,
+            'province' => $request->province,
+            'city' => $request->city,
         ])->id;
 
         foreach($input['rooms'] as $row) {
@@ -201,8 +203,17 @@ class BookingController extends Controller
         }
         
         $thisRoom = RoomList::whereIn('id', $roomId)->whereNull('deleted_at')->get();
-
-        return view('AdminPage.Bookings.AdminBooking.bookingCreate',compact('thisRoom','checkOut','checkIn'));
+        
+        $path = storage_path() . "/json/phProvinces.json";
+        $provinces = json_decode(file_get_contents($path), true);
+        $citiesPath = storage_path() . "/json/phCities.json";
+        $citiesJson = json_decode(file_get_contents($citiesPath), true);
+        $cities = array();
+        foreach ($citiesJson as $index){
+            array_push($cities,$index['city']);
+        }
+        sort($cities);
+        return view('AdminPage.Bookings.AdminBooking.bookingCreate',compact('thisRoom','checkOut','checkIn','provinces','cities'));
     }
 
     public function AddRoomBooking(Request $request){

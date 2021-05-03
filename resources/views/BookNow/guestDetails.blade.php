@@ -1,7 +1,5 @@
 @extends('BookNow.bookNowMaster')
 @section('content')
-{{-- <script src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations-v1.0.0.js"></script> --}}
-@include('layouts.phLocations')
 <style>
     .save-button {
     background-color: #4cbb17;
@@ -54,21 +52,12 @@
 .delete-button:hover{
     background-color: red;
 }
-.addGenerator{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: -20px;
-    margin-right: 2px;
-    z-index: 1;
-    color: #fc8621;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-}
 .modal-dialog {
     max-width: 700px;
     margin: 1.75rem auto;
+}
+#address{
+    resize: none;
 }
 </style>
 
@@ -152,15 +141,12 @@
                         {{-- <input type="number" class="form-control"  name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required> --}}
                     </div>
                 </div>
-                <div class="form-row px-3 mt-2">
-                    <div class="form-group input-group position-relative">
-                        <div class="addGenerator" data-toggle="modal" data-target="#exampleModal">
-                            <u>Use Address Generator</u>
-                        </div>
+                <div class="form-row px-3 mt-1">
+                    <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="guestAddress" id="address" placeholder="Home Address" required>
+                        <input type="text" class="form-control readonly" name="guestAddress" id="address" placeholder="Home Address" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="form-row px-3 mt-1">
@@ -199,66 +185,67 @@
                     </div>
                 </div>  
             </div>
-        </form>
-
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Address Generator</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Unit/Floor</label>
-                        <input type="text" class="form-control" id="unit">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Home Address</h5>
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> --}}
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Unit/Floor</label>
+                                <input type="text" class="form-control" id="unit">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Building Name</label>
+                                <input type="text" class="form-control" id="buildingName">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Lot/Blk/House/Bldg. No.</label>
+                                <input type="text" class="form-control" id="bldgNumber">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Street</label>
+                                <input type="text" class="form-control" id="street">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="input-label required-label">City</label>
+                                <select id="city" name="city" class="form-control">
+                                    <option value="">Select...</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city }}">
+                                            {{$city}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Province</label>
+                                <select id="province" name="province" class="form-control">
+                                    <option value="">Select...</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{$province}}">
+                                            {{$province}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label>Building Name</label>
-                        <input type="text" class="form-control" id="buildingName">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Lot/Blk/House/Bldg. No.</label>
-                        <input type="text" class="form-control" id="bldgNumber">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>Street</label>
-                        <input type="text" class="form-control" id="street">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Region</label>
-                        <select id="region" class="form-control"></select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Province</label>
-                        <select id="province" class="form-control"></select>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label class="input-label required-label">City</label>
-                        <select id="city" class="form-control"></select>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label class="input-label required-label">Barangay</label>
-                        <select id="barangay" class="form-control"></select>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label class="input-label required-label">Zip Code</label>
-                        <input type="number" class="form-control" id="zipCode">
-                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="generate">Use</button>
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="generate">Use</button>
-        </div>
-      </div>
     </div>
+    </form>
 </div>
 {!! NoCaptcha::renderJs() !!}  
         
@@ -285,50 +272,31 @@ $(document).ready(function() {
     $('#billAmount').html('₱'+totalBill.toFixed(2));
     $('#billAmountHidden').val(totalBill.toFixed(2));
 
-    // $('#region').ph_locations({'location_type': 'regions'});
-    // $('#region').ph_locations( 'fetch_list');
-
 });
-var my_handlers = {
-    fill_provinces:  function(){
-        var region_code = $(this).val();
-        $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
-        $('#city,#barangay').empty();
-    },
-    fill_cities: function(){
-        var province_code = $(this).val();
-        $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
-        $('#barangay').empty();
-    },
-    fill_barangays: function(){
-        var city_code = $(this).val();
-        $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-    }
-};
 $(function(){
-    $('#region').on('change', my_handlers.fill_provinces);
-    $('#province').on('change', my_handlers.fill_cities);
-    $('#city').on('change', my_handlers.fill_barangays);
-
-    $('#region').ph_locations({'location_type': 'regions'});
-    $('#province').ph_locations({'location_type': 'provinces'});
-    $('#city').ph_locations({'location_type': 'cities'});
-    $('#barangay').ph_locations({'location_type': 'barangays'});
-
-    $('#region').ph_locations('fetch_list');
-
     $('#generate').on('click', function(){
         var unit = $('#unit').val() != '' ? $('#unit').val() : '';
         var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
         var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
         var street = $('#street').val() != '' ? " "+$('#street').val() : '';
-        var region = $('#region option:selected').attr('value') ? ", "+$('#region option:selected').text() : '';
-        var province = $('#province option:selected').attr('value') ? ", "+$('#province option:selected').text() : '';
-        var city = $('#city option:selected').attr('value') ? ", "+$('#city option:selected').text() : '';
-        var barangay = $('#barangay option:selected').attr('value') ? ", "+$('#barangay option:selected').text() : '';
-        var zipCode = $('#zipCode').attr('value') ? " "+$('#zipCode').val() : '';
-        $('#address').val(unit+buildingName+bldgNumber+street+region+province+city+barangay+zipCode);
+        var province = $('#province option:selected').val() ? ", "+$('#province option:selected').val() : '';
+        var city = $('#city option:selected').val() ? ", "+$('#city option:selected').val() : '';
+        var str = unit+buildingName+bldgNumber+street+city+province;
+        $('#address').val(str.replace(/^,/, '').trim()); // remove comma on first index
+        // $('#address').val(str.replace(/^ /, '')); // remove comma on space index
+        // $('#address').val(str);
         $('#exampleModal').modal('toggle');
+    });
+    $('#address').on('click focus',function(){
+        // $('#exampleModal').modal('toggle');
+        $('#exampleModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+    });
+    $(".readonly").on('keydown paste focus mousedown', function(e){
+        if(e.keyCode != 9) // ignore tab
+            e.preventDefault();
     });
 });
 

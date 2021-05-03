@@ -29,8 +29,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('AdminPage.Users.create');
+    {  
+        $path = storage_path() . "/json/phProvinces.json";
+        $provinces = json_decode(file_get_contents($path), true);
+        $citiesPath = storage_path() . "/json/phCities.json";
+        $citiesJson = json_decode(file_get_contents($citiesPath), true);
+        $cities = array();
+        foreach ($citiesJson as $index){
+            array_push($cities,$index['city']);
+        }
+        sort($cities);
+        return view('AdminPage.Users.create',compact('provinces','cities'));
     }
 
     /**
@@ -45,7 +54,7 @@ class UserController extends Controller
             Session::flash('message', 'Username already taken');
             return redirect()->back();
         }else{
-          $user =  User::create([
+            $user =  User::create([
                 'username' => $request->username,
                 'lastName' => $request->lastName,
                 'firstName' => $request->firstName,
@@ -53,6 +62,12 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
                 'middleName' => $request->middleName,
                 'address' => $request->address,
+                'province' => $request->province,
+                'city' => $request->city,
+                'unit' => $request->unit,
+                'buildingName' => $request->buildingName,
+                'bldgNumber' => $request->bldgNumber,
+                'street' => $request->street,
                 'birthDate' => $request->birthDate,
                 'number' => $request->number,
                 'email' => $request->email,
@@ -94,7 +109,17 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('AdminPage.Users.edit', compact('user'));
+        
+        $path = storage_path() . "/json/phProvinces.json";
+        $provinces = json_decode(file_get_contents($path), true);
+        $citiesPath = storage_path() . "/json/phCities.json";
+        $citiesJson = json_decode(file_get_contents($citiesPath), true);
+        $cities = array();
+        foreach ($citiesJson as $index){
+            array_push($cities,$index['city']);
+        }
+        sort($cities);
+        return view('AdminPage.Users.edit', compact('user','provinces','cities'));
     }
 
     /**
@@ -114,6 +139,12 @@ class UserController extends Controller
             'lastName' => $request->lastName,
             'middleName' => $request->middleName,
             'address' => $request->address,
+            'province' => $request->province,
+            'city' => $request->city,
+            'unit' => $request->unit,
+            'buildingName' => $request->buildingName,
+            'bldgNumber' => $request->bldgNumber,
+            'street' => $request->street,
             'birthDate' => $request->birthDate,
             'number' => $request->number,
             'email' => $request->email,
