@@ -69,6 +69,8 @@ class BookingHomeController extends Controller
             'guestNumber' => $request->guestNumber,
             'guestEmail' => $request->guestEmail,
             'billAmount' => $request->billAmount,
+            'province' => $request->province,
+            'city' => $request->city,
         ])->id;
 
 
@@ -173,9 +175,18 @@ class BookingHomeController extends Controller
         foreach($input['rooms'] as $row) {
             $roomId[] = $row['roomId'];
         }
-        
-        $thisRoom = RoomList::whereIn('id', $roomId)->whereNull('deleted_at')->get();
 
-        return view('Booknow.guestDetails',compact('thisRoom','checkOut','checkIn'));
+        $thisRoom = RoomList::whereIn('id', $roomId)->whereNull('deleted_at')->get();
+        
+        $path = storage_path() . "/json/phProvinces.json";
+        $provinces = json_decode(file_get_contents($path), true);
+        $citiesPath = storage_path() . "/json/phCities.json";
+        $citiesJson = json_decode(file_get_contents($citiesPath), true);
+        $cities = array();
+        foreach ($citiesJson as $index){
+            array_push($cities,$index['city']);
+        }
+        sort($cities);
+        return view('Booknow.guestDetails',compact('thisRoom','checkOut','checkIn','provinces','cities'));
     }
 }

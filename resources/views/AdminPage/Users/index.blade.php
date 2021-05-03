@@ -116,6 +116,20 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="label">Province</div>
+                        <p class="data pl-4">
+                            {{$user->province ?? 'N/A'}}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="label">City</div>
+                        <p class="data pl-4">
+                            {{$user->city ?? 'N/A'}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md">
                         <div class="label">CONTACT NUMBER</div>
                         <p class="data pl-4">  {{$user->number ?? 'N/A'}}</p>
