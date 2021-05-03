@@ -134,10 +134,7 @@
 <script>
     $(document).ready(function(){
         $('#TblSorter').DataTable({
-            "columnDefs": [
-            { "orderable": false, "targets": 2 }
-            ],
-            "order": [[ 0, "desc" ]],
+            "bPaginate": false
         });
     });
     

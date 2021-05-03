@@ -80,8 +80,8 @@
                         </div>
                         <div class="form-row mt-1">
                             <div class="col-sm-12">
-                                <label>Contact Number:</label>
-                                <input type="number" pattern="/^-?\d+\.?\d*$/" class="form-control" onKeyPress="if(this.value.length==11) return false;"  name="guestContactNumber" autocomplete="off" required>
+                                <label>Mobile Number:</label>
+                                <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;"  name="guestContactNumber" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-row mt-1">
