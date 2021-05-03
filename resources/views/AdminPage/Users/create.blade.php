@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Contact Number</label>
-                        <input type="number" pattern="/^-?\d+\.?\d*$/" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number">
+                        <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number">
                     </div>
                     <div class="form-group col-md-12">
                         <label>Email</label>

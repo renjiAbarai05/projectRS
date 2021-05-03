@@ -137,7 +137,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="number" pattern="/^-?\d+\.?\d*$/" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required/>
+                        <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required/>
                         {{-- <input type="number" class="form-control"  name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required> --}}
                     </div>
                 </div>
