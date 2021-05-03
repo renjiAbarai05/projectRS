@@ -76,7 +76,7 @@
                 </div>
             </td>
         </tr>
-        <tr>
+        {{-- <tr>
             <td>
                 <div class="label">Province</div>
                 <div class="pl-3">
@@ -89,7 +89,7 @@
                     {{$bookingData->city ?? 'N/A'}}
                 </div>
             </td>
-        </tr>
+        </tr> --}}
     </table>
     <span class="text-uppercase">Room Details</span>
     <table class="mb-4" style="border-top: 2px solid #c24914">

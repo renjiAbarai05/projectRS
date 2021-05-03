@@ -30,6 +30,10 @@
     text-align: right;
     top: 0;
 }
+.modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+}
 </style>
 
 
@@ -65,29 +69,7 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="address" value="{{$user->address}}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Province</label>
-                        <select name="province" id="province" class="form-control">
-                            <option value="">Select...</option>
-                            @foreach ($provinces as $province)
-                                <option value="{{$province}}">
-                                    {{$province}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>City</label>
-                        <select name="city" id="city" class="form-control">
-                            <option value="">Select...</option>
-                            @foreach ($cities as $city)
-                                <option value="{{ $city }}">
-                                    {{$city}}
-                                </option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control readonly" name="address" id="address" value="{{$user->address}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Birth Date</label>
@@ -126,6 +108,67 @@
             </div>
                 <button type="submit" class="save-button mt-1" style="width:100%;">Save</button>
                 <button type="button" class="back-button float-right mt-1" style="width:100%;" onclick="window.location='{{route('users.index')}}'">Back</button>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Address</h5>
+            {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> --}}
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Unit/Floor</label>
+                            <input type="text" class="form-control" id="unit" name="unit" value="{{$user->unit}}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Building Name</label>
+                            <input type="text" class="form-control" id="buildingName" name="buildingName" value="{{$user->buildingName}}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Lot/Blk/House/Bldg. No.</label>
+                            <input type="text" class="form-control" id="bldgNumber" name="bldgNumber" value="{{$user->bldgNumber}}">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Street</label>
+                            <input type="text" class="form-control" id="street" name="street" value="{{$user->street}}">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="input-label required-label">City</label>
+                            <select name="city" id="city" class="form-control">
+                                <option value="">Select...</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city }}">
+                                        {{$city}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Province</label>
+                            <select name="province" id="province" class="form-control">
+                                <option value="">Select...</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{$province}}">
+                                        {{$province}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="generate">Use</button>
+            </div>
+        </div>
         </div>
     </div>
 </form>
@@ -192,10 +235,37 @@ $(document).ready(function(){
 
     // load Dropdown value
     
-    $('#province option[value={{$user->province}}]').attr('selected','selected');
-    $('#city option[value={{$user->city}}]').attr('selected','selected');
+    $('#province').val('{{$user->province}}').trigger('change');
+    $('#city').val('{{$user->city}}').trigger('change');
     
 
+});
+
+$(function (){
+    $('#generate').on('click', function(){
+        var unit = $('#unit').val() != '' ? $('#unit').val() : '';
+        var buildingName = $('#buildingName').val() != '' ? " "+$('#buildingName').val() : '';
+        var bldgNumber = $('#bldgNumber').val() != '' ? " "+$('#bldgNumber').val() : '';
+        var street = $('#street').val() != '' ? " "+$('#street').val() : '';
+        var province = $('#province option:selected').val() ? ", "+$('#province option:selected').val() : '';
+        var city = $('#city option:selected').val() ? ", "+$('#city option:selected').val() : '';
+        var str = unit+buildingName+bldgNumber+street+city+province;
+        $('#address').val(str.replace(/^,/, '').trim()); // remove comma on first index
+        // $('#address').val(str.replace(/^ /, '')); // remove comma on space index
+        // $('#address').val(str);
+        $('#exampleModal').modal('toggle');
+    });
+    $('#address').on('click focus',function(){
+        // $('#exampleModal').modal('toggle');
+        $('#exampleModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+    });
+    $(".readonly").on('keydown paste focus mousedown', function(e){
+        if(e.keyCode != 9) // ignore tab
+            e.preventDefault();
+    });
 });
 </script>
 @endsection

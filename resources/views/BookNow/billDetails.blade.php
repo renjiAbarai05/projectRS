@@ -72,14 +72,14 @@
                         <div class='label text-left'>Address</div>
                         <p class='viewText pl-3'><b>{{$bookingData->guestAddress}} </b></p>
                     </div>
-                    <div class='col-md-6'>
+                    {{-- <div class='col-md-6'>
                         <div class='label text-left'>Province</div>
                         <p class='viewText pl-3'><b>{{$bookingData->province}} </b></p>
                     </div>
                     <div class='col-md-6'>
                         <div class='label text-left'>City</div>
                         <p class='viewText pl-3'><b>{{$bookingData->city}} </b></p>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div style=" border: 1px solid #fc8621 !important; margin-top: 5px"></div>
