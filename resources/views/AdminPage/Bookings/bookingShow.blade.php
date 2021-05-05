@@ -44,7 +44,16 @@
                                 </div>
                                 <div class='col-md-6'>
                                     <div class='label text-left'>Contact Number</div>
-                                    <p class='viewText pl-3'><b>{{$bookingData->guestContactNumber}}</b></p>
+                                    <p class='viewText pl-3'><b>
+                                        @if(strlen($bookingData->guestContactNumber) == 11)
+                                            @php
+                                                $newData = substr($bookingData->guestContactNumber, 1);
+                                            @endphp
+                                            +63{{$newData}}
+                                        @else
+                                            +63{{$bookingData->guestContactNumber}}
+                                        @endif
+                                    </b></p>
                                 </div>
                             </div>
                             <div class='row' >

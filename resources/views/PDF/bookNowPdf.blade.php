@@ -50,7 +50,15 @@
             <td width="600px">
                 <div class="label">Contact Number</div>
                 <div class="pl-3">
-                    {{$bookingData->guestContactNumber ?? 'N/A'}}
+                    @if(strlen($bookingData->guestContactNumber) == 11)
+                        @php
+                            $newData = substr($bookingData->guestContactNumber, 1);
+                        @endphp
+                        +63{{$newData}}
+                    @else
+                        +63{{$bookingData->guestContactNumber}}
+                    @endif
+                    {{-- {{$bookingData->guestContactNumber ?? 'N/A'}} --}}
                 </div>
             </td>
         </tr>
