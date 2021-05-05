@@ -77,7 +77,13 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Mobile Number</label>
-                        <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent">+63</span>
+                            </div>
+                            <input type="tel" pattern="[0-9]{10}" class="form-control" onKeyPress="if(this.value.length==10) return false;return /[0-9]/i.test(event.key)" placeholder="Mobile Number" name="number" autocomplete="off"/>
+                        </div>
+                        {{-- <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number"> --}}
                     </div>
                     <div class="form-group col-md-12">
                         <label>Email</label>

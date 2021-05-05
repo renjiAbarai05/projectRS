@@ -136,8 +136,9 @@
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                            <span class="input-group-text bg-transparent">+63</span>
                         </div>
-                        <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="guestContactNumber" placeholder="Mobile Number" autocomplete="off" required/>
+                        <input type="tel" pattern="[0-9]{10}" class="form-control" onKeyPress="if(this.value.length==10) return false;return /[0-9]/i.test(event.key)" placeholder="Mobile Number" name="guestContactNumber" autocomplete="off" required/>
                         {{-- <input type="number" class="form-control"  name="guestContactNumber" placeholder="Contact Number" autocomplete="off" required> --}}
                     </div>
                 </div>

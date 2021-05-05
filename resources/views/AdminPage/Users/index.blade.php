@@ -132,7 +132,21 @@
                 <div class="row">
                     <div class="col-md">
                         <div class="label">CONTACT NUMBER</div>
-                        <p class="data pl-4">  {{$user->number ?? 'N/A'}}</p>
+                        <p class="data pl-4">  
+                            @if(strlen($user->number) == 11)
+                                @php
+                                    $newData = substr($user->number, 1);
+                                @endphp
+                                +63{{$newData}}
+                            @else
+                                @if ($user->number)
+                                    +63{{$user->number}}
+                                @else
+                                    {{'N/A'}}
+                                @endif
+                            @endif
+                            {{-- {{$user->number ?? 'N/A'}} --}}
+                        </p>
                     </div>
                     <div class="col-md-7">
                         <div class="label">BIRTH DAY</div>

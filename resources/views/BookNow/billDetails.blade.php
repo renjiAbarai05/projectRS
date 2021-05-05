@@ -56,7 +56,16 @@
                     </div>
                     <div class='col-md-6'>
                         <div class='label text-left'>Contact Number</div>
-                        <p class='viewText pl-3'><b>{{$bookingData->guestContactNumber}}</b></p>
+                        <p class='viewText pl-3'><b>
+                            @if(strlen($bookingData->guestContactNumber) == 11)
+                                @php
+                                    $newData = substr($bookingData->guestContactNumber, 1);
+                                @endphp
+                                +63{{$newData}}
+                            @else
+                                +63{{$bookingData->guestContactNumber}}
+                            @endif
+                        </b></p>
                     </div>
                 </div>
                 <div class='form-row px-2' >
@@ -130,7 +139,8 @@
                         <b>Paymaya<br>Account #: 09354365636<br>Name: Hotel Lai rico.</b>
                     </div>
                     <div class="col-md-12 pt-2">
-                        <b>Please pay immediately to reserve your booking.</b>
+                        <b>Please pay immediately to reserve your booking.</b><br>
+                        <b>Please email the screenshot of your proof of payment at hotellairico@gmail.com</b>
                     </div>
                 </div>
            
