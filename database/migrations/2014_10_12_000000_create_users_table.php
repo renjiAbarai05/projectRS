@@ -17,19 +17,32 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('accountType')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('firstName')->nullable();
+            $table->string('middleName')->nullable();
             $table->string('lastName')->nullable();
             $table->string('number')->nullable();
             $table->string('email')->nullable();
-            $table->string('middleName')->nullable();
-            $table->string('address')->nullable();
-            $table->date('birthDate')->nullable();
+            $table->text('address')->nullable();
+            $table->string('gender')->nullable();
+            //birthdate
+            $table->string('month')->nullable();
+            $table->integer('day')->nullable();
+            $table->integer('year')->nullable();
             $table->string('picture')->nullable();
-            // $table->integer('month')->nullable();
-            // $table->integer('day')->nullable();
-            // $table->integer('year')->nullable();
+
+            $table->string('isVerified')->default('0');
+
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+            $table->string('unit')->nullable();
+            $table->string('buildingName')->nullable();
+            $table->string('bldgNumber')->nullable();
+            $table->string('street')->nullable();
+            $table->string('district')->nullable();
+            
         });
     }
 

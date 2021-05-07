@@ -22,7 +22,7 @@ class CreateBookingReservesTable extends Migration
             //guestInfo
             $table->string('guestFullName');
             $table->string('guestContactNumber');
-            $table->string('guestAddress')->nullable();
+            $table->text('guestAddress')->nullable();
             $table->integer('guestNumber');
             $table->string('guestEmail')->nullable();
             
@@ -33,7 +33,11 @@ class CreateBookingReservesTable extends Migration
             $table->DATETIME('checkedInTime')->nullable();
             $table->DATETIME('checkedOutTime')->nullable();
 
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+
             $table->integer('cancelled')->default(0);
+            $table->integer('customerId')->nullable();
         });
     }
 

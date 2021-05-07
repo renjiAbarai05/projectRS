@@ -17,6 +17,7 @@ class CreateBookingReservesRoomsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('bookingId');
+            $table->integer('customerId')->nullable();
             $table->integer('roomId');
             $table->string('roomName');
             $table->integer('roomNumber');

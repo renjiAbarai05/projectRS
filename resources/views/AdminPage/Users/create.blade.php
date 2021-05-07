@@ -54,6 +54,14 @@
                         <label>Password</label>
                         <input type="password" class="form-control" name="password" required>
                     </div>
+                    <div class="form-group col-md-12">
+                        <label>Account Type</label>
+                       <select name="accountType" class="form-control" id="" required>
+                            <option value="">Select</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Staff">Staff</option>
+                       </select>
+                    </div>
                     <div class="form-group col-md-4">
                         <label>Last Name</label>
                         <input type="text" class="form-control" name="lastName" onkeypress="return /[a-z ]/i.test(event.key)" required>
@@ -66,15 +74,48 @@
                         <label>Middle Name</label>
                         <input type="text" class="form-control" name="middleName" onkeypress="return /[a-z ]/i.test(event.key)">
                     </div>
+                   
                     <div class="form-group col-sm-12">
                         <label>Address</label>
                         <input type="text" class="form-control readonly" name="address" id="address">
                         {{-- <textarea name="address" id="address" rows="2" class="form-control readonly"></textarea> --}}
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Birth Date</label>
-                        <input type="date" class="form-control" name="birthDate">
-                    </div>
+                        <div class="form-group col-sm-12">
+                            <label class="input-label">Date of Birth</label>
+                            <div class="form-row mb-n3">
+                                <div class="form-group col-sm-4">
+                                    <select class="form-control" name="month" required>
+                                        <option value="" disabled selected>Month</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select> 
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <input class="form-control" name="day" pattern="^\d*(\d{0})?$" type="text" placeholder="Day" required>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <select class="form-control" type="text" name="year" placeholder="Year" required>
+                                    <option value="" disabled selected>Year</option>
+                                    <?php
+                                    $firstYear = date("Y");
+                                    $lastYear = 1900;
+                                    for($i=$firstYear;$i>=$lastYear;$i--){
+                                    echo '<option value='.$i.'>'.$i.'</option>';}
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     <div class="form-group col-md-6">
                         <label>Mobile Number</label>
                         <div class="input-group">
@@ -85,9 +126,20 @@
                         </div>
                         {{-- <input type="tel" pattern="[0-9]{11}" class="form-control" onKeyPress="if(this.value.length==11) return false;" name="number"> --}}
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label>Email</label>
                         <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="input-label mb-2">Gender</label><br>
+                        <div class="form-check form-check-inline ml-4">
+                            <input type="radio" name="gender" id="genderMale" value="Male" class="form-check-input" checked>
+                            <label for="genderMale" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline ml-4">
+                            <input type="radio" name="gender" id="genderFemale" value="Female" class="form-check-input">
+                            <label for="genderFemale" class="form-check-label">Female</label>
+                        </div>
                     </div>
                 </div>
             </div>

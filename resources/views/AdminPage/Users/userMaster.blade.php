@@ -22,20 +22,19 @@
 
         <h4 class="ml-2 mt-2">USER MANAGEMENT</h4>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {{-- <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-            </ul> --}}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item @if (Session::get("usermanagement") == 'userAccount') active @endif">
+                    <a class="nav-link" href="{{ route('users.index') }}">User Account</a>
+                </li>
+                <li class="nav-item @if (Session::get("usermanagement") == 'verifiedCustomerAccount') active @endif">
+                    <a class="nav-link" href="{{ route('verifiedCustomerAccount') }}">Verified Customer Account</a>
+                </li>
+                <li class="nav-item  @if (Session::get("usermanagement") == 'newCustomerAccount') active @endif">
+                    <a class="nav-link" href="{{ route('newCustomerAccount') }}">New Customer Account</a>
+                </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

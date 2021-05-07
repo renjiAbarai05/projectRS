@@ -70,8 +70,7 @@
 
 
     <div class="DivTemplate">
-        <i class="fas fa-plus add-button mr-1"  onclick="window.location='{{ route('users.create') }}'"  style="cursor: pointer; float:right; margin-top:1px;"></i>
-        <p class="DivHeaderText center-align">USER MANAGEMENT</p>
+        <p class="DivHeaderText center-align">VERIFIED CUSTOMER ACCOUNT MANAGEMENT</p>
         <div class="hr"></div>
     </div>
 

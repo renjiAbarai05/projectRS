@@ -34,7 +34,7 @@ class HomeController extends Controller
     
         Session::put('masterAdminSide', 'Dashboard');
         
-        Session::put('loginUser', Auth::id());
+        Session::put('accountType', Auth::user()->accountType);
         Session::put('loginFirstName', Auth::user()->firstName);
         Session::put('loginLastName', Auth::user()->lastName);
 

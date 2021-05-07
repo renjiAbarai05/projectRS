@@ -24,10 +24,22 @@ Route::get('/', function () {
 Auth::routes(); 
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+
     //User Routes
     Route::resource('users', 'UserController');
 
     Route::resource('roomList', 'RoomListController');
+
+
+    //BookingCustomerPage
+    Route::post('verifyCustomerPost', 'UserController@verifyCustomerPost')->name('verifyCustomerPost');
+    Route::get('verifiedCustomerAccount', 'UserController@verifiedCustomerAccount')->name('verifiedCustomerAccount');
+    Route::get('newCustomerAccount', 'UserController@newCustomerAccount')->name('newCustomerAccount');
+    Route::resource('customerBooking', 'CustomerBookingController');
+
+
 
     //BookingAdminPage
     Route::get('booking/viewToday', 'BookingController@viewToday')->name('booking.viewToday');

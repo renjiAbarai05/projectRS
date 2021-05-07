@@ -116,60 +116,107 @@ crossorigin="anonymous" />
                             {{-- <a href="#" class="img logo rounded-circle mb-5" style="background-image: {{ asset('images/defaultpic.jpg') }};"></a>  --}}
                             <div style="height:40px; width:100%; background-color:grey; border-radius:5px; padding:5px;" class="text-center"> <h4 style="color:white;">Hotel Lai Rico</h4></div>
                         <ul class="list-unstyled components mb-5 mt-3">
-                            {{-- <li class="active">
-                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                                <ul class="collapse list-unstyled" id="homeSubmenu">
-                                <li>
-                                    <a href="#" class="v-tabs">Home 1</a>
+                         
+                            {{-- admin view --}}
+
+
+                            @if (Session::get("accountType") == 'Admin')
+                                <li class="@if (Session::get("masterAdminSide") == 'Dashboard') active @endif">
+                                    <a href="/dashboard">Dashboard</a>
+                                </li>
+                                <li class="@if (Session::get("masterAdminSide") == 'RoomList') active @endif">
+                                    <a href="{{route('roomList.index')}}">Room List</a>
                                 </li>
                                 <li>
-                                    <a href="#">Home 2</a>
+                                    <a href="#Bookings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Bookings</a>
+                                    <ul class="collapse list-unstyled @if (Session::get("masterAdminSide") == 'BookingAll' || Session::get("masterAdminSide") == 'CheckedIn' || Session::get("masterAdminSide") == 'history' || Session::get("masterAdminSide") == 'cancelled') show @endif" id="Bookings">
+                                    <li class="@if (Session::get("masterAdminSide") == 'BookingAll') active @endif">
+                                        <a href="{{route('booking.index')}}" class="v-tabs">All Bookings</a>
+                                    </li>
+                                    <li class="@if (Session::get("masterAdminSide") == 'CheckedIn') active @endif">
+                                        <a href="{{ route('booking.viewCheckedIn') }}">Checked-In</a>
+                                    </li>
+                                    <li class="@if (Session::get("masterAdminSide") == 'history') active @endif">
+                                        <a href="{{ route('booking.viewHistory') }}">Booking History</a>
+                                    </li>
+                                    <li class="@if (Session::get("masterAdminSide") == 'cancelled') active @endif">
+                                        <a href="{{ route('booking.viewCancelled') }}">Cancelled Bookings</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li id="reportLi" class="@if (Session::get("masterAdminSide") == 'Report') active @endif">
+                                    <a href="{{route('dailyView')}}">Report</a>
+                                </li>
+                                <li class="@if (Session::get("masterAdminSide") == 'User') active @endif">
+                                    <a href="{{route('users.index')}}">User Management</a>
                                 </li>
                                 <li>
-                                    <a href="#">Home 3</a>
+                                    <a href="#" onclick="logout()">{{ __('') }}Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
-                                </ul>
-                            </li> --}}
-                            <li class="@if (Session::get("masterAdminSide") == 'Dashboard') active @endif">
-                                <a href="/dashboard">Dashboard</a>
-                            </li>
-                            <li class="@if (Session::get("masterAdminSide") == 'RoomList') active @endif">
-                                <a href="{{route('roomList.index')}}">Room List</a>
-                            </li>
-                            {{-- <li>
-                                <a href="{{route('booking.index')}}">Bookings</a>
-                            </li> --}}
-                            <li>
-                                <a href="#Bookings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Bookings</a>
-                                <ul class="collapse list-unstyled @if (Session::get("masterAdminSide") == 'BookingAll' || Session::get("masterAdminSide") == 'CheckedIn' || Session::get("masterAdminSide") == 'history' || Session::get("masterAdminSide") == 'cancelled') show @endif" id="Bookings">
-                                <li class="@if (Session::get("masterAdminSide") == 'BookingAll') active @endif">
-                                    <a href="{{route('booking.index')}}" class="v-tabs">All Bookings</a>
+
+
+                            {{-- staff view --}}
+                            @elseif(Session::get("accountType") == 'Staff')
+                                    <li class="@if (Session::get("masterAdminSide") == 'Dashboard') active @endif">
+                                        <a href="/dashboard">Dashboard</a>
+                                    </li>
+                                    <li class="@if (Session::get("masterAdminSide") == 'RoomList') active @endif">
+                                        <a href="{{route('roomList.index')}}">Room List</a>
+                                    </li>
+                                    <li>
+                                        <a href="#Bookings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Bookings</a>
+                                        <ul class="collapse list-unstyled @if (Session::get("masterAdminSide") == 'BookingAll' || Session::get("masterAdminSide") == 'CheckedIn' || Session::get("masterAdminSide") == 'history' || Session::get("masterAdminSide") == 'cancelled') show @endif" id="Bookings">
+                                        <li class="@if (Session::get("masterAdminSide") == 'BookingAll') active @endif">
+                                            <a href="{{route('booking.index')}}" class="v-tabs">All Bookings</a>
+                                        </li>
+                                        <li class="@if (Session::get("masterAdminSide") == 'CheckedIn') active @endif">
+                                            <a href="{{ route('booking.viewCheckedIn') }}">Checked-In</a>
+                                        </li>
+                                        <li class="@if (Session::get("masterAdminSide") == 'history') active @endif">
+                                            <a href="{{ route('booking.viewHistory') }}">Booking History</a>
+                                        </li>
+                                        <li class="@if (Session::get("masterAdminSide") == 'cancelled') active @endif">
+                                            <a href="{{ route('booking.viewCancelled') }}">Cancelled Bookings</a>
+                                        </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="logout()">{{ __('') }}Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+
+                            {{-- customer view --}}
+                            @elseif(Session::get("accountType") == 'Customer')
+                            
+                                <li class="">
+                                    <a href="{{ route('customerBooking.index') }}">Bookings</a>
                                 </li>
-                                <li class="@if (Session::get("masterAdminSide") == 'CheckedIn') active @endif">
-                                    <a href="{{ route('booking.viewCheckedIn') }}">Checked-In</a>
+                                <li class="">
+                                    <a href="{{ route('booking.viewHistory') }}">User Profile</a>
                                 </li>
-                                <li class="@if (Session::get("masterAdminSide") == 'history') active @endif">
-                                    <a href="{{ route('booking.viewHistory') }}">Booking History</a>
+                                <li>
+                                    <a href="#" onclick="logout()">{{ __('') }}Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
-                                <li class="@if (Session::get("masterAdminSide") == 'cancelled') active @endif">
-                                    <a href="{{ route('booking.viewCancelled') }}">Cancelled Bookings</a>
-                                </li>
-                                </ul>
-                            </li>
-                            @if (Session::get("loginUser") == '0')
-                            <li id="reportLi" class="@if (Session::get("masterAdminSide") == 'Report') active @endif">
-                                <a href="{{route('dailyView')}}">Report</a>
-                            </li>
-                            <li class="@if (Session::get("masterAdminSide") == 'User') active @endif">
-                                <a href="{{route('users.index')}}">User Management</a>
-                            </li>
+
                             @endif
-                            <li>
-                                <a href="#" onclick="logout()">{{ __('') }}Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
+
+
+                         
+                           
+
+
+
+
+
+
                        </ul>
                 </div>
             </nav>

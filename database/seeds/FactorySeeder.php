@@ -15,9 +15,13 @@ class FactorySeeder extends Seeder
         factory(User::class, 1)->create();
         $user = User::first();
         $user->id = '0';
-        $user->firstName = '';
+        $user->username = 'Admin';
+        $user->firstName = 'Admin';
         $user->lastName = '';
-        $user->username = 'admin';
+        $user->lastName = '';
+        $user->gender = 'Male';
+        $user->accountType = 'Admin';
+        $user->isVerified = '1';
         $user->email = 'Admin@hotelLaiRico.com'; 
         $user->save();
     }

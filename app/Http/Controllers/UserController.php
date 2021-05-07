@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Session;
 use Hash;
+use Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -19,7 +20,10 @@ class UserController extends Controller
     public function index()
     {
         Session::put('masterAdminSide', 'User');
-        $users = User::all();
+        Session::put('usermanagement', 'userAccount');
+
+        $users = User::where('accountType','!=','Customer')->where('isVerified','1')->get();
+
         return view('AdminPage.Users.index', compact('users'));
     }
 
@@ -58,6 +62,8 @@ class UserController extends Controller
                 'username' => $request->username,
                 'lastName' => $request->lastName,
                 'firstName' => $request->firstName,
+                'accountType' => $request->accountType,
+                'gender' => $request->gender,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'middleName' => $request->middleName,
@@ -69,9 +75,12 @@ class UserController extends Controller
                 'bldgNumber' => $request->bldgNumber,
                 'street' => $request->street,
                 'district' => $request->district,
-                'birthDate' => $request->birthDate,
+                'month' => $request->month,
+                'day' => $request->day,
+                'year' => $request->year,
                 'number' => $request->number,
                 'email' => $request->email,
+                'isVerified' => '1',
             ]);
 
             if ($request->input('picture') != NULL){
@@ -136,6 +145,8 @@ class UserController extends Controller
        
         $user->update([
             'username' => $request->username,
+            'accountType' => $request->accountType,
+            'gender' => $request->gender,
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'middleName' => $request->middleName,
@@ -147,9 +158,12 @@ class UserController extends Controller
             'bldgNumber' => $request->bldgNumber,
             'street' => $request->street,
             'district' => $request->district,
-            'birthDate' => $request->birthDate,
+            'month' => $request->month,
+            'day' => $request->day,
+            'year' => $request->year,
             'number' => $request->number,
             'email' => $request->email,
+            'isVerified' => '1',
         ]);
 
         if ($request->input('picture') != NULL){
@@ -163,6 +177,12 @@ class UserController extends Controller
             $user->picture = $name;
             $user->save();
         }
+
+        Session::put('accountType', $request->accountType);
+        Session::put('loginFirstName', $request->firstName);
+        Session::put('loginLastName', $request->lastName);
+
+
         return redirect()->route('users.index')->with('success', 'User Updated Successfully');
     }
 
@@ -176,4 +196,36 @@ class UserController extends Controller
     {
         //
     }
+
+
+    public function verifiedCustomerAccount()
+    {
+        Session::put('usermanagement', 'verifiedCustomerAccount');
+
+        $users = User::where('accountType','Customer')->where('isVerified','1')->get();
+
+        return view('AdminPage.Users.Customer.verifiedCustomerIndex', compact('users'));
+    }
+
+    public function newCustomerAccount()
+    {
+        Session::put('usermanagement', 'newCustomerAccount');
+
+        $users = User::where('accountType','Customer')->where('isVerified','0')->get();
+
+        return view('AdminPage.Users.Customer.newCustomerAccount', compact('users'));
+    }
+
+    public function verifyCustomerPost(Request $request)
+    {
+
+       User::find($request->id)->update([
+           'isVerified' => '1',
+       ]);
+
+        return redirect()->route('verifiedCustomerAccount')->with('success', 'Account Verified Successfully');
+    }
+
+
+    
 }

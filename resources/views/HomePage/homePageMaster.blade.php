@@ -265,10 +265,10 @@ crossorigin="anonymous" />
              <a class="nav-link" href="#">CONTACT US</a>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link" href="/login">ADMIN</a>
+            <a class="nav-link" href="/login">LOGIN</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link book-btn" href="/searchRoom">BOOK NOW</a>
+            <a class="nav-link book-btn" href="/register">BOOK NOW</a>
         </li>
     </ul> 
     </div>
@@ -289,67 +289,8 @@ crossorigin="anonymous" />
     </div>
 </div>  
  
-    {{-- BookNowModal --}}
-    <div class="modal fade" id="bookNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true" style="margin-top: 100px">
-    <div class="modal-dialog modal-lg" role="document" >
-      <div class="modal-content">
-        <div class="modal-header text-center">
-            <h5 class="DivHeaderText w-100 font-weight-bold" style="letter-spacing: 1px; color: #ef7215; ">BOOK NOW</h5>
-        </div>
-        <div class="modal-body mx-5 mb-2">
-            <div class="form-row">
-                <div class="form-group col-sm-6">
-                    <label>Check in</label>
-                    <input type="date" class="form-control">
-                 </div>
-                 <div class="form-group col-sm-6">
-                    <label>Check out</label>
-                    <input type="date" class="form-control">
-                 </div>
-           </div>
-           <div class="form-row mt-1">
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-           </div>
-           <div class="form-row">
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Contact Number" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-bed"></i></span>
-                    </div>
-                    <select class="form-control">
-                        <option value="" selected disabled>Select Room Type</option>
-                        <option value=""> Deluxe Room</option>
-                        <option value=""> Classic Room</option>
-                        <option value=""> Rooftop Pool</option>
-                        <option value=""> Lobby</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="form-row mx-5 pb-3">
-            <div class="form-group col-sm-12">
-                <button class="btn btn-deep-orange float-left">Book Now</button>
-                <button class="btn btn-dark float-right" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-        </div>  
-    </div>
-</div>
-</div>
-  
-  
+ 
+
  
 <div style="background: white; height: 50px"></div>
 <footer class="d-block" style="background:rgba(0,0,0,0.9); border: 1px solid #ed9e21">

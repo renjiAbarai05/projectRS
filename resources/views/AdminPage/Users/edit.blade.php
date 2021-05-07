@@ -55,6 +55,16 @@
                         <label>Username</label>
                         <input type="text"class="form-control" name="username" required value="{{$user->username}}">
                     </div>
+                    @if($user->accountType != 'Customer')
+                        <div class="form-group col-md-12">
+                            <label>Account Type</label>
+                        <select name="accountType" class="form-control" id="accountType" required>
+                                <option value="">Select</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Staff">Staff</option>
+                        </select>
+                        </div>
+                    @endif
                     <div class="form-group col-md-4">
                         <label>Last Name</label>
                         <input type="text" class="form-control" name="lastName" onkeypress="return /[a-z ]/i.test(event.key)" required value="{{$user->lastName}}">
@@ -71,9 +81,41 @@
                         <label>Address</label>
                         <input type="text" class="form-control readonly" name="address" id="address" value="{{$user->address}}">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Birth Date</label>
-                        <input type="date" class="form-control" name="birthDate" value="{{$user->birthDate}}">
+                    <div class="form-group col-sm-12">
+                        <label class="input-label">Date of Birth</label>
+                        <div class="form-row mb-n3">
+                            <div class="form-group col-sm-4">
+                                <select class="form-control" name="month" id="month" required>
+                                    <option value="" disabled selected>Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select> 
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <input class="form-control" name="day" pattern="^\d*(\d{0})?$" type="text" value="{{$user->day}}" placeholder="Day" required>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <select class="form-control" type="text" name="year" id="year" placeholder="Year" required>
+                                <option value="" disabled selected>Year</option>
+                                <?php
+                                $firstYear = date("Y");
+                                $lastYear = 1900;
+                                for($i=$firstYear;$i>=$lastYear;$i--){
+                                echo '<option value='.$i.'>'.$i.'</option>';}
+                                ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Mobile Number</label>
@@ -84,9 +126,20 @@
                             <input type="tel" pattern="[0-9]{10}" class="form-control" onKeyPress="if(this.value.length==10) return false;return /[0-9]/i.test(event.key)" placeholder="Mobile Number" name="number" value="{{$user->number}}"/>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label>Email</label>
                         <input type="email" class="form-control" name="email" value="{{$user->email}}">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="input-label mb-2">Gender</label><br>
+                        <div class="form-check form-check-inline ml-4">
+                            <input type="radio" name="gender" id="genderMale" value="Male" class="form-check-input" @if($user->gender == 'Male') checked @endif>
+                            <label for="genderMale" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline ml-4">
+                            <input type="radio" name="gender" id="genderFemale" value="Female" class="form-check-input" @if($user->gender == 'Female') checked @endif>
+                            <label for="genderFemale" class="form-check-label">Female</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +165,14 @@
                 </div>
             </div>
                 <button type="submit" class="save-button mt-1" style="width:100%;">Save</button>
+
+                @if($user->accountType == 'Customer')
+                <button type="button" class="back-button float-right mt-1" style="width:100%;" onclick="window.location='{{route('verifiedCustomerAccount')}}'">Back</button>
+                @else
                 <button type="button" class="back-button float-right mt-1" style="width:100%;" onclick="window.location='{{route('users.index')}}'">Back</button>
+                @endif
+              
+                
         </div>
     </div>
     
@@ -184,6 +244,12 @@
 
 <script>
 $(document).ready(function(){
+
+
+    $("#accountType option[value='{{$user->accountType}}']").attr("selected", "selected");
+    $("#month option[value='{{$user->month}}']").attr("selected", "selected");
+    $("#year option[value='{{$user->year}}']").attr("selected", "selected");
+
     //Crop image
     $image_crop = $('#image_demo').croppie({
                 enableExif: true,
